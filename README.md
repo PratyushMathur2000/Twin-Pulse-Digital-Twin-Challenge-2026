@@ -93,55 +93,6 @@ Evaluated on a strict patient-grouped 80/20 holdout split (80 training patients 
 | **Stage 3: Safe Window (RUL) Regressor** | Continuous forecast of hours remaining (1–168h) before threshold breach | **R² = 0.9607** | **MAE = 6.15 Hours**, RMSE = 7.59 Hours | **0.028 ms** |
 | **2-Hour CGM Horizon Forecaster** | Postprandial glycemic trajectory with 95% confidence cone | **RMSE = 11.2 mg/dL** | 94.10% Sensitivity, 92.60% Specificity | **1.80 ms** |
 
-## 6. Repository Structure & Quick Start
-
-```text
-Twin-Pulse_NMIMS/
-├── index.html                                           # Sahara V6 Digital Twin Workstation (Vercel root entry)
-├── twin_pulse_clinical_dashboard_V6.html                # Sahara V6 Digital Twin Workstation (Standalone HTML5)
-├── twin_pulse_clinical_dashboard.html                   # Synced Clinician Workstation UI
-├── vercel.json                                          # Zero-config Vercel static deployment routing
-├── package.json                                         # Static project metadata
-├── Launch_Dashboard (macOS).sh                          # One-click macOS/Linux local launcher
-├── Launch_Dashboard (windows).bat                       # One-click Windows local launcher
-├── README.md                                            # Project documentation
-├── LICENSE                                              # MIT Open-Source License
-└── project_files/
-    ├── app_server.py                                    # FastAPI REST & Local AI proxy server
-    ├── verify_setup.py                                  # End-to-end automated repository & model verification
-    ├── requirements.txt                                 # Python dependencies
-    ├── ui/
-    │   └── twin_pulse_clinical_dashboard.html           # Workstation UI served by FastAPI
-    ├── data/
-    │   ├── synthea_ehr_patients.csv                     # 100 synthetic Indian patient EHR profiles
-    │   └── twin_pulse_cardiometabolic_ehr_wearable_data.csv # 1,500 longitudinal EHR + wearable windows
-    ├── saved_models/
-    │   ├── stage1_adverse_event_classifier.pkl          # Trained Stage 1 classifier
-    │   ├── stage2_cmbcd_stage_ensemble.pkl              # Trained Stage 2 4-class ensemble
-    │   ├── stage3_time_to_threshold_rul.pkl             # Trained Stage 3 RUL regressor
-    │   ├── feature_schema.json                          # Input feature schema
-    │   └── model_evaluation_metrics.json                # Holdout evaluation metrics
-    └── utils/
-        ├── data_generator.py                            # Synthetic cohort & wearable stream generator
-        ├── digital_twin_engine.py                       # 3-Stage ML training & inference engine
-        └── clinical_copilot.py                          # Local LLM (LM Studio / Ollama) & fallback engine
-```
-
-### Running Locally or Deploying to Vercel
-
-1. **Instant Browser Launch (Zero Setup):**
-   Open `index.html` or `twin_pulse_clinical_dashboard_V6.html` directly in any modern browser.
-2. **One-Click Local Server & Verification:**
-   * **macOS / Linux:** Run `./Launch_Dashboard\ \(macOS\).sh`
-   * **Windows:** Double-click `Launch_Dashboard (windows).bat`
-   * **Manual CLI Verification:**
-     ```bash
-     python3 project_files/verify_setup.py
-     python3 project_files/app_server.py
-     ```
-3. **1-Click Vercel Deployment:**
-   Push this repository to GitHub and import it into Vercel (Framework Preset: *Other / Static*). Vercel automatically serves `index.html` at `/`.
-
-## 7. License
+## 6. License
 
 Released under the **MIT Open-Source License**. Copyright (c) 2026 Pratyush Mathur & Aryan Jain (SVKM's NMIMS, Mumbai).
