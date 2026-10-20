@@ -1,0 +1,61 @@
+{
+  "dataset_summary": {
+    "total_patients": 100,
+    "total_longitudinal_windows": 1500,
+    "train_windows": 1200,
+    "test_windows": 300,
+    "archetypes": [
+      "Glycemic_T2D",
+      "Hemodynamic_HTN",
+      "Cardiac_CVD",
+      "HepaticRenal_CKD"
+    ],
+    "obesity_phenotype_counts": {
+      "MHNO": 32,
+      "MONO": 42,
+      "MOO": 26
+    }
+  },
+  "stage_1_adverse_event_classifier": {
+    "Horizon": "2-Hour Glycemic Spike / 24-Hour Cardiometabolic Crisis",
+    "Recall": 0.9674,
+    "Precision": 0.9175,
+    "F1_Score": 0.9418,
+    "Accuracy": 0.9633,
+    "Confusion_Matrix": {
+      "TP": 89,
+      "TN": 200,
+      "FP": 8,
+      "FN": 3
+    }
+  },
+  "stage_2_cmbcd_progression_ensemble": {
+    "Stages": [
+      "Stage 1: Controlled / Baseline",
+      "Stage 2: Subclinical Drift",
+      "Stage 3: Overt Dysregulation",
+      "Stage 4: Acute Crisis Imminent"
+    ],
+    "Macro_F1": 0.9209,
+    "Accuracy": 0.9133,
+    "Per_Stage_F1": [
+      0.9371,
+      0.9097,
+      0.8957,
+      0.9412
+    ]
+  },
+  "stage_3_time_to_threshold_regressor": {
+    "Target": "Hours Until Critical Biomarker Threshold Breach (1-168h)",
+    "MAE_Hours": 6.15,
+    "RMSE_Hours": 7.59,
+    "R2_Score": 0.9607
+  },
+  "system_efficiency_benchmarks": {
+    "Training_Time_ms": 465.7,
+    "Batch_300_Inference_ms": 9.9,
+    "Single_Patient_Inference_Latency_ms": 0.033,
+    "Streamlit_Legacy_Full_Rerun_Latency_ms": 480.0,
+    "FastAPI_WebUI_Speedup_Factor": "9600.0x faster"
+  }
+}

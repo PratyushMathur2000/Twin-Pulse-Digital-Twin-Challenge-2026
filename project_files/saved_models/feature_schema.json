@@ -1,0 +1,39 @@
+{
+  "features": [
+    "Age",
+    "Family_History_DM",
+    "BMI_kg_m2",
+    "Waist_Circumference_cm",
+    "EHR_HbA1c_pct",
+    "EHR_HOMA_IR",
+    "EHR_Triglycerides_mg_dL",
+    "EHR_HDL_mg_dL",
+    "EHR_LDL_mg_dL",
+    "EHR_eGFR_mL_min",
+    "EHR_FIB4_Index",
+    "Meal_Carbs_g",
+    "Med_Adherence_Score",
+    "Sleep_Hours",
+    "Sleep_Efficiency_pct",
+    "Steps_24h",
+    "CGM_Glucose_mg_dL",
+    "CGM_ROC_mg_dL_min",
+    "Wearable_SBP_mmHg",
+    "Wearable_DBP_mmHg",
+    "HRV_RMSSD_ms",
+    "Resting_HR_bpm",
+    "SpO2_pct",
+    "Phenotype_MONO",
+    "Phenotype_MOO",
+    "Arch_Glycemic_T2D",
+    "Arch_Hemodynamic_HTN",
+    "Arch_Cardiac_CVD",
+    "Arch_HepaticRenal_CKD"
+  ],
+  "archetypes": [
+    "Glycemic_T2D",
+    "Hemodynamic_HTN",
+    "Cardiac_CVD",
+    "HepaticRenal_CKD"
+  ]
+}

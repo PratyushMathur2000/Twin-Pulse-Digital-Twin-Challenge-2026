@@ -1,0 +1,147 @@
+# Twin-Pulse: Cardiometabolic Digital Twin Workstation
+
+**Submission for the Happiest Health Digital Twin Challenge 2026**  
+*Reimagining and Reforming Healthcare in India Summit 2026, Bengaluru*
+
+## 1. Team Details
+
+* **Team Name:** Twin-Pulse
+* **Institution:** SVKM's NMIMS, Mumbai (Second Year)
+* **Team Members (2 Members):**
+  * **Pratyush Mathur (Team Leader)** — Second Year, SVKM's NMIMS, Mumbai
+  * **Aryan Jain (Team Member)** — Second Year, SVKM's NMIMS, Mumbai
+
+## 2. Clinical Problem & Indian Healthcare Context
+
+Standard care in India manages Type 2 Diabetes (T2D), Hypertension (HTN), Dyslipidemia, and Chronic Kidney Disease (CKD) in isolated clinical silos, typically intervening only after an acute glycemic excursion or vascular event occurs. Screening by Body Mass Index (BMI) alone misses a large proportion of high-risk Indian patients:
+
+* **The Asian Indian "Thin-Fat" (`MONO`) Phenotype:** The nationally representative [ICMR-INDIAB Study (n = 113,043)](https://pmc.ncbi.nlm.nih.gov/articles/PMC12550443/) showed that **43.3% of Indian adults exhibit the Metabolically Obese Non-Obese (`MONO`) phenotype** (normal BMI < 25 kg/m² with high visceral adiposity, elevated HOMA-IR, and atherogenic dyslipidemia), while **28.3% exhibit the Metabolically Obese Obese (`MOO`) phenotype**.
+* **Multi-Organ Risk Escalation:** Compared to metabolically healthy individuals, non-obese `MONO` Indians carry a **6.90x higher risk of Type 2 Diabetes**, a **1.77x higher risk of Coronary Artery Disease (CAD)**, and a **1.81x higher risk of Chronic Kidney Disease (CKD)**, with **57.4% presenting three or more overlapping metabolic drivers simultaneously** ([ICMR-INDIAB Study](https://pmc.ncbi.nlm.nih.gov/articles/PMC12550443/)).
+* **Clinical Impact of Digital Twinning:** In Indian clinical cohorts (n = 1,853 and n = 319), continuous sensor + EHR digital twins lowered mean HbA1c by **1.8% to 2.9%**, improved Continuous Glucose Monitor (CGM) Time-in-Range from **69.7% to 86.9%**, and achieved **72.7% diabetes remission** and **60% hypertension remission** at 1 year ([Cardiometabolic Digital Twin Systematic Review](https://pmc.ncbi.nlm.nih.gov/articles/PMC12632027/)).
+
+## 3. Solution Overview
+
+**Twin-Pulse** is a real-time clinical Digital Twin workstation and FastAPI microservice grounded in the **Cardiometabolic-Based Chronic Disease (CMBCD)** model. It fuses static Electronic Health Records (Synthea / HL7 FHIR R4) with continuous wearable telemetry to power a 3-stage machine learning prognosis pipeline, an interactive 3D anatomical twin, a counterfactual "What-If" simulator, a 4-organ physiological sandbox, and an on-device Clinical AI Advisor.
+
+### Core Workstation Capabilities
+
+1. **3D Hemodynamic & Anatomical Twin Cockpit:** 60 FPS interactive 3D human point-cloud, skeletal wireframe, vagus nerve filaments, and arterial flow particles coupled with real-time organ strain across 4 physiological subsystems:
+   * **Pancreatic β-Cell & Glycemic Axis (`Glycemic_T2D` — Flagship Module)**
+   * **Systemic Arterial Tree & Conduit Aorta (`Hemodynamic_HTN`)**
+   * **Cardiac Autonomic & Coronary Axis (`Cardiac_CVD`)**
+   * **Hepatic-Renal Filtration Axis (`HepaticRenal_CKD`)**
+2. **AI-Driven Multi-Organ Sandbox & 6-Hour Counterfactual Trajectory:** Compares patient baseline against simulated or AI-optimized interventions across all 4 organ subsystems, plotting 6-hour post-meal glycemic and blood pressure trajectories and providing one-click **AI Auto-Optimize Twin** remission targets.
+3. **Counterfactual "What-If" Physiology Simulator:** Zero-latency perturbation sliders for meal carbohydrate load (g), medication adherence (%), nocturnal sleep duration (hrs), daily physical activity (steps), and sympathetic stress load (0–100), plus one-click clinical presets (*Meal Spike*, *Poor Sleep*, *Optimal Care*).
+4. **Clinical AI Advisor & Local AI CDS Studio:** Always-visible clinical advisor generating proactive nutrition, pharmacotherapy, and vagal recovery orders alongside structured SOAP notes and HL7 FHIR R4 bundles. Supports direct connection to local LLMs via **LM Studio (`:1234`)**, **Ollama (`:11434`)**, or the **FastAPI Proxy (`:8000`)** with automatic zero-downtime fallback to the built-in CMBCD Advisor Engine.
+5. **100-Patient Population Cohort Triage:** Interactive ward and outpatient triage board across 100 synthetic Indian digital twins (`PT-IND-001` to `PT-IND-100`) with search, archetype/stage filtering, slide-out patient inspection drawer, and CSV export.
+
+## 4. System Architecture
+
+```text
++---------------------------------------------------------------------------------------------------+
+|                           DATA INGESTION & PRIVACY SANDBOX LAYER                                  |
+|    (DPDP Act 2023 & HIPAA Compliant Synthetic Cohort: 100 Indian Patients, 1,500 Windows)         |
++-------------------------------------------------+-------------------------------------------------+
+                                                  |
+                  +-------------------------------+-------------------------------+
+                  |                                                               |
+                  v                                                               v
++-----------------------------------+                           +-----------------------------------+
+| STREAM 1: STATIC / HISTORICAL EHR |                           | STREAM 2: DYNAMIC WEARABLE / IoT  |
+| - Synthea Demographics & City     |                           | - Continuous Glucose (CGM mg/dL)  |
+| - ICMR-INDIAB Phenotype (MONO/MOO)|                           | - CGM Velocity (mg/dL/min)        |
+| - BMI & Waist Circumference (cm)  |                           | - Cuffless PPG BP (SBP/DBP mmHg)  |
+| - HbA1c (%), Fasting Glu, HOMA-IR |                           | - Autonomic HRV (RMSSD ms) & HR   |
+| - Lipids (TG, HDL, LDL, TG/HDL)   |                           | - Nocturnal Sleep Duration (hrs)  |
+| - Renal eGFR & Hepatic FIB-4      |                           | - 24h Step Count & Meal Carbs (g) |
++-----------------+-----------------+                           +-----------------+-----------------+
+                  |                                                               |
+                  +-------------------------------+-------------------------------+
+                                                  |
+                                                  v
++---------------------------------------------------------------------------------------------------+
+|                     PHYSIOLOGICAL COUPLING & 4-ORGAN SANDBOX ENGINE                               |
+|  [1] Pancreatic (Glycemic_T2D)  [2] Vascular (Hemodynamic_HTN)  [3] Cardiac_CVD  [4] HepaticRenal |
+|  Coupled ODEs & Interactions: Bergman Minimal Model, Windkessel SVR, Vagal HRV, eGFR/FIB-4 Wear   |
++-------------------------------------------------+-------------------------------------------------+
+                                                  |
+                                                  v
++---------------------------------------------------------------------------------------------------+
+|                        3-STAGE PROGNOSTIC ML ENGINE & FASTAPI MICROSERVICE                        |
+|  - Stage 1 Adverse Event Classifier: 2-hr glycemic (>200 mg/dL) / 24-hr crisis (96.74% Recall)    |
+|  - Stage 2 CMBCD 4-Stage Soft-Voting Ensemble: Stage 1 to Stage 4 staging (0.9209 Macro F1)       |
+|  - Stage 3 Safe Clinical Window (RUL) Regressor: Hours to threshold breach (R² = 0.9607, 6.15h)   |
++-------------------------------------------------+-------------------------------------------------+
+                                                  |
+                                                  v
++---------------------------------------------------------------------------------------------------+
+|                     CLINICIAN WORKSTATION & LOCAL AI ADVISOR (SAHARA V6)                          |
+|  - 3D Anatomical Twin + Real-Time 250 Hz Lead II ECG + 2-Hr CGM Horizon Cone                      |
+|  - AI-Driven 4-Organ Sandbox, 6-Hr Counterfactual Trajectory & What-If Perturbation Sliders       |
+|  - Clinical AI Advisor (LM Studio / Ollama / Built-In CMBCD Fallback) + HL7 FHIR R4 Bundle Export |
++---------------------------------------------------------------------------------------------------+
+```
+
+## 5. Holdout Validation Benchmarks
+
+Evaluated on a strict patient-grouped 80/20 holdout split (80 training patients = 1,200 longitudinal windows; 20 unseen test patients = 300 longitudinal windows):
+
+| Model Component | Clinical Prediction Target | Primary Metric | Secondary Metrics | Inference Latency |
+| :--- | :--- | :--- | :--- | :--- |
+| **Stage 1: Adverse Event Classifier** | Imminent 2-hr hyperglycemic spike (>200 mg/dL) or 24-hr hypertensive/cardiac crisis | **96.74% Recall** | **0.9418 F1-Score**, 91.75% Precision, 96.33% Accuracy | **0.035 ms** |
+| **Stage 2: CMBCD 4-Stage Ensemble** | 4-class progression staging (*Stage 1: Stable*, *Stage 2: Drift*, *Stage 3: Overt*, *Stage 4: Critical*) | **0.9209 Macro F1** | **91.33% Accuracy** (S1: 0.937, S2: 0.910, S3: 0.896, S4: 0.941) | **0.042 ms** |
+| **Stage 3: Safe Window (RUL) Regressor** | Continuous forecast of hours remaining (1–168h) before threshold breach | **R² = 0.9607** | **MAE = 6.15 Hours**, RMSE = 7.59 Hours | **0.028 ms** |
+| **2-Hour CGM Horizon Forecaster** | Postprandial glycemic trajectory with 95% confidence cone | **RMSE = 11.2 mg/dL** | 94.10% Sensitivity, 92.60% Specificity | **1.80 ms** |
+
+## 6. Repository Structure & Quick Start
+
+```text
+Twin-Pulse_NMIMS/
+├── index.html                                           # Sahara V6 Digital Twin Workstation (Vercel root entry)
+├── twin_pulse_clinical_dashboard_V6.html                # Sahara V6 Digital Twin Workstation (Standalone HTML5)
+├── twin_pulse_clinical_dashboard.html                   # Synced Clinician Workstation UI
+├── vercel.json                                          # Zero-config Vercel static deployment routing
+├── package.json                                         # Static project metadata
+├── Launch_Dashboard (macOS).sh                          # One-click macOS/Linux local launcher
+├── Launch_Dashboard (windows).bat                       # One-click Windows local launcher
+├── README.md                                            # Project documentation
+├── LICENSE                                              # MIT Open-Source License
+└── project_files/
+    ├── app_server.py                                    # FastAPI REST & Local AI proxy server
+    ├── verify_setup.py                                  # End-to-end automated repository & model verification
+    ├── requirements.txt                                 # Python dependencies
+    ├── ui/
+    │   └── twin_pulse_clinical_dashboard.html           # Workstation UI served by FastAPI
+    ├── data/
+    │   ├── synthea_ehr_patients.csv                     # 100 synthetic Indian patient EHR profiles
+    │   └── twin_pulse_cardiometabolic_ehr_wearable_data.csv # 1,500 longitudinal EHR + wearable windows
+    ├── saved_models/
+    │   ├── stage1_adverse_event_classifier.pkl          # Trained Stage 1 classifier
+    │   ├── stage2_cmbcd_stage_ensemble.pkl              # Trained Stage 2 4-class ensemble
+    │   ├── stage3_time_to_threshold_rul.pkl             # Trained Stage 3 RUL regressor
+    │   ├── feature_schema.json                          # Input feature schema
+    │   └── model_evaluation_metrics.json                # Holdout evaluation metrics
+    └── utils/
+        ├── data_generator.py                            # Synthetic cohort & wearable stream generator
+        ├── digital_twin_engine.py                       # 3-Stage ML training & inference engine
+        └── clinical_copilot.py                          # Local LLM (LM Studio / Ollama) & fallback engine
+```
+
+### Running Locally or Deploying to Vercel
+
+1. **Instant Browser Launch (Zero Setup):**
+   Open `index.html` or `twin_pulse_clinical_dashboard_V6.html` directly in any modern browser.
+2. **One-Click Local Server & Verification:**
+   * **macOS / Linux:** Run `./Launch_Dashboard\ \(macOS\).sh`
+   * **Windows:** Double-click `Launch_Dashboard (windows).bat`
+   * **Manual CLI Verification:**
+     ```bash
+     python3 project_files/verify_setup.py
+     python3 project_files/app_server.py
+     ```
+3. **1-Click Vercel Deployment:**
+   Push this repository to GitHub and import it into Vercel (Framework Preset: *Other / Static*). Vercel automatically serves `index.html` at `/`.
+
+## 7. License
+
+Released under the **MIT Open-Source License**. Copyright (c) 2026 Pratyush Mathur & Aryan Jain (SVKM's NMIMS, Mumbai).
