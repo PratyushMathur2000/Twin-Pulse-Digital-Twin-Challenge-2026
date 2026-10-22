@@ -58,31 +58,49 @@ Baseline EHR: HbA1c ${patient.hba1c || '8.2'}%, Fasting Glu ${patient.fastingGlu
       parts: [{ text: userPrompt }]
     });
 
-    const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${apiKey}`;
-    const response = await fetch(geminiUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: systemInstruction }] },
-        contents: contents,
-        generationConfig: {
-          temperature: 0.3,
-          maxOutputTokens: 900
-        }
-      })
-    });
+    const candidateModels = ['gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-2.0-flash'];
+    let reply = null;
+    let usedModel = null;
+    let lastError = null;
 
-    if (!response.ok) {
-      const errText = await response.text();
-      return res.status(response.status).json({ error: `Gemini API error: ${errText}` });
+    for (const model of candidateModels) {
+      try {
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        const response = await fetch(geminiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: systemInstruction }] },
+            contents: contents,
+            generationConfig: {
+              temperature: 0.3,
+              maxOutputTokens: 900
+            }
+          })
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (reply) {
+            usedModel = model;
+            break;
+          }
+        } else {
+          lastError = await response.text();
+        }
+      } catch (err) {
+        lastError = err.message;
+      }
     }
 
-    const data = await response.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'No response generated.';
+    if (!reply) {
+      return res.status(502).json({ error: `Gemini API invocation failed: ${lastError}` });
+    }
 
     return res.status(200).json({
       reply: reply,
-      model: 'gemini-3.5-flash-lite',
+      model: usedModel,
       timestamp: new Date().toISOString()
     });
   } catch (err) {

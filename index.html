@@ -2099,7 +2099,7 @@
           </div>
           <div>
             <h3 class="font-serif text-2xl font-normal text-[#26211c]">AI Advisor &amp; Edge Proxy Settings</h3>
-            <span class="text-xs font-mono text-[#7c7267]">Gemini 3.5 Flash • Vercel / Cloudflare</span>
+            <span class="text-xs font-mono text-[#7c7267]">Gemini Flash • Vercel / Cloudflare</span>
           </div>
         </div>
         <button onclick="closeAiSettingsModal()" class="p-2 rounded-lg text-[#7c7267] hover:text-[#26211c] hover:bg-[#ede4d8] transition-all">
@@ -7439,7 +7439,7 @@ function onAiEngineChange() {
   const cockpitBadge = document.getElementById('aiAdvisorEngineBadge');
   if (!sel) return;
   const val = sel.value;
-  let label = 'Gemini 3.5 Flash';
+  let label = 'Gemini Flash';
   if (val === 'edge-proxy') label = 'Edge Proxy';
   else if (val === 'local-model') label = 'LM Studio (:1234)';
   else if (val === 'ollama') label = 'Ollama (:11434)';
@@ -7505,7 +7505,7 @@ async function testAiConnection() {
       latency = Math.round(performance.now() - t0);
       if (resp.ok) success = true;
     } else if (key) {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${key}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
       const resp = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -7598,7 +7598,7 @@ async function callAiAdvisorEngine(prompt, fromCockpit = false) {
         const data = await resp.json();
         if (data.reply) {
           reply = data.reply;
-          engineSource = 'Vercel Edge (Gemini 3.5 Flash)';
+          engineSource = 'Vercel Edge (Gemini Flash)';
           proxySuccess = true;
         }
       }
@@ -7638,7 +7638,7 @@ async function callAiAdvisorEngine(prompt, fromCockpit = false) {
       try {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), 8000);
-        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${savedKey}`;
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${savedKey}`;
         
         const systemPrompt = `You are the Twin-Pulse Healthcare Digital Twin Clinical Advisor & AI Diagnostic Copilot, an expert cardiometabolic digital twin physician grounded in the 2026 ICMR-INDIAB and ADA/KDIGO guidelines for Indian populations.
 You evaluate coupled multi-organ dynamics (Pancreatic β-cell glycemic axis, Conduit arterial vascular tree, Autonomic cardiac HRV, and Hepatorenal filtration).
@@ -7666,7 +7666,7 @@ Question: ${prompt}`;
           const partText = data.candidates?.[0]?.content?.parts?.[0]?.text;
           if (partText) {
             reply = partText;
-            engineSource = 'Gemini 3.5 Flash (Direct Cloud)';
+            engineSource = 'Gemini Flash (Direct Cloud)';
             proxySuccess = true;
           }
         }
@@ -7785,7 +7785,7 @@ async function executeStudioInference(fromCockpit = false) {
 
     // Update badges
     if (latBadge) latBadge.textContent = `Latency: ${res.latencyMs} ms • ${res.engineSource}`;
-    if (sbBadge) sbBadge.textContent = res.engineSource.includes('Gemini') ? 'Gemini 3.5 Flash' : 'AI Copilot';
+    if (sbBadge) sbBadge.textContent = res.engineSource.includes('Gemini') ? 'Gemini Flash' : 'AI Copilot';
     if (cockpitBadge) cockpitBadge.textContent = res.engineSource.includes('Gemini') ? `🟢 Gemini (${res.latencyMs}ms)` : `🔵 CMBCD AI`;
 
     // Also update Cockpit Card 4
