@@ -705,6 +705,32 @@
       background: #fbeae0;
       color: #c2652a;
     }
+  
+    /* Closed-Loop Architecture Flowchart & Live Pulse Animations */
+    @keyframes flowDashForward {
+      from { stroke-dashoffset: 24; }
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes flowDashLoopReturn {
+      from { stroke-dashoffset: 0; }
+      to { stroke-dashoffset: -32; }
+    }
+    .flow-line-forward {
+      stroke-dasharray: 6, 6;
+      animation: flowDashForward 1.2s linear infinite;
+    }
+    .flow-line-return {
+      stroke-dasharray: 8, 6;
+      animation: flowDashLoopReturn 1.6s linear infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.08); }
+    }
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
   </style>
 </head>
 <body class="h-screen overflow-hidden flex flex-col bg-[#faf5ee] text-[#26211c]">
@@ -2007,62 +2033,247 @@
           </div>
         </div>
 
-        <!-- SECTION 2: SYSTEM ARCHITECTURE & TWO-STREAM DATA FLOW -->
-        <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-6 shadow-sahara flex flex-col gap-4">
-          <div class="flex items-center gap-2 pb-2.5 border-b border-[#d8d0c8]/40">
-            <span class="material-symbols-outlined text-[#c2652a] text-xl">schema</span>
-            <h2 class="font-serif text-xl lg:text-2xl font-normal text-[#26211c]">System Architecture &amp; Two-Stream Data Flow</h2>
+        <!-- SECTION 2: CLOSED-LOOP SYSTEM ARCHITECTURE & SOLUTION FLOWCHART -->
+        <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-6 shadow-sahara flex flex-col gap-5">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[#d8d0c8]/40">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#c2652a] text-2xl">all_inclusive</span>
+                <h2 class="font-serif text-xl lg:text-2xl font-bold text-[#26211c]">Closed-Loop Healthcare Digital Twin Solution Architecture</h2>
+              </div>
+              <p class="text-xs text-[#7c7267] mt-1 leading-relaxed">
+                End-to-end continuous feedback loop: Multi-Modal Ingestion &rarr; Biophysical ODE Core &rarr; 3-Stage ML Hazard Inference &rarr; AI Counterfactual Studio &rarr; Clinical Action &rarr; Real-Time Wearable Recalibration.
+              </p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5c7a68]/15 text-[#5c7a68] text-xs font-mono font-semibold border border-[#5c7a68]/30">
+                <span class="w-2 h-2 rounded-full bg-[#5c7a68] animate-pulse"></span>
+                <span>Continuous Closed-Loop Active</span>
+              </span>
+            </div>
           </div>
 
-          <!-- Visual Flow Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch text-xs">
+          <!-- Interactive Looping SVG Flowchart -->
+          <div class="w-full bg-[#faf5ee] rounded-2xl border border-[#d8d0c8]/70 p-4 lg:p-6 overflow-x-auto shadow-inner flex flex-col items-center">
+            
+            <svg viewBox="0 0 1020 380" class="w-full min-w-[880px] max-w-[1020px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Gradients -->
+                <linearGradient id="gradEhr" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#fbeae0" />
+                </linearGradient>
+                <linearGradient id="gradFusion" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#fdf4e7" />
+                </linearGradient>
+                <linearGradient id="gradOde" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#edf4f0" />
+                </linearGradient>
+                <linearGradient id="gradMl" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#faeeee" />
+                </linearGradient>
+                <linearGradient id="gradAction" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#fbeae0" />
+                </linearGradient>
+
+                <!-- Arrowhead Markers -->
+                <marker id="arrowForward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#c2652a" />
+                </marker>
+                <marker id="arrowReturn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#5c7a68" />
+                </marker>
+              </defs>
+
+              <!-- ========================================== -->
+              <!-- 1. FORWARD FLOW CONNECTING LINES -->
+              <!-- ========================================== -->
+              <!-- Line 1: Ingestion -> Fusion -->
+              <path d="M 175 95 L 235 95" fill="none" stroke="#c2652a" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- Line 2: Fusion -> Biophysical ODE -->
+              <path d="M 375 95 L 435 95" fill="none" stroke="#d49a3d" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- Line 3: Biophysical ODE -> 3-Stage ML -->
+              <path d="M 575 95 L 635 95" fill="none" stroke="#5c7a68" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- Line 4: 3-Stage ML -> Clinical Action & AI -->
+              <path d="M 775 95 L 835 95" fill="none" stroke="#8c3c3c" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- ========================================== -->
+              <!-- 2. THE CLOSED-LOOP RETURN ARC (LOOPING BACK) -->
+              <!-- ========================================== -->
+              <!-- Starts below Clinical Action (x=905, y=165), descends, sweeps left across bottom, and ascends to Ingestion (x=105, y=165) -->
+              <path d="M 905 165 C 905 285, 840 315, 750 315 L 260 315 C 160 315, 105 285, 105 165"
+                    fill="none" stroke="#5c7a68" stroke-width="3" stroke-linecap="round" class="flow-line-return" marker-end="url(#arrowReturn)" />
+
+              <!-- Closed Loop Animated Label Capsule in Middle of Return Line -->
+              <g transform="translate(510, 315)">
+                <rect x="-190" y="-18" width="380" height="36" rx="18" fill="#ffffff" stroke="#5c7a68" stroke-width="2" filter="drop-shadow(0 2px 6px rgba(92,122,104,0.18))" />
+                <circle cx="-165" cy="0" r="5" fill="#5c7a68" class="pulse-glow" />
+                <text x="0" y="4.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">
+                  ↺ Continuous Closed-Loop: Physiological Response Recorded via Wearables
+                </text>
+              </g>
+
+              <!-- ========================================== -->
+              <!-- 3. FIVE SOLUTION NODES -->
+              <!-- ========================================== -->
+              
+              <!-- NODE 1: DATA INGESTION -->
+              <g transform="translate(35, 25)">
+                <rect width="140" height="140" rx="16" fill="url(#gradEhr)" stroke="#c2652a" stroke-width="2" />
+                <rect x="12" y="12" width="28" height="28" rx="8" fill="#fbeae0" />
+                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#c2652a">📥</text>
+                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 1</text>
+                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Two-Stream Data</text>
+                
+                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#26211c">• Stream 1 (EHR)</text>
+                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">HbA1c, HOMA-IR, eGFR</text>
+                
+                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#c2652a">• Stream 2 (IoT)</text>
+                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">100Hz CGM, HRV, BP</text>
+
+                <rect x="14" y="123" width="112" height="18" rx="9" fill="#fbeae0" />
+                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#c2652a">Synthea + Wearables</text>
+              </g>
+
+              <!-- NODE 2: STREAM FUSION & FEATURE CALIBRATION -->
+              <g transform="translate(235, 25)">
+                <rect width="140" height="140" rx="16" fill="url(#gradFusion)" stroke="#d49a3d" stroke-width="2" />
+                <rect x="12" y="12" width="28" height="28" rx="8" fill="#fdf4e7" />
+                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#d49a3d">⚡</text>
+                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 2</text>
+                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Stream Fusion</text>
+                
+                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• 29 Feature Engine</text>
+                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">ROC, Glycemic Drift</text>
+                
+                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#d49a3d">• Phenotype Tuning</text>
+                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Thin-Fat Modifier p₃</text>
+
+                <rect x="14" y="123" width="112" height="18" rx="9" fill="#fdf4e7" />
+                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#d49a3d">ICMR-INDIAB Scaled</text>
+              </g>
+
+              <!-- NODE 3: BIOPHYSICAL ODE TWIN (RK4) -->
+              <g transform="translate(435, 25)">
+                <rect width="140" height="140" rx="16" fill="url(#gradOde)" stroke="#5c7a68" stroke-width="2.5" />
+                <rect x="12" y="12" width="28" height="28" rx="8" fill="#edf4f0" />
+                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5c7a68">🧬</text>
+                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 3</text>
+                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Biophysical Twin</text>
+                
+                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• Minimal Model</text>
+                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Bergman ODE Solver</text>
+                
+                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#5c7a68">• 4-Organ Coupling</text>
+                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Pancreas &harr; Vasc &harr; Heart</text>
+
+                <rect x="14" y="123" width="112" height="18" rx="9" fill="#edf4f0" />
+                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#5c7a68">RK4 Numerical Core</text>
+              </g>
+
+              <!-- NODE 4: 3-STAGE PROGNOSTIC ML CORE -->
+              <g transform="translate(635, 25)">
+                <rect width="140" height="140" rx="16" fill="url(#gradMl)" stroke="#8c3c3c" stroke-width="2" />
+                <rect x="12" y="12" width="28" height="28" rx="8" fill="#faeeee" />
+                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#8c3c3c">📊</text>
+                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 4</text>
+                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">3-Stage ML Core</text>
+                
+                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#8c3c3c">• Adverse Event</text>
+                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">96.7% Recall Excursion</text>
+                
+                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• Safe Window TTT</text>
+                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">R&sup2;: 0.961 &bull; MAE: 6.15h</text>
+
+                <rect x="14" y="123" width="112" height="18" rx="9" fill="#faeeee" />
+                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#8c3c3c">CMBCD Staging (1&ndash;4)</text>
+              </g>
+
+              <!-- NODE 5: TWIN-PULSE AI & CLINICAL ACTION -->
+              <g transform="translate(835, 25)">
+                <rect width="140" height="140" rx="16" fill="url(#gradAction)" stroke="#c2652a" stroke-width="2" />
+                <rect x="12" y="12" width="28" height="28" rx="8" fill="#fbeae0" />
+                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#c2652a">👨‍⚕️</text>
+                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 5</text>
+                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Clinical Action</text>
+                
+                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• What-If Sliders</text>
+                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Carbs, Adherence, Sleep</text>
+                
+                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#c2652a">• Titration / Action</text>
+                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">SGLT2i / GLP-1 RA Plan</text>
+
+                <rect x="14" y="123" width="112" height="18" rx="9" fill="#fbeae0" />
+                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#c2652a">FHIR R4 &amp; SOAP Note</text>
+              </g>
+
+            </svg>
+
+          </div>
+
+          <!-- 4 Solution Detail Summary Pillars -->
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch text-xs mt-1">
             
             <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
               <div>
-                <span class="px-2 py-0.5 rounded bg-[#f5efe6] font-mono text-[10px] text-[#7c7267] font-semibold">INGESTION</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Two Data Streams</h4>
-                <ul class="mt-2 space-y-1 text-[#4a4036] leading-relaxed">
-                  <li><strong>Stream 1 (Static EHR):</strong> Synthea demographics, HbA1c, HOMA-IR, eGFR, FIB-4, lipids, meds.</li>
-                  <li><strong>Stream 2 (Live IoT):</strong> In-vivo CGM (5-min intervals), continuous SBP/DBP, PPG HRV RMSSD, sleep &amp; steps.</li>
-                </ul>
+                <span class="px-2 py-0.5 rounded bg-[#fbeae0] font-mono text-[10px] text-[#c2652a] font-semibold">1. DATA INGESTION</span>
+                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Two-Stream Data Fusion</h4>
+                <p class="mt-2 text-[#4a4036] leading-relaxed">
+                  Ingests static Synthea EHR demographics and lab panels (HbA1c, HOMA-IR, eGFR, FIB-4) alongside continuous 100 Hz live wearable telemetry (CGM, HRV, BP).
+                </p>
               </div>
-              <span class="text-[10.5px] font-mono text-[#5c7a68] mt-2 block">&rarr; 29 Engineered Features</span>
+              <span class="text-[10.5px] font-mono text-[#c2652a] mt-2 block">&rarr; 29 Engineered Dynamic Features</span>
             </div>
 
             <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
               <div>
-                <span class="px-2 py-0.5 rounded bg-[#fbeae0] font-mono text-[10px] text-[#c2652a] font-semibold">STAGE 1 &amp; 2 ML</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Prognostic Classification</h4>
-                <ul class="mt-2 space-y-1 text-[#4a4036] leading-relaxed">
-                  <li><strong>Stage 1 Classifier:</strong> Gradient Boosted Tree predicting adverse glycemic/vascular excursions.</li>
-                  <li><strong>Stage 2 Ensemble:</strong> 4-class soft-voting ensemble mapping multi-organ strain to CMBCD stages 1–4.</li>
-                </ul>
+                <span class="px-2 py-0.5 rounded bg-[#fdf4e7] font-mono text-[10px] text-[#d49a3d] font-semibold">2. BIOPHYSICAL ODE</span>
+                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">RK4 Multi-Organ Engine</h4>
+                <p class="mt-2 text-[#4a4036] leading-relaxed">
+                  Solves Bergman minimal glucose equations coupled with aortic compliance, autonomic baroreflex, and nephron filtration via 4th-order Runge-Kutta numerical solver.
+                </p>
               </div>
-              <span class="text-[10.5px] font-mono text-[#c2652a] mt-2 block">Recall: 96.7% • F1: 0.942</span>
+              <span class="text-[10.5px] font-mono text-[#d49a3d] mt-2 block">&Delta;t = 0.05h Step Size &bull; 100 Hz</span>
             </div>
 
             <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
               <div>
-                <span class="px-2 py-0.5 rounded bg-[#fbf0f0] font-mono text-[10px] text-[#8c3c3c] font-semibold">STAGE 3 ML</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Time-to-Threshold (TTT)</h4>
-                <ul class="mt-2 space-y-1 text-[#4a4036] leading-relaxed">
-                  <li><strong>TTT Regressor:</strong> Non-linear hazard model estimating hours until glycemic excursion (&gt;200 mg/dL) or end-organ decompensation.</li>
-                  <li>Calculates patient-specific safe clinical buffer window.</li>
-                </ul>
+                <span class="px-2 py-0.5 rounded bg-[#faeeee] font-mono text-[10px] text-[#8c3c3c] font-semibold">3. PROGNOSTIC ML</span>
+                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Hazard &amp; TTT Regression</h4>
+                <p class="mt-2 text-[#4a4036] leading-relaxed">
+                  Gradient boosted trees predict acute glycemic excursions (&gt;200 mg/dL within 45 min) with 96.7% recall, while hazard models calculate the safe clinical buffer window.
+                </p>
               </div>
-              <span class="text-[10.5px] font-mono text-[#8c3c3c] mt-2 block">R²: 0.961 • MAE: 6.15h</span>
+              <span class="text-[10.5px] font-mono text-[#8c3c3c] mt-2 block">TTT R&sup2;: 0.961 &bull; MAE: 6.15 hrs</span>
             </div>
 
             <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
               <div>
-                <span class="px-2 py-0.5 rounded bg-[#f5efe6] font-mono text-[10px] text-[#5c7a68] font-semibold">SIMULATION</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Biophysical RK4 Engine</h4>
-                <ul class="mt-2 space-y-1 text-[#4a4036] leading-relaxed">
-                  <li><strong>Bergman Minimal Model:</strong> Solved at 100 Hz via 4th-order Runge-Kutta numerical integration.</li>
-                  <li>Coupled with autonomic baroreflex and 3D vertex mesh deformation.</li>
-                </ul>
+                <span class="px-2 py-0.5 rounded bg-[#edf4f0] font-mono text-[10px] text-[#5c7a68] font-semibold">4. CLOSED LOOP</span>
+                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Continuous Clinical Loop</h4>
+                <p class="mt-2 text-[#4a4036] leading-relaxed">
+                  Counterfactual simulations and titration guidance (ICMR-INDIAB) lead to patient action, which continuously feeds back into the wearable sensors to update the digital twin.
+                </p>
               </div>
-              <span class="text-[10.5px] font-mono text-[#5c7a68] mt-2 block">0.05h Step Size • 100 Hz</span>
+              <span class="text-[10.5px] font-mono text-[#5c7a68] mt-2 block">&circlearrowright; Wearable Closed Feedback Loop</span>
             </div>
 
           </div>
@@ -5968,20 +6179,29 @@ function buildAnatomical3DModel() {
 }
 
 function project3D(pt, width, height) {
-  const cosY = Math.cos(state.rotY);
-  const sinY = Math.sin(state.rotY);
-  const cosX = Math.cos(state.rotX);
-  const sinX = Math.sin(state.rotX);
+  const rotY = (typeof state.rotY === 'number' && !isNaN(state.rotY)) ? state.rotY : 0;
+  const rotX = (typeof state.rotX === 'number' && !isNaN(state.rotX)) ? state.rotX : 0;
+  const zoom = (typeof state.zoom === 'number' && !isNaN(state.zoom) && state.zoom > 0.1) ? state.zoom : 1.0;
 
-  const x1 = pt.x * cosY + pt.z * sinY;
-  const z1 = -pt.x * sinY + pt.z * cosY;
+  const cosY = Math.cos(rotY);
+  const sinY = Math.sin(rotY);
+  const cosX = Math.cos(rotX);
+  const sinX = Math.sin(rotX);
 
-  const y2 = pt.y * cosX - z1 * sinX;
-  const z2 = pt.y * sinX + z1 * cosX;
+  const px = (pt && typeof pt.x === 'number') ? pt.x : 0;
+  const py = (pt && typeof pt.y === 'number') ? pt.y : 0;
+  const pz = (pt && typeof pt.z === 'number') ? pt.z : 0;
+
+  const x1 = px * cosY + pz * sinY;
+  const z1 = -px * sinY + pz * cosY;
+
+  const y2 = py * cosX - z1 * sinX;
+  const z2 = py * sinX + z1 * cosX;
 
   const fov = 2.55;
   const viewerDist = 2.95;
-  const perspective = (fov / (viewerDist - z2)) * state.zoom;
+  const denom = Math.max(0.35, viewerDist - z2);
+  const perspective = (fov / denom) * zoom;
   const scale = Math.min(width, height) * 0.54;
 
   return {
@@ -5993,9 +6213,17 @@ function project3D(pt, width, height) {
 }
 
 function render3DViewport(dt) {
+  dt = (typeof dt === 'number' && !isNaN(dt) && dt > 0) ? dt : 0.016;
+  if (typeof state.rotY !== 'number' || isNaN(state.rotY)) state.rotY = 0;
+  if (typeof state.rotX !== 'number' || isNaN(state.rotX)) state.rotX = 0;
+  if (typeof state.zoom !== 'number' || isNaN(state.zoom) || state.zoom < 0.2) state.zoom = 1.0;
+  if (!bodyPoints || bodyPoints.length === 0) buildAnatomical3DModel();
+
   const canvas = document.getElementById('body3dCanvas');
   if (!canvas) return;
-  const rect = canvas.parentElement.getBoundingClientRect();
+  const parent = canvas.parentElement;
+  if (!parent) return;
+  const rect = parent.getBoundingClientRect();
   if (rect.width < 10 || rect.height < 10) return;
   const dpr = window.devicePixelRatio || 1;
   if (canvas.width !== Math.floor(rect.width * dpr) || canvas.height !== Math.floor(rect.height * dpr)) {
@@ -6004,6 +6232,7 @@ function render3DViewport(dt) {
   }
 
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
   ctx.save();
   ctx.scale(dpr, dpr);
   const W = rect.width;
@@ -6011,7 +6240,7 @@ function render3DViewport(dt) {
   ctx.clearRect(0, 0, W, H);
 
   if (state.autoSpin && !state.isDragging) {
-    state.rotY = (state.rotY + dt * 0.35) % (Math.PI * 2);
+    state.rotY = ((state.rotY || 0) + dt * 0.35) % (Math.PI * 2);
   }
 
   // 1. Holographic Base Platform Rings
@@ -6416,7 +6645,7 @@ function renderEcgLoop() {
   }
 }
 
-function drawCgmForecastChart() {
+function drawCgmForecastChart(timeSec = animTime) {
   const canvas = document.getElementById('cgmForecastCanvas');
   if (!canvas) return;
   const rect = canvas.parentElement.getBoundingClientRect();
@@ -6548,18 +6777,43 @@ function drawCgmForecastChart() {
   ctx.lineWidth = 2.4;
   ctx.stroke();
 
-  // Current CGM anchor dot
+  // 1. LIVE ANIMATED RADAR PULSE AROUND CURRENT IN-VIVO ANCHOR
+  const nowY = toY(curCgm);
+  const pulsePhase = (animTime * 1.8) % 1.0;
+  const pulseRad = 5.0 + pulsePhase * 16.0;
+  const pulseAlpha = Math.max(0, 1.0 - pulsePhase) * 0.75;
+  
   ctx.beginPath();
-  ctx.arc(midX, toY(curCgm), 4.5, 0, Math.PI * 2);
+  ctx.arc(midX, nowY, pulseRad, 0, Math.PI * 2);
+  ctx.strokeStyle = state.darkMode ? `rgba(224, 122, 60, ${pulseAlpha})` : `rgba(194, 101, 42, ${pulseAlpha})`;
+  ctx.lineWidth = 1.6;
+  ctx.stroke();
+
+  // 2. LIVE TRAVELING PREDICTIVE TRACER BEAD ALONG SIMULATED FORECAST
+  const travelT = (animTime * 0.35) % 1.0;
+  const travelX = midX + (endX - midX) * travelT;
+  const travelY = toY(curCgm + (simApex - curCgm) * travelT);
+  
+  ctx.beginPath();
+  ctx.arc(travelX, travelY, 3.8, 0, Math.PI * 2);
+  ctx.fillStyle = simStrokeColor;
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+
+  // Current CGM anchor dot (solid center)
+  ctx.beginPath();
+  ctx.arc(midX, nowY, 4.8, 0, Math.PI * 2);
   ctx.fillStyle = state.darkMode ? '#e07a3c' : '#c2652a';
   ctx.fill();
   ctx.strokeStyle = state.darkMode ? '#1b1714' : '#ffffff';
   ctx.lineWidth = 2;
   ctx.stroke();
 
-  // Simulated apex end dot
+  // Simulated apex end dot (solid center)
   ctx.beginPath();
-  ctx.arc(endX, toY(simApex), 4.5, 0, Math.PI * 2);
+  ctx.arc(endX, toY(simApex), 4.8, 0, Math.PI * 2);
   ctx.fillStyle = simStrokeColor;
   ctx.fill();
   ctx.strokeStyle = state.darkMode ? '#1b1714' : '#ffffff';
@@ -7054,7 +7308,7 @@ function renderSandboxAndTrajectory(p, simRes) {
     interpEl.textContent = `With ${state.sim.carbs}g meal carbohydrates, ${state.sim.meds}% medication adherence, ${state.sim.sleep}h sleep, and ${Number(state.sim.steps).toLocaleString()} steps, ${p.name}'s 2-hour postprandial glucose shifts from ${baseRes.cgm} to ${simRes.cgm} mg/dL (BP ${simRes.sbp}/${simRes.dbp} mmHg, vagal HRV ${simRes.hrv} ms), moving Stage 1 event risk from ${baseRes.s1Prob}% to ${simRes.s1Prob}% and safe clinical window from ${baseRes.rulHours}h to ${simRes.rulHours}h.`;
   }
 
-  drawSandboxTrajectoryCanvas(baseRes, simRes);
+  cachedTrajectoryBase = baseRes; cachedTrajectorySim = simRes; drawSandboxTrajectoryCanvas(baseRes, simRes);
 
   const detailBox = document.getElementById('organSandboxDetailBox');
   if (detailBox) {
@@ -7195,8 +7449,31 @@ function drawSandboxTrajectoryCanvas(baseRes, simRes) {
     ctx.fillStyle = state.darkMode ? '#e07a3c' : '#c2652a';
     ctx.fill();
   });
+
+  // Live Animated Tracer Bead along 6h post-meal curve
+  const tracerProgress = (animTime * 0.28) % 1.0;
+  const beadSegment = tracerProgress * (simCurve.length - 1);
+  const idx0 = Math.floor(beadSegment);
+  const idx1 = Math.min(simCurve.length - 1, idx0 + 1);
+  const subT = beadSegment - idx0;
+  const beadVal = simCurve[idx0] + (simCurve[idx1] - simCurve[idx0]) * subT;
+  const beadPx = toX(beadSegment);
+  const beadPy = toY(beadVal);
+
+  ctx.beginPath();
+  ctx.arc(beadPx, beadPy, 4.5, 0, Math.PI * 2);
+  ctx.fillStyle = state.darkMode ? '#e07a3c' : '#c2652a';
+  ctx.fill();
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1.6;
+  ctx.stroke();
+
   ctx.restore();
 }
+
+let cachedTrajectoryBase = null;
+let cachedTrajectorySim = null;
+
 
 function renderSoapNote(p, m) {
   const advisorBox = document.getElementById('aiAdvisorPrescriptionBox');
@@ -8268,8 +8545,16 @@ function switchView(viewName) {
   } else if (viewName === 'specs') {
     renderOrganInspector();
   } else if (viewName === 'main') {
-    drawCgmForecastChart();
-    render3DViewport();
+    setTimeout(() => {
+      render3DViewport(0.016);
+      drawCgmForecastChart(animTime);
+      const p = getPatient();
+      renderSandboxAndTrajectory(p, liveTwinMetrics || computeTwinState(p));
+    }, 30);
+    setTimeout(() => {
+      render3DViewport(0.016);
+      drawCgmForecastChart(animTime);
+    }, 180);
   }
 }
 
@@ -8461,17 +8746,39 @@ function notify(msg) {
 }
 
 function animationLoop(timestamp) {
-  const dt = Math.min(0.1, (timestamp - lastTimestamp) / 1000);
+  // Always schedule next frame first to guarantee loop never dies
+  requestAnimationFrame(animationLoop);
+
+  if (!lastTimestamp) lastTimestamp = timestamp;
+  const dt = Math.min(0.1, (timestamp - lastTimestamp) / 1000) || 0.016;
   lastTimestamp = timestamp;
   animTime += dt;
 
   if (state.view === 'main') {
-    render3DViewport(dt);
-    renderEcgLoop();
-    drawCgmForecastChart();
-  }
+    try {
+      render3DViewport(dt);
+    } catch (err3d) {
+      console.warn('3D Twin frame render caught:', err3d);
+    }
 
-  requestAnimationFrame(animationLoop);
+    try {
+      renderEcgLoop();
+    } catch (errEcg) {
+      console.warn('ECG frame render caught:', errEcg);
+    }
+
+    try {
+      drawCgmForecastChart(animTime);
+    } catch (errCgm) {
+      console.warn('CGM Forecast frame render caught:', errCgm);
+    }
+
+    if (cachedTrajectoryBase && cachedTrajectorySim) {
+      try {
+        drawSandboxTrajectoryCanvas(cachedTrajectoryBase, cachedTrajectorySim);
+      } catch (errTraj) {}
+    }
+  }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
