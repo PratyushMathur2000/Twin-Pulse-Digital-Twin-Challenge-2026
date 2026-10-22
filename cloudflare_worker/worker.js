@@ -68,7 +68,7 @@ When analyzing the patient and counterfactual scenarios, provide structured, cli
       const patientContext = patient ? `Patient: ${patient.name} (${patient.id}, Phenotype: ${patient.phenotype || 'MONO'}, Age: ${patient.age || '48'}${patient.sex || 'M'}, City: ${patient.city || 'Mumbai'})
 Baseline EHR: HbA1c ${patient.hba1c || '8.2'}%, Fasting Glu ${patient.fastingGlu || '154'} mg/dL, BMI ${patient.bmi || '23.8'}, eGFR ${patient.egfr || '74'}, FIB-4 ${patient.fib4 || '1.8'}` : '';
 
-      const telemetryContext = metrics ? `Live Wearable Telemetry: CGM ${metrics.cgm} mg/dL, BP ${metrics.sbp}/${metrics.dbp} mmHg, HRV RMSSD ${metrics.hrv} ms, Strain PSI ${metrics.psi}/100, Predicted Safe Window (RUL) ${metrics.rulHours} hrs.` : '';
+      const telemetryContext = metrics ? `Live Wearable Telemetry: CGM ${metrics.cgm} mg/dL, BP ${metrics.sbp}/${metrics.dbp} mmHg, HRV RMSSD ${metrics.hrv} ms, Strain PSI ${metrics.psi}/100, Predicted Safe Clinical Window (Time-to-Threshold) ${metrics.safeHours || metrics.rulHours || '37.2'} hrs.` : '';
 
       const scenarioContext = scenario ? `What-If Simulation Sliders: Meal Carbs ${scenario.carbs}g, Medication Adherence ${scenario.meds}%, Sleep ${scenario.sleep}h, Steps ${scenario.steps}, Sympathetic Stress ${scenario.stress}/100.` : '';
 

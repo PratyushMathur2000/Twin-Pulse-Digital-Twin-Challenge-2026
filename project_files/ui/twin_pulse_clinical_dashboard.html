@@ -752,6 +752,11 @@
         <span>100-Patient Ward Triage</span>
       </button>
 
+      <button onclick="switchView('sandbox')" id="nav-btn-sandbox" class="nav-tab flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="AI Digital Twin Sandbox">
+        <span class="material-symbols-outlined text-base">psychology</span>
+        <span>AI Digital Twin Sandbox</span>
+      </button>
+
       <button onclick="switchView('specs')" id="nav-btn-specs" class="nav-tab flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="Model Validation & System Architecture">
         <span class="material-symbols-outlined text-base">biotech</span>
         <span>Model Validation &amp; Architecture</span>
@@ -1576,7 +1581,187 @@
       <div id="drawerOverlay" onclick="closePatientDrawer()" class="fixed inset-0 bg-black/30 backdrop-blur-xs z-40 hidden transition-opacity"></div>
 
 
-            <!-- =====================================================================
+                  <!-- =====================================================================
+           VIEW: AI DIGITAL TWIN SANDBOX & TARGETED CLINICAL ADVISOR
+           ===================================================================== -->
+      <section id="view-sandbox" class="view-panel flex-col gap-6 max-w-[1850px] mx-auto w-full pb-12">
+        
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-[#d8d0c8]/60">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#c2652a] text-2xl">psychology</span>
+              <h1 class="font-serif text-2xl lg:text-3xl font-normal text-[#26211c]">AI Digital Twin Sandbox</h1>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#fbeae0] text-[#c2652a] border border-[#c2652a]/20 font-semibold" id="sandboxEngineBadge">Gemini Flash (Vercel Edge)</span>
+            </div>
+            <p class="text-sm text-[#7c7267] mt-1 font-sans leading-relaxed">
+              Interactive counterfactual simulation assistant with live patient telemetry, what-if sliders, and multi-organ coupling context. Ask targeted clinical questions or run preset stress tests.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2.5">
+            <select id="studioModelSelect" onchange="onAiEngineChange()" aria-label="Select AI Model" class="appearance-none bg-[#ffffff] border border-[#d8d0c8] text-[#26211c] text-xs font-semibold rounded-xl px-3.5 py-2 pr-7 focus:outline-none focus:border-[#c2652a] shadow-sahara-sm cursor-pointer font-mono">
+              <option value="gemini-cloud" selected>✨ Gemini Flash (Vercel Edge)</option>
+              <option value="edge-proxy">☁️ Cloudflare Worker Edge</option>
+              <option value="local-model">💻 LM Studio Local (:1234)</option>
+              <option value="ollama">🦙 Ollama Local (:11434)</option>
+              <option value="cmbcd-rule">🛡️ CMBCD Deterministic Engine</option>
+            </select>
+
+            <button type="button" onclick="openAiSettingsModal()" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-[#d8d0c8] bg-[#ffffff] text-[#4a4036] hover:bg-[#f5efe6] transition-all text-xs font-semibold shadow-sahara-sm" title="Configure Gemini API Key / Edge Proxy Settings">
+              <span class="material-symbols-outlined text-sm text-[#c2652a]">settings</span>
+              <span>Settings</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Main Sandbox 2-Column Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
+          <!-- LEFT COLUMN (4 COLS): LIVE PATIENT CONTEXT & TARGETED INQUIRY CHIPS -->
+          <div class="lg:col-span-4 flex flex-col gap-4">
+            
+            <!-- Live Patient & Simulation Telemetry Capsule -->
+            <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-5 shadow-sahara flex flex-col gap-3">
+              <div class="flex items-center justify-between border-b border-[#d8d0c8]/40 pb-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#5c7a68] animate-pulse"></span>
+                  <span class="font-serif text-base font-semibold text-[#26211c]" id="sandboxPatientContext">Rajesh Sharma (PT-IND-001)</span>
+                </div>
+                <span class="text-[10px] font-mono font-semibold px-2 py-0.5 rounded bg-[#fbeae0] text-[#c2652a] border border-[#c2652a]/20" id="sandboxTrajectoryDeltaBadge">What-If Active</span>
+              </div>
+
+              <!-- 5 Telemetry Chips -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 text-center text-xs font-mono">
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
+                  <span class="text-[#7c7267] block text-[9.5px] uppercase">Meal Carbs</span>
+                  <span class="font-bold text-sm text-[#26211c]" id="sbChipCarbs">95g</span>
+                </div>
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
+                  <span class="text-[#7c7267] block text-[9.5px] uppercase">Adherence</span>
+                  <span class="font-bold text-sm text-[#26211c]" id="sbChipMeds">70%</span>
+                </div>
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
+                  <span class="text-[#7c7267] block text-[9.5px] uppercase">Sleep</span>
+                  <span class="font-bold text-sm text-[#26211c]" id="sbChipSleep">5.5h</span>
+                </div>
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
+                  <span class="text-[#7c7267] block text-[9.5px] uppercase">Daily Steps</span>
+                  <span class="font-bold text-sm text-[#26211c]" id="sbChipSteps">3,800</span>
+                </div>
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50 col-span-2">
+                  <span class="text-[#7c7267] block text-[9.5px] uppercase">Safe Clinical Window</span>
+                  <span class="font-bold text-sm text-[#8c3c3c]" id="sbChipRul">18.4 hrs (Threshold Breach)</span>
+                </div>
+              </div>
+
+              <p class="text-[11px] text-[#7c7267] leading-relaxed pt-1 border-t border-[#d8d0c8]/30">
+                Context is synced live from the <strong>Twin Cockpit sliders</strong>. Adjusting sliders in the Cockpit updates the AI twin prompt context automatically.
+              </p>
+            </div>
+
+            <!-- Targeted Inquiry Chips Card -->
+            <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-5 shadow-sahara flex flex-col gap-3 flex-1">
+              <div class="flex items-center justify-between border-b border-[#d8d0c8]/40 pb-2">
+                <span class="text-xs uppercase tracking-wider font-semibold text-[#7c7267]">Targeted Inquiry Presets</span>
+                <button type="button" onclick="clearSandboxChat()" class="text-xs text-[#c2652a] hover:underline flex items-center gap-0.5 font-medium">
+                  <span class="material-symbols-outlined text-sm">delete</span>
+                  <span>Clear Chat</span>
+                </button>
+              </div>
+
+              <div class="space-y-2">
+                <button type="button" onclick="sendQuickSandboxPrompt('remission')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
+                  <span>⚡ Counterfactual Remission Protocol</span>
+                  <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
+                </button>
+
+                <button type="button" onclick="sendQuickSandboxPrompt('high_carb')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
+                  <span>🥪 150g Meal Spike + Missed Meds</span>
+                  <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
+                </button>
+
+                <button type="button" onclick="sendQuickSandboxPrompt('sleep_stress')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
+                  <span>🌙 Sleep Deprivation &amp; Sympathetic Stress</span>
+                  <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
+                </button>
+
+                <button type="button" onclick="sendQuickSandboxPrompt('pharmacotherapy')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
+                  <span>💊 ADA/KDIGO 2026 Pharmacotherapy Titration</span>
+                  <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
+                </button>
+
+                <button type="button" onclick="sendQuickSandboxPrompt('thin_fat')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
+                  <span>🧬 ICMR-INDIAB Thin-Fat Phenotype Risk</span>
+                  <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
+                </button>
+              </div>
+
+              <!-- Quick prompt tip -->
+              <div class="mt-auto pt-3 border-t border-[#d8d0c8]/40 text-[11px] text-[#7c7267]">
+                💡 <em>Tip:</em> Type custom questions below, e.g. <code>"What if patient reduces carbs by 40g and adds 25 min walking?"</code>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN (8 COLS): INTERACTIVE CONVERSATIONAL CONSOLE -->
+          <div class="lg:col-span-8 flex flex-col">
+            
+            <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-5 lg:p-6 shadow-sahara flex flex-col justify-between flex-1 min-h-[620px]">
+              
+              <!-- Top Console Header -->
+              <div class="flex items-center justify-between pb-3 border-b border-[#d8d0c8]/40">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[#c2652a] text-xl">forum</span>
+                  <span class="font-serif text-lg font-normal text-[#26211c]">Clinical Consultation Stream</span>
+                </div>
+                <span class="text-[11px] font-mono text-[#5c7a68] flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-[#5c7a68]"></span>
+                  <span>Vercel Edge Active</span>
+                </span>
+              </div>
+
+              <!-- Chat History Scrollable Container -->
+              <div class="my-3 p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between flex-1 min-h-[460px] max-h-[560px] overflow-hidden">
+                <div id="sandboxChatContainer" class="space-y-3.5 overflow-y-auto pr-1 flex-1">
+                  <!-- Populated dynamically with conversational bubbles -->
+                </div>
+                
+                <!-- Thinking Indicator -->
+                <div id="sandboxThinkingIndicator" class="hidden mt-2 p-3 rounded-xl bg-[#ffffff] border border-[#d8d0c8]/60 flex items-center gap-2.5 text-xs text-[#c2652a] font-mono shadow-sahara-sm">
+                  <span class="material-symbols-outlined text-base animate-spin text-[#c2652a]">sync</span>
+                  <span class="font-medium">Twin-Pulse AI Copilot querying biophysical model &amp; synthesizing guidance...</span>
+                </div>
+              </div>
+
+              <!-- Interactive Input Bar -->
+              <div class="mt-2 flex items-center gap-2.5">
+                <div class="relative flex-1">
+                  <input id="studioPromptInput" type="text" onkeydown="if(event.key === 'Enter') executeStudioInference()" class="w-full bg-[#faf5ee] border border-[#d8d0c8] text-[#26211c] text-xs rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-[#c2652a] focus:ring-1 focus:ring-[#c2652a] font-sans transition-all placeholder:text-[#a89f91]" placeholder="Ask a targeted clinical question... (e.g. 'Simulate 120g carbs with 0% adherence', 'Recommend SGLT2i escalation')">
+                  <button type="button" onclick="document.getElementById('studioPromptInput').value = ''" class="absolute right-3 top-1/2 -translate-y-1/2 text-[#a89f91] hover:text-[#26211c] text-xs font-mono">✕</button>
+                </div>
+                <button type="button" onclick="executeStudioInference()" id="btnStudioExecute" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#c2652a] text-white text-xs font-semibold hover:bg-[#ad5620] transition-all shadow-sahara-sm shrink-0">
+                  <span class="material-symbols-outlined text-sm">send</span>
+                  <span>Ask AI Twin</span>
+                </button>
+              </div>
+
+              <!-- Status Footer -->
+              <div class="mt-3 pt-2.5 border-t border-[#d8d0c8]/40 flex items-center justify-between text-[11px] font-mono text-[#7c7267]">
+                <span id="studioLatencyBadge">Engine: Gemini Flash • 2026 ICMR-INDIAB &amp; ADA/KDIGO Grounded</span>
+                <span id="studioTokenBadge">DPDP Act 2023 Compliant Zero-Knowledge Context</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =====================================================================
            VIEW 3: MODEL VALIDATION & SYSTEM ARCHITECTURE (CONSOLIDATED TAB 3)
            ===================================================================== -->
       <section id="view-specs" class="view-panel flex-col gap-6 max-w-[1850px] mx-auto w-full pb-12">
@@ -7985,6 +8170,7 @@ function hydrateMaterialIcons() {
 const VIEW_TITLES = {
   main: "Doctor's Twin Cockpit",
   cohort: "100-Patient Ward Triage & Cardiometabolic Surveillance",
+  sandbox: "AI Digital Twin Sandbox & Targeted Clinical Advisor",
   specs: "Model Validation & System Architecture"
 };
 
@@ -8016,6 +8202,10 @@ function switchView(viewName) {
 
   if (viewName === 'cohort') {
     renderCohortTable();
+  } else if (viewName === 'sandbox') {
+    initSandboxChat();
+    const p = getPatient();
+    updateSandboxContext(p, liveTwinMetrics, state.sim);
   } else if (viewName === 'specs') {
     renderOrganInspector();
   } else if (viewName === 'main') {
