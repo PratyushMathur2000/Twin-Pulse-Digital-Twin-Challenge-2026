@@ -724,79 +724,144 @@
   <!-- =========================================================================
        TOP GLOBAL NAVIGATION & UTILITY BAR (UNIFIED 3-TAB ARCHITECTURE)
        ========================================================================= -->
-  <header class="h-16 shrink-0 bg-[#ffffff] border-b border-[#d8d0c8]/60 px-4 lg:px-8 flex items-center justify-between gap-3 z-30 shadow-sahara-sm">
+    <header class="h-16 shrink-0 bg-[#ffffff] border-b border-[#d8d0c8]/60 px-3 sm:px-6 lg:px-8 flex items-center justify-between gap-2 sm:gap-4 z-30 shadow-sahara-sm relative">
     
     <!-- Brand / Title -->
-    <div class="flex items-center gap-3 shrink-0">
+    <div class="flex items-center gap-2.5 shrink-0">
       <div class="w-9 h-9 rounded-xl bg-[#c2652a] text-white flex items-center justify-center shadow-sm shrink-0 font-serif font-bold text-lg">
         TP
       </div>
       <div class="flex flex-col">
         <div class="flex items-center gap-1.5">
-          <span class="font-serif text-xl font-semibold tracking-tight text-[#26211c] whitespace-nowrap">Twin-Pulse</span>
-          <span class="text-[10px] uppercase font-mono text-[#c2652a] bg-[#fbeae0] px-1.5 py-0.5 rounded border border-[#c2652a]/20 font-bold">T2D V6</span>
+          <span class="font-serif text-lg sm:text-xl font-semibold tracking-tight text-[#26211c] whitespace-nowrap">Twin-Pulse</span>
+          <span class="text-[9.5px] uppercase font-mono text-[#c2652a] bg-[#fbeae0] px-1.5 py-0.5 rounded border border-[#c2652a]/20 font-bold">T2D V6</span>
         </div>
-        <span class="text-[10.5px] text-[#7c7267] tracking-tight">Cardiometabolic Digital Twin</span>
+        <span class="text-[10px] text-[#7c7267] tracking-tight hidden sm:inline">Cardiometabolic Digital Twin</span>
       </div>
     </div>
 
-    <!-- Center Segmented Navigation Tabs (3 Tabs Only) -->
-    <nav class="flex items-center bg-[#f5efe6] p-1 rounded-xl border border-[#d8d0c8]/60 gap-1 shadow-inner overflow-x-auto max-w-full">
-      <button onclick="switchView('main')" id="nav-btn-main" class="nav-tab active flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-semibold transition-all bg-[#c2652a] text-white shadow-sm whitespace-nowrap" title="Doctor's Twin Cockpit">
+    <!-- Center Segmented Navigation Tabs (Compact & Responsive) -->
+    <nav class="flex items-center bg-[#f5efe6] p-1 rounded-xl border border-[#d8d0c8]/60 gap-1 shadow-inner shrink">
+      <button onclick="switchView('main')" id="nav-btn-main" class="nav-tab active flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-[#c2652a] text-white shadow-sm whitespace-nowrap" title="Doctor's Twin Cockpit">
         <span class="material-symbols-outlined text-base">stethoscope</span>
-        <span>Doctor's Twin Cockpit</span>
+        <span>Doctor's Cockpit</span>
       </button>
 
-      <button onclick="switchView('cohort')" id="nav-btn-cohort" class="nav-tab flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="100-Patient Ward Triage">
+      <button onclick="switchView('cohort')" id="nav-btn-cohort" class="nav-tab flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="100-Patient Ward Triage">
         <span class="material-symbols-outlined text-base">groups</span>
-        <span>100-Patient Ward Triage</span>
+        <span>Ward Triage</span>
       </button>
 
-      <button onclick="switchView('sandbox')" id="nav-btn-sandbox" class="nav-tab flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="AI Digital Twin Sandbox">
+      <button onclick="switchView('sandbox')" id="nav-btn-sandbox" class="nav-tab flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="AI Digital Twin Sandbox">
         <span class="material-symbols-outlined text-base">psychology</span>
-        <span>AI Digital Twin Sandbox</span>
+        <span>AI Twin Sandbox</span>
       </button>
 
-      <button onclick="switchView('specs')" id="nav-btn-specs" class="nav-tab flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="Model Validation & System Architecture">
+      <button onclick="switchView('specs')" id="nav-btn-specs" class="nav-tab flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all text-[#4a4036] hover:text-[#26211c] hover:bg-[#ffffff]/60 whitespace-nowrap" title="Model Validation & System Architecture">
         <span class="material-symbols-outlined text-base">biotech</span>
-        <span>Model Validation &amp; Architecture</span>
+        <span>Validation &amp; Arch</span>
       </button>
     </nav>
 
-    <!-- Right Controls: Patient Switcher, Math Mode, Dark Mode, FHIR & SOAP CTA -->
+    <!-- Right Controls: Patient Switcher & Settings Wheel Dropdown -->
     <div class="flex items-center gap-2 shrink-0">
       
       <!-- Patient Quick Selector -->
       <div class="relative">
-        <select id="globalPatientSelect" onchange="onGlobalPatientChange(this.value)" aria-label="Select Active Patient Digital Twin" class="appearance-none bg-[#f5efe6] border border-[#d8d0c8] text-[#26211c] text-xs font-semibold rounded-xl px-3 py-1.5 pr-7 focus:outline-none focus:border-[#c2652a] shadow-sahara-sm cursor-pointer transition-all max-w-[170px] sm:max-w-[210px] truncate">
+        <select id="globalPatientSelect" onchange="onGlobalPatientChange(this.value)" aria-label="Select Active Patient Digital Twin" class="appearance-none bg-[#f5efe6] border border-[#d8d0c8] text-[#26211c] text-xs font-semibold rounded-xl px-2.5 sm:px-3 py-1.5 pr-6 sm:pr-7 focus:outline-none focus:border-[#c2652a] shadow-sahara-sm cursor-pointer transition-all max-w-[130px] sm:max-w-[180px] lg:max-w-[210px] truncate">
           <!-- Populated dynamically via JS -->
         </select>
         <span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#7c7267] text-base">unfold_more</span>
       </div>
 
-      <!-- Engineering & Math Mode Global Toggle -->
-      <button onclick="toggleMathMode()" id="topMathModeBtn" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#d8d0c8] bg-[#ffffff] text-[#4a4036] text-xs font-mono font-bold hover:bg-[#f5efe6] transition-all shadow-sahara-sm" title="Toggle Engineering & Math Mode (Reveals underlying biophysical ODEs and ML mathematical models)">
-        <span>𝑓(x)</span>
-        <span class="hidden xl:inline text-[11px] font-sans font-semibold">Math Mode</span>
-        <span id="mathModePill" class="w-1.5 h-1.5 rounded-full bg-[#7c7267]"></span>
-      </button>
+      <!-- Settings Wheel Button & Dropdown Menu -->
+      <div class="relative" id="settingsDropdownContainer">
+        <button type="button" onclick="toggleSettingsDropdown()" id="topSettingsBtn" class="flex items-center justify-center w-9 h-9 rounded-xl border border-[#d8d0c8] bg-[#ffffff] text-[#4a4036] hover:text-[#c2652a] hover:bg-[#f5efe6] hover:border-[#c2652a]/40 transition-all shadow-sahara-sm group cursor-pointer" title="Settings, Theme, SOAP & FHIR Utilities" aria-haspopup="true" aria-expanded="false">
+          <span class="material-symbols-outlined text-xl transition-transform duration-300 group-hover:rotate-45" id="topSettingsGearIcon">settings</span>
+        </button>
 
-      <!-- HL7 FHIR Export Button -->
-      <button onclick="openFhirModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#d8d0c8] bg-[#ffffff] text-[#26211c] text-xs font-semibold hover:bg-[#f5efe6] transition-all shadow-sahara-sm" title="Inspect & Export HL7 FHIR R4 Bundle">
-        <span class="material-symbols-outlined text-base text-[#c2652a]">dataset</span>
-        <span class="hidden md:inline">FHIR R4</span>
-      </button>
+        <!-- Dropdown Popover Card -->
+        <div id="topSettingsDropdown" class="hidden absolute right-0 mt-2 w-72 bg-[#ffffff] border border-[#d8d0c8] rounded-2xl shadow-sahara-xl p-2.5 z-50 transition-all origin-top-right">
+          
+          <!-- Dropdown Header -->
+          <div class="px-2.5 py-2 border-b border-[#d8d0c8]/60 flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase font-bold text-[#7c7267] tracking-wider">Clinical Tools &amp; Settings</span>
+            <span class="text-[10px] font-mono text-[#c2652a] bg-[#fbeae0] px-1.5 py-0.5 rounded font-semibold">T2D V6</span>
+          </div>
 
-      <!-- Generate SOAP Primary CTA -->
-      <button onclick="triggerSoapGeneration()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#c2652a] text-white text-xs font-semibold hover:bg-[#ad5620] transition-all shadow-sahara-sm" title="Synthesize Clinical SOAP Note">
-        <span class="material-symbols-outlined text-base">clinical_notes</span>
-        <span class="hidden sm:inline">Generate SOAP</span>
-      </button>
+          <!-- Items List -->
+          <div class="py-1 space-y-1">
+            
+            <!-- 1. Light / Dark Theme Toggle -->
+            <button type="button" onclick="toggleDarkMode()" id="topThemeBtn" class="w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-left hover:bg-[#f5efe6] transition-all group cursor-pointer">
+              <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-base text-[#d49a3d]" id="topThemeIcon">dark_mode</span>
+                <div>
+                  <div class="text-xs font-semibold text-[#26211c]" id="topThemeText">Dark Mode</div>
+                  <div class="text-[10px] text-[#7c7267]">Switch Sahara Light / Nocturne Dark</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#f5efe6] group-hover:bg-[#ffffff] text-[#4a4036] border border-[#d8d0c8]/60 font-semibold" id="topThemeStatusBadge">Toggle</span>
+            </button>
 
-      <!-- Dark Mode Toggle Button -->
-      <button onclick="toggleDarkMode()" id="topThemeBtn" class="p-1.5 rounded-xl border border-[#d8d0c8] bg-[#ffffff] text-[#26211c] text-xs font-medium hover:bg-[#f5efe6] transition-all shadow-sahara-sm" title="Switch Sahara Light / Nocturne Dark Mode">
-        <span class="material-symbols-outlined text-base text-[#d49a3d]" id="topThemeIcon">dark_mode</span>
-      </button>
+            <!-- 2. Generate Clinical SOAP Note -->
+            <button type="button" onclick="triggerSoapGeneration(); closeSettingsDropdown();" class="w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-left hover:bg-[#f5efe6] transition-all group cursor-pointer">
+              <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-base text-[#c2652a]">clinical_notes</span>
+                <div>
+                  <div class="text-xs font-semibold text-[#26211c]">Generate SOAP Note</div>
+                  <div class="text-[10px] text-[#7c7267]">Synthesize clinical consultation note</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#c2652a]/10 text-[#c2652a] border border-[#c2652a]/20 font-semibold">SOAP</span>
+            </button>
+
+            <!-- 3. HL7 FHIR R4 Bundle Export -->
+            <button type="button" onclick="openFhirModal(); closeSettingsDropdown();" class="w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-left hover:bg-[#f5efe6] transition-all group cursor-pointer">
+              <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-base text-[#5c7a68]">dataset</span>
+                <div>
+                  <div class="text-xs font-semibold text-[#26211c]">HL7 FHIR R4 Bundle</div>
+                  <div class="text-[10px] text-[#7c7267]">Inspect &amp; export interoperability JSON</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#5c7a68]/10 text-[#5c7a68] border border-[#5c7a68]/20 font-semibold">FHIR</span>
+            </button>
+
+            <!-- 4. Engineering Math Mode Toggle -->
+            <button type="button" onclick="toggleMathMode()" id="topMathModeBtn" class="w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-left hover:bg-[#f5efe6] transition-all group cursor-pointer">
+              <div class="flex items-center gap-2.5">
+                <span class="text-sm font-mono font-bold text-[#c2652a] w-5 text-center">𝑓(x)</span>
+                <div>
+                  <div class="text-xs font-semibold text-[#26211c]">Engineering Math Mode</div>
+                  <div class="text-[10px] text-[#7c7267]">Reveal ODE equations &amp; biophysical formulas</div>
+                </div>
+              </div>
+              <span id="mathModePill" class="w-2.5 h-2.5 rounded-full bg-[#7c7267]"></span>
+            </button>
+
+            <!-- 5. AI Digital Twin Advisor Settings -->
+            <button type="button" onclick="openAiSettingsModal(); closeSettingsDropdown();" class="w-full flex items-center justify-between px-2.5 py-2 rounded-xl text-left hover:bg-[#f5efe6] transition-all group cursor-pointer">
+              <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-base text-[#7c7267]">tune</span>
+                <div>
+                  <div class="text-xs font-semibold text-[#26211c]">AI Model &amp; Key Settings</div>
+                  <div class="text-[10px] text-[#7c7267]">Gemini Flash, Cloudflare, Local LLM</div>
+                </div>
+              </div>
+              <span class="material-symbols-outlined text-sm text-[#7c7267]">chevron_right</span>
+            </button>
+
+          </div>
+
+          <!-- Footer Info -->
+          <div class="mt-1 pt-2 border-t border-[#d8d0c8]/60 px-2.5 flex items-center justify-between text-[10px] font-mono text-[#7c7267]">
+            <span>Twin-Pulse NMIMS</span>
+            <span>Happiest Health 2026</span>
+          </div>
+
+        </div>
+      </div>
 
     </div>
   </header>
@@ -8250,6 +8315,43 @@ function triggerSoapGeneration() {
 function toggleSidebarCollapse() {}
 function toggleMobileSidebar() {}
 
+function toggleSettingsDropdown() {
+  const dd = document.getElementById('topSettingsDropdown');
+  const btn = document.getElementById('topSettingsBtn');
+  if (dd) {
+    const isHidden = dd.classList.contains('hidden');
+    if (isHidden) {
+      dd.classList.remove('hidden');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+    } else {
+      dd.classList.add('hidden');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+}
+
+function closeSettingsDropdown() {
+  const dd = document.getElementById('topSettingsDropdown');
+  const btn = document.getElementById('topSettingsBtn');
+  if (dd) {
+    dd.classList.add('hidden');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+}
+
+// Click outside listener for settings dropdown
+document.addEventListener('click', function(e) {
+  const container = document.getElementById('settingsDropdownContainer');
+  const dd = document.getElementById('topSettingsDropdown');
+  if (container && dd && !dd.classList.contains('hidden')) {
+    if (!container.contains(e.target)) {
+      dd.classList.add('hidden');
+      const btn = document.getElementById('topSettingsBtn');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+  }
+});
+
 function toggleDarkMode() {
   state.darkMode = !state.darkMode;
   document.documentElement.classList.toggle('dark', state.darkMode);
@@ -8262,7 +8364,9 @@ function toggleDarkMode() {
   if (sIcon) sIcon.setAttribute('data-icon-name', state.darkMode ? 'light_mode' : 'dark_mode');
   if (sLabel) sLabel.textContent = state.darkMode ? 'Sahara Light Mode' : 'Nocturne Dark Mode';
   if (tIcon) { tIcon.setAttribute('data-icon-name', state.darkMode ? 'light_mode' : 'dark_mode'); hydrateMaterialIcons(); }
-  if (tText) tText.textContent = state.darkMode ? 'Light Mode' : 'Dark Mode';
+  if (tText) tText.textContent = state.darkMode ? 'Sahara Light Mode' : 'Nocturne Dark Mode';
+  const tStatus = document.getElementById('topThemeStatusBadge');
+  if (tStatus) tStatus.textContent = state.darkMode ? 'Dark' : 'Light';
 
   if (state.view === 'main') {
     render3DViewport(0.016);
