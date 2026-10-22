@@ -44,9 +44,9 @@
             }
           },
           fontFamily: {
-            serif: ['"EB Garamond"', 'Georgia', 'serif'],
-            sans: ['"Manrope"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['"Space Mono"', 'monospace']
+            serif: ['Arial', 'Helvetica', 'sans-serif'],
+            sans: ['Arial', 'Helvetica', 'sans-serif'],
+            mono: ['Arial', 'Helvetica', 'ui-monospace', 'monospace']
           },
           boxShadow: {
             'sahara-sm': '0 2px 14px rgba(58, 48, 42, 0.04)',
@@ -110,7 +110,7 @@
     body {
       background-color: var(--bg-app);
       color: var(--text-heading);
-      font-family: 'Manrope', sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       line-height: 1.6;
       letter-spacing: 0.005em;
       -webkit-font-smoothing: antialiased;
@@ -119,7 +119,7 @@
     }
 
     h1, h2, h3, h4, .font-editorial {
-      font-family: 'EB Garamond', Georgia, serif;
+      font-family: Arial, Helvetica, sans-serif;
       letter-spacing: -0.015em;
       line-height: 1.22;
     }
@@ -570,8 +570,8 @@
     .text-\[\#5c7a68\] { color: #5c7a68; }
     .text-\[\#d8d0c8\] { color: #d8d0c8; }
 
-    .font-serif { font-family: 'EB Garamond', Georgia, serif; }
-    .font-sans { font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif; }
+    .font-serif { font-family: Arial, Helvetica, sans-serif !important; }
+    .font-sans { font-family: Arial, Helvetica, sans-serif !important; }
     .font-mono { font-family: 'Space Mono', ui-monospace, monospace; }
     .text-\[10px\] { font-size: 10px; }
     .text-\[11px\] { font-size: 11px; }
@@ -740,8 +740,9 @@
       </div>
     </div>
 
-    <!-- Center Segmented Navigation Tabs (Compact & Responsive) -->
-    <nav class="flex items-center bg-[#f5efe6] p-1 rounded-xl border border-[#d8d0c8]/60 gap-1 shadow-inner shrink">
+    <!-- Center Segmented Navigation Tabs (Centered & Responsive) -->
+    <div class="flex-1 flex justify-center items-center px-2">
+      <nav class="flex items-center bg-[#f5efe6] p-1 rounded-xl border border-[#d8d0c8]/60 gap-1 shadow-inner shrink">
       <button onclick="switchView('main')" id="nav-btn-main" class="nav-tab active flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all bg-[#c2652a] text-white shadow-sm whitespace-nowrap" title="Doctor's Twin Cockpit">
         <span class="material-symbols-outlined text-base">stethoscope</span>
         <span>Doctor's Cockpit</span>
@@ -762,6 +763,7 @@
         <span>Validation &amp; Arch</span>
       </button>
     </nav>
+    </div>
 
     <!-- Right Controls: Patient Switcher & Settings Wheel Dropdown -->
     <div class="flex items-center gap-2 shrink-0">
@@ -877,8 +879,8 @@
       <main id="view-main" class="view-panel active flex-col gap-3.5 max-w-[1850px] mx-auto w-full pb-6">
 
         <!-- 1. JUDGE QUICK-TEST PRESETS BAR -->
-        <section class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/70 px-4 py-2.5 shadow-sahara flex flex-wrap items-center justify-between gap-2.5 shrink-0">
-          <div class="flex items-center gap-2">
+        <section class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/70 px-4 py-2.5 shadow-sahara flex flex-wrap items-center justify-center text-center gap-3 shrink-0">
+          <div class="flex items-center justify-center gap-2">
             <span class="material-symbols-outlined text-[#c2652a] text-lg">bolt</span>
             <span class="text-xs font-bold uppercase tracking-wider text-[#26211c]">Judge Quick-Test Scenarios:</span>
             <span class="text-[11px] text-[#7c7267] hidden md:inline">• Instant 15-second digital twin validation</span>
@@ -1651,10 +1653,10 @@
            ===================================================================== -->
       <section id="view-sandbox" class="view-panel flex-col gap-6 max-w-[1850px] mx-auto w-full pb-12">
         
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-[#d8d0c8]/60">
-          <div>
-            <div class="flex items-center gap-2">
+        <!-- Header (Centered & Balanced) -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 pb-4 border-b border-[#d8d0c8]/60 text-center md:text-left">
+          <div class="flex-1 text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start gap-2">
               <span class="material-symbols-outlined text-[#c2652a] text-2xl">psychology</span>
               <h1 class="font-serif text-2xl lg:text-3xl font-normal text-[#26211c]">AI Digital Twin Sandbox</h1>
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#fbeae0] text-[#c2652a] border border-[#c2652a]/20 font-semibold" id="sandboxEngineBadge">Gemini Flash (Vercel Edge)</span>
@@ -1831,10 +1833,10 @@
            ===================================================================== -->
       <section id="view-specs" class="view-panel flex-col gap-6 max-w-[1850px] mx-auto w-full pb-12">
         
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-[#d8d0c8]/60">
-          <div>
-            <div class="flex items-center gap-2">
+        <!-- Header (Centered & Balanced) -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 pb-4 border-b border-[#d8d0c8]/60 text-center md:text-left">
+          <div class="flex-1 text-center md:text-left">
+            <div class="flex items-center justify-center md:justify-start gap-2">
               <span class="material-symbols-outlined text-[#c2652a] text-2xl">biotech</span>
               <h1 class="font-serif text-2xl lg:text-3xl font-normal text-[#26211c]">Model Validation &amp; System Architecture</h1>
             </div>
@@ -1908,35 +1910,35 @@
 
                 <!-- Center Core Node -->
                 <circle cx="270" cy="150" r="32" fill="#ffffff" stroke="#c2652a" stroke-width="2" />
-                <text x="270" y="146" text-anchor="middle" font-family="'EB Garamond', Georgia, serif" font-size="12" font-weight="bold" fill="#26211c">T2D Core</text>
-                <text x="270" y="160" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" fill="#7c7267">Ψ_CMBCD</text>
+                <text x="270" y="146" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#26211c">T2D Core</text>
+                <text x="270" y="160" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#7c7267">Ψ_CMBCD</text>
 
                 <!-- Node 1: Pancreas (Endocrine Beta-Cell) -->
                 <g onclick="selectOrgan('pancreas')" class="cursor-pointer group">
                   <circle cx="140" cy="80" r="38" fill="#ffffff" stroke="#d49a3d" stroke-width="2.5" class="group-hover:stroke-[#c2652a] group-hover:scale-105 transition-all" />
-                  <text x="140" y="76" text-anchor="middle" font-family="'EB Garamond', serif" font-size="12" font-weight="bold" fill="#26211c">Pancreas</text>
-                  <text x="140" y="90" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" fill="#d49a3d">&beta;-Cell / CGM</text>
+                  <text x="140" y="76" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#26211c">Pancreas</text>
+                  <text x="140" y="90" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#d49a3d">&beta;-Cell / CGM</text>
                 </g>
 
                 <!-- Node 2: Aortic Conduit (Vasculature) -->
                 <g onclick="selectOrgan('vascular')" class="cursor-pointer group">
                   <circle cx="400" cy="80" r="38" fill="#ffffff" stroke="#c2652a" stroke-width="2.5" class="group-hover:stroke-[#ad5620] group-hover:scale-105 transition-all" />
-                  <text x="400" y="76" text-anchor="middle" font-family="'EB Garamond', serif" font-size="12" font-weight="bold" fill="#26211c">Vasculature</text>
-                  <text x="400" y="90" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" fill="#c2652a">Aorta / SVR</text>
+                  <text x="400" y="76" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#26211c">Vasculature</text>
+                  <text x="400" y="90" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#c2652a">Aorta / SVR</text>
                 </g>
 
                 <!-- Node 3: Heart (Cardiac Axis & Autonomic) -->
                 <g onclick="selectOrgan('heart')" class="cursor-pointer group">
                   <circle cx="140" cy="220" r="38" fill="#ffffff" stroke="#8c3c3c" stroke-width="2.5" class="group-hover:stroke-[#c2652a] group-hover:scale-105 transition-all" />
-                  <text x="140" y="216" text-anchor="middle" font-family="'EB Garamond', serif" font-size="12" font-weight="bold" fill="#26211c">Cardio-Vagal</text>
-                  <text x="140" y="230" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" fill="#8c3c3c">HRV / MVO2</text>
+                  <text x="140" y="216" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#26211c">Cardio-Vagal</text>
+                  <text x="140" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#8c3c3c">HRV / MVO2</text>
                 </g>
 
                 <!-- Node 4: Liver & Kidneys (Hepatorenal) -->
                 <g onclick="selectOrgan('hepatorenal')" class="cursor-pointer group">
                   <circle cx="400" cy="220" r="38" fill="#ffffff" stroke="#5c7a68" stroke-width="2.5" class="group-hover:stroke-[#c2652a] group-hover:scale-105 transition-all" />
-                  <text x="400" y="216" text-anchor="middle" font-family="'EB Garamond', serif" font-size="12" font-weight="bold" fill="#26211c">Hepatorenal</text>
-                  <text x="400" y="230" text-anchor="middle" font-family="'Space Mono', monospace" font-size="9" fill="#5c7a68">eGFR / FIB-4</text>
+                  <text x="400" y="216" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#26211c">Hepatorenal</text>
+                  <text x="400" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" fill="#5c7a68">eGFR / FIB-4</text>
                 </g>
               </svg>
 
@@ -7031,7 +7033,7 @@ function renderSandboxAndTrajectory(p, simRes) {
       <div class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60">
         <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 3 Safe Window</span>
         <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${baseRes.rulHours}h &rarr; ${simRes.rulHours}h</div>
-        <span class="font-mono text-[11px] font-semibold ${Number(rulDelta) >= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(rulDelta) >= 0 ? '+' : ''}${rulDelta} hrs RUL</span>
+        <span class="font-mono text-[11px] font-semibold ${Number(rulDelta) >= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(rulDelta) >= 0 ? '+' : ''}${rulDelta} hrs (TTT)</span>
       </div>
       <div class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60">
         <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Simulated Biometrics</span>
