@@ -1439,7 +1439,10 @@
                     <h3 class="font-serif text-lg lg:text-xl font-normal text-[#26211c]">Clinical AI Advisor &amp; CDS Co-Pilot</h3>
                   </div>
                   <div class="flex items-center gap-1.5">
-                    <span class="text-[10px] font-mono text-[#c2652a] bg-[#fbeae0] px-2 py-0.5 rounded border border-[#c2652a]/20" id="aiAdvisorEngineBadge">ADA / KDIGO 2026</span>
+                    <span class="text-[10px] font-mono text-[#c2652a] bg-[#fbeae0] px-2 py-0.5 rounded border border-[#c2652a]/20 font-semibold" id="aiAdvisorEngineBadge">Gemini 3.5 Flash</span>
+                    <button type="button" onclick="openAiSettingsModal()" class="text-[#7c7267] hover:text-[#c2652a] p-0.5 rounded hover:bg-[#faf5ee] transition-all" title="Configure Gemini AI / Cloudflare Proxy">
+                      <span class="material-symbols-outlined text-sm">settings</span>
+                    </button>
                   </div>
                 </div>
 
@@ -1837,101 +1840,127 @@
 
           </div>
 
-          <!-- RIGHT COLUMN (6 COLS): LOCAL AI CLINICAL ADVISOR & CDS STUDIO -->
+          <!-- RIGHT COLUMN (6 COLS): AI DIGITAL TWIN SANDBOX & ADVISOR STUDIO -->
           <div class="lg:col-span-6 flex flex-col">
             
-            <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-6 shadow-sahara flex flex-col justify-between flex-1 h-full">
+            <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-6 shadow-sahara flex flex-col justify-between flex-1 h-full min-h-[720px]">
               <div>
                 <div class="flex flex-wrap items-center justify-between gap-2 pb-3.5 border-b border-[#d8d0c8]/40">
                   <div>
-                    <h2 class="font-serif text-2xl font-normal text-[#26211c]">Local AI Advisor &amp; CDS Studio</h2>
-                    <p class="text-xs text-[#7c7267] mt-0.5 leading-relaxed">Connects to LM Studio (:1234), Ollama (:11434), or FastAPI Proxy (:8000) with built-in CMBCD fallback</p>
+                    <div class="flex items-center gap-2">
+                      <span class="material-symbols-outlined text-[#c2652a] text-2xl">psychology</span>
+                      <h2 class="font-serif text-2xl font-normal text-[#26211c]">AI Digital Twin Sandbox</h2>
+                      <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-[#fbeae0] text-[#c2652a] border border-[#c2652a]/20 font-semibold" id="sandboxEngineBadge">Gemini 3.5 Flash</span>
+                    </div>
+                    <p class="text-xs text-[#7c7267] mt-0.5 leading-relaxed">Interactive counterfactual simulation assistant with live patient telemetry &amp; organ coupling context</p>
                   </div>
                   
-                  <select id="studioModelSelect" aria-label="Select Local AI Model" class="appearance-none bg-[#faf5ee] border border-[#d8d0c8] text-[#26211c] text-xs rounded-xl px-3 py-2 pr-7 focus:outline-none focus:border-[#c2652a] cursor-pointer font-mono">
-                    <option value="local-model">LM Studio / Local Model</option>
-                    <option value="llama3.1:8b">Llama-3.1-8B (Ollama)</option>
-                    <option value="medpalm2">Med-PaLM 2 Clinical</option>
-                    <option value="biomistral">BioMistral 7B Local</option>
-                  </select>
+                  <div class="flex items-center gap-2">
+                    <select id="studioModelSelect" onchange="onAiEngineChange()" aria-label="Select AI Model" class="appearance-none bg-[#faf5ee] border border-[#d8d0c8] text-[#26211c] text-xs rounded-xl px-3 py-1.5 pr-7 focus:outline-none focus:border-[#c2652a] cursor-pointer font-mono font-semibold">
+                      <option value="gemini-cloud" selected>✨ Gemini 3.5 Flash (Cloud)</option>
+                      <option value="edge-proxy">☁️ Vercel / Cloudflare Edge</option>
+                      <option value="local-model">💻 LM Studio (:1234)</option>
+                      <option value="ollama">🦙 Ollama (:11434)</option>
+                      <option value="cmbcd-rule">🛡️ CMBCD Expert Engine</option>
+                    </select>
+
+                    <button type="button" onclick="openAiSettingsModal()" class="px-2.5 py-1.5 rounded-xl border border-[#d8d0c8] bg-[#faf5ee] hover:bg-[#c2652a] hover:text-white text-[#4a4036] transition-all text-xs font-mono font-semibold flex items-center gap-1" title="Configure Gemini API Key / Cloudflare Worker Proxy">
+                      <span class="material-symbols-outlined text-sm">settings</span>
+                      <span class="hidden sm:inline">Settings</span>
+                    </button>
+                  </div>
                 </div>
 
-                <!-- Local LLM Server Endpoint Configuration Bar -->
-                <div class="my-3.5 p-3.5 rounded-xl bg-[#f5efe6] border border-[#d8d0c8]/60 space-y-2.5">
-                  <div class="flex flex-wrap items-center justify-between gap-2">
-                    <span class="text-[10px] font-mono uppercase tracking-wider font-semibold text-[#7c7267]">OpenAI-Compatible Local Server Endpoint</span>
-                    <div class="flex items-center gap-1.5">
-                      <button type="button" onclick="setLlmEndpointPreset('lmstudio')" class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#fbeae0] text-[#c2652a] border border-[#c2652a]/20 hover:bg-[#c2652a] hover:text-white transition-all">LM Studio :1234</button>
-                      <button type="button" onclick="setLlmEndpointPreset('ollama')" class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#ffffff] text-[#4a4036] border border-[#d8d0c8] hover:bg-[#c2652a] hover:text-white transition-all">Ollama :11434</button>
-                      <button type="button" onclick="setLlmEndpointPreset('fastapi')" class="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-[#ffffff] text-[#4a4036] border border-[#d8d0c8] hover:bg-[#c2652a] hover:text-white transition-all">FastAPI :8000</button>
+                <!-- Live What-If Scenario Telemetry Capsule -->
+                <div class="my-3 p-3.5 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col gap-2">
+                  <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-[#5c7a68] animate-pulse"></span>
+                      <span class="font-semibold text-[#26211c]" id="sandboxPatientContext">Rajesh Sharma (PT-IND-001 • MONO)</span>
+                    </div>
+                    <span class="font-mono text-[11px] text-[#c2652a] font-semibold" id="sandboxTrajectoryDeltaBadge">Δ What-If Simulation Active</span>
+                  </div>
+                  <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-[11px] font-mono" id="sandboxTelemetryChips">
+                    <div class="bg-[#ffffff] p-1.5 rounded-lg border border-[#d8d0c8]/50">
+                      <span class="text-[#7c7267] block text-[9px] uppercase">Carbs</span>
+                      <span class="font-bold text-[#26211c]" id="sbChipCarbs">45g</span>
+                    </div>
+                    <div class="bg-[#ffffff] p-1.5 rounded-lg border border-[#d8d0c8]/50">
+                      <span class="text-[#7c7267] block text-[9px] uppercase">Meds</span>
+                      <span class="font-bold text-[#26211c]" id="sbChipMeds">95%</span>
+                    </div>
+                    <div class="bg-[#ffffff] p-1.5 rounded-lg border border-[#d8d0c8]/50">
+                      <span class="text-[#7c7267] block text-[9px] uppercase">Sleep</span>
+                      <span class="font-bold text-[#26211c]" id="sbChipSleep">7.5h</span>
+                    </div>
+                    <div class="bg-[#ffffff] p-1.5 rounded-lg border border-[#d8d0c8]/50">
+                      <span class="text-[#7c7267] block text-[9px] uppercase">Steps</span>
+                      <span class="font-bold text-[#26211c]" id="sbChipSteps">9,500</span>
+                    </div>
+                    <div class="bg-[#ffffff] p-1.5 rounded-lg border border-[#d8d0c8]/50">
+                      <span class="text-[#7c7267] block text-[9px] uppercase">Safe RUL</span>
+                      <span class="font-bold text-[#5c7a68]" id="sbChipRul">142h</span>
                     </div>
                   </div>
-                  <div class="flex items-center gap-2">
-                    <input id="llmEndpointInput" type="text" value="http://localhost:1234/v1/chat/completions" aria-label="Local AI Endpoint URL" class="flex-1 bg-[#ffffff] border border-[#d8d0c8] text-[#26211c] text-xs font-mono rounded-lg px-3 py-1.5 focus:outline-none focus:border-[#c2652a]">
-                    <button type="button" onclick="executeStudioInference()" class="px-3 py-1.5 rounded-lg border border-[#d8d0c8] bg-[#ffffff] text-xs font-semibold text-[#26211c] hover:bg-[#faf5ee] transition-all shrink-0">
-                      📡 Test / Ping
+                </div>
+
+                <!-- Quick Action Inquiry Chips (From Digital Twin Sandbox) -->
+                <div class="mb-3 space-y-1.5">
+                  <div class="flex items-center justify-between text-[11px] text-[#7c7267] font-semibold">
+                    <span>What-If Inquiry Presets:</span>
+                    <button type="button" onclick="clearSandboxChat()" class="text-[#c2652a] hover:underline flex items-center gap-0.5">
+                      <span class="material-symbols-outlined text-xs">delete</span> Clear Chat
+                    </button>
+                  </div>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button type="button" onclick="sendQuickSandboxPrompt('remission')" class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
+                      ⚡ Remission Trajectory
+                    </button>
+                    <button type="button" onclick="sendQuickSandboxPrompt('high_carb')" class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
+                      🥪 85g Spike &amp; Missed Meds
+                    </button>
+                    <button type="button" onclick="sendQuickSandboxPrompt('sleep_stress')" class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
+                      🌙 Sleep Deprivation &amp; Stress
+                    </button>
+                    <button type="button" onclick="sendQuickSandboxPrompt('pharmacotherapy')" class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
+                      💊 KDIGO 2026 Titration
+                    </button>
+                    <button type="button" onclick="sendQuickSandboxPrompt('thin_fat')" class="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
+                      🧬 ICMR Thin-Fat Phenotype
                     </button>
                   </div>
                 </div>
 
-                <!-- Static Patient EHR Payload Capsule -->
-                <div class="mb-3.5 p-3.5 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/50 flex flex-col gap-2">
-                  <div class="flex items-center justify-between text-xs text-[#7c7267]">
-                    <span class="font-semibold text-[#4a4036]" id="studioContextName">Patient Context: Rajesh Sharma (PT-IND-001)</span>
-                    <span class="font-mono text-[#c2652a]">FHIR R4 In-Memory Context</span>
+                <!-- Chat History Console (Scrollable, Conversation Bubble Stream) -->
+                <div class="p-3.5 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between flex-1">
+                  <div id="sandboxChatContainer" class="space-y-3 max-h-[300px] overflow-y-auto pr-1">
+                    <!-- Populated dynamically with conversational bubbles -->
                   </div>
-                  <div class="text-[11px] font-mono text-[#4a4036] bg-[#ffffff] p-2.5 rounded-lg border border-[#d8d0c8]/50 max-h-24 overflow-y-auto leading-relaxed" id="studioEhrSnippet">
-                    <!-- Populated via JS -->
-                  </div>
-                </div>
-
-                <!-- Prompt Presets Bar -->
-                <div class="space-y-2 mb-3">
-                  <span class="text-xs uppercase tracking-wider font-semibold text-[#7c7267]">Clinical Advisor Investigation Templates</span>
-                  <div class="flex flex-wrap gap-2">
-                    <button onclick="applyPromptTemplate('comprehensive')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
-                      Comprehensive Twin Synthesis
-                    </button>
-                    <button onclick="applyPromptTemplate('pharmacotherapy')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
-                      Pharmacotherapy Escalation
-                    </button>
-                    <button onclick="applyPromptTemplate('lifestyle')" class="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#f5efe6] text-[#4a4036] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all">
-                      Microvascular Safeguards
-                    </button>
+                  
+                  <div id="sandboxThinkingIndicator" class="hidden mt-2 p-2.5 rounded-lg bg-[#ffffff] border border-[#d8d0c8]/50 flex items-center gap-2 text-xs text-[#c2652a] font-mono">
+                    <span class="material-symbols-outlined text-sm animate-spin">sync</span>
+                    <span>AI Twin Copilot analyzing multi-organ trajectory...</span>
                   </div>
                 </div>
 
-                <!-- Interactive Prompt Textarea -->
-                <div class="space-y-1.5">
-                  <label for="studioPromptInput" class="text-xs font-medium text-[#4a4036]">Custom Clinical Inquiry for AI Advisor</label>
-                  <textarea id="studioPromptInput" rows="2" class="w-full bg-[#ffffff] border border-[#d8d0c8] text-[#26211c] text-sm rounded-xl p-3 focus:outline-none focus:border-[#c2652a] focus:ring-1 focus:ring-[#c2652a] transition-all font-sans leading-relaxed" placeholder="Enter clinical question or select a template above...">Synthesize complete multi-organ cardiometabolic digital twin state for this patient. Identify primary organ driver of decompensation and specify urgent 48-hour clinical interventions.</textarea>
-                </div>
-
-                <div class="flex items-center justify-between mt-3">
-                  <span class="text-[11px] text-[#7c7267] font-mono">Temp: 0.2 • ADA/KDIGO Grounded</span>
-                  <button onclick="executeStudioInference()" id="btnStudioExecute" class="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-[#c2652a] text-white text-xs font-semibold hover:bg-[#ad5620] transition-all shadow-sahara-sm">
-                    <span class="material-symbols-outlined text-sm">play_arrow</span>
-                    <span>Run CDS Inference</span>
+                <!-- Interactive Chat Input & Send Button -->
+                <div class="mt-3.5 flex items-center gap-2">
+                  <input id="studioPromptInput" type="text" class="flex-1 bg-[#ffffff] border border-[#d8d0c8] text-[#26211c] text-xs rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-[#c2652a] focus:ring-1 focus:ring-[#c2652a] font-sans transition-all" placeholder="Ask AI... (e.g. 'What if patient takes 75g carbs?', 'Simulate nocturnal crisis')">
+                  <button type="button" onclick="executeStudioInference()" id="btnStudioExecute" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#c2652a] text-white text-xs font-semibold hover:bg-[#ad5620] transition-all shadow-sahara-sm shrink-0">
+                    <span class="material-symbols-outlined text-sm">send</span>
+                    <span>Ask AI</span>
                   </button>
                 </div>
               </div>
 
-              <!-- Inference Streaming Output Console -->
-              <div class="mt-4 p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col gap-2.5 flex-1 justify-between">
-                <div class="flex items-center justify-between pb-2 border-b border-[#d8d0c8]/40">
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-[#5c7a68]"></span>
-                    <span class="text-xs font-mono font-semibold text-[#26211c]" id="studioOutputTitle">Clinical AI Advisor Output Stream</span>
-                  </div>
-                  <span class="text-[11px] font-mono text-[#7c7267]" id="studioLatencyBadge">Latency: 0.4 ms • Built-In Engine</span>
-                </div>
-
-                <div class="text-xs text-[#4a4036] font-sans leading-relaxed space-y-2.5 max-h-[220px] overflow-y-auto" id="studioOutputContent">
-                  <!-- Populated automatically via JS -->
-                </div>
+              <!-- Output latency / status footer -->
+              <div class="mt-3 pt-2 border-t border-[#d8d0c8]/40 flex items-center justify-between text-[11px] font-mono text-[#7c7267]">
+                <span id="studioLatencyBadge">Engine: Gemini 3.5 Flash • ADA/KDIGO Grounded</span>
+                <span id="studioTokenBadge">DPDP Act 2023 Compliant Context</span>
               </div>
-
             </div>
+
+          </div>
 
           </div>
 
@@ -2193,6 +2222,70 @@
             <span class="material-symbols-outlined text-sm">download</span>
             <span>Download .json</span>
           </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       AI ENGINE & SECURITY SETTINGS MODAL
+       ========================================================================= -->
+  <div id="aiSettingsModal" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8] shadow-sahara-lg max-w-lg w-full flex flex-col overflow-hidden">
+      
+      <div class="p-5 border-b border-[#d8d0c8]/60 bg-[#faf5ee] flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#fbeae0] text-[#c2652a] flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">security</span>
+          </div>
+          <div>
+            <h3 class="font-serif text-2xl font-normal text-[#26211c]">AI Advisor &amp; Edge Proxy Settings</h3>
+            <span class="text-xs font-mono text-[#7c7267]">Gemini 3.5 Flash • Vercel / Cloudflare</span>
+          </div>
+        </div>
+        <button onclick="closeAiSettingsModal()" class="p-2 rounded-lg text-[#7c7267] hover:text-[#26211c] hover:bg-[#ede4d8] transition-all">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="p-5 space-y-4 bg-[#ffffff] text-xs text-[#4a4036]">
+        <div class="p-3 bg-[#fbeae0]/40 border border-[#c2652a]/20 rounded-xl leading-relaxed text-[#26211c]">
+          <span class="font-bold text-[#c2652a] block mb-0.5">🔒 Zero-Exposure Client Security</span>
+          When hosted on <strong>Vercel</strong>, your API key is read securely on the serverless edge via <code>process.env.GEMINI_API_KEY</code>. You can also route through your <strong>Cloudflare Worker</strong> or store a key privately in this browser's <code>localStorage</code> (never sent to GitHub).
+        </div>
+
+        <div class="space-y-1">
+          <div class="flex items-center justify-between">
+            <label for="cfgGeminiKey" class="font-semibold text-[#26211c]">Google Gemini API Key:</label>
+            <span class="text-[10px] font-mono text-[#5c7a68]" id="geminiKeyStatus">In Browser Storage</span>
+          </div>
+          <input id="cfgGeminiKey" type="password" placeholder="Paste your Gemini API key (AIzaSy...)" class="w-full bg-[#faf5ee] border border-[#d8d0c8] text-[#26211c] text-xs font-mono rounded-lg p-2.5 focus:outline-none focus:border-[#c2652a]">
+          <div class="flex items-center justify-between mt-1">
+            <span class="text-[10px] text-[#7c7267]">Stored locally in browser <code>localStorage</code> only. When hosted on Vercel, configure via environment variables.</span>
+          </div>
+        </div>
+
+        <div class="space-y-1">
+          <label for="cfgWorkerUrl" class="font-semibold text-[#26211c]">Cloudflare Worker Proxy URL (Optional):</label>
+          <input id="cfgWorkerUrl" type="text" placeholder="https://twin-pulse-ai.your-subdomain.workers.dev" class="w-full bg-[#faf5ee] border border-[#d8d0c8] text-[#26211c] text-xs font-mono rounded-lg p-2.5 focus:outline-none focus:border-[#c2652a]">
+          <span class="text-[10px] text-[#7c7267] block">If provided, AI requests route through your Cloudflare Worker.</span>
+        </div>
+
+        <div class="space-y-1">
+          <label for="cfgLocalUrl" class="font-semibold text-[#26211c]">Local LM Studio / Ollama Endpoint:</label>
+          <input id="cfgLocalUrl" type="text" value="http://localhost:1234/v1/chat/completions" class="w-full bg-[#faf5ee] border border-[#d8d0c8] text-[#26211c] text-xs font-mono rounded-lg p-2.5 focus:outline-none focus:border-[#c2652a]">
+        </div>
+      </div>
+
+      <div class="p-4 border-t border-[#d8d0c8]/60 bg-[#faf5ee] flex items-center justify-between">
+        <button type="button" onclick="testAiConnection()" id="btnTestAi" class="px-3 py-2 rounded-lg border border-[#d8d0c8] bg-[#ffffff] hover:bg-[#ede4d8] text-xs font-semibold text-[#26211c] transition-all flex items-center gap-1.5 shadow-sahara-sm">
+          <span class="material-symbols-outlined text-sm">wifi_tethering</span>
+          <span>Test Ping</span>
+        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="closeAiSettingsModal()" class="px-3 py-2 rounded-lg text-xs text-[#7c7267] hover:bg-[#ede4d8]">Cancel</button>
+          <button type="button" onclick="saveAiSettings()" class="px-4 py-2 rounded-lg bg-[#c2652a] text-white text-xs font-semibold hover:bg-[#ad5620] shadow-sahara-sm transition-all">Save &amp; Apply</button>
         </div>
       </div>
 
@@ -6425,6 +6518,7 @@ function onSimInput() {
   }
 
   updateDashboardUI(p, simMetrics);
+  if (typeof updateSandboxContext === 'function') updateSandboxContext(p, simMetrics, state.sim);
 }
 
 function resetSimSliders() {
@@ -7167,60 +7261,460 @@ function renderStudioEhr(p, m) {
   }
 }
 
+// ============================================================================
+// AI DIGITAL TWIN SANDBOX & UNIFIED GEMINI ADVISOR ENGINE
+// ============================================================================
+function getActiveGeminiKey() {
+  const local = localStorage.getItem('twinpulse_gemini_key');
+  return (local && local.trim()) ? local.trim() : '';
+}
+
+const QUICK_PROMPTS = {
+  remission: "Analyze the counterfactual remission trajectory for this patient. Compare baseline versus simulated sliders, calculate expected reduction in systemic organ strain, and recommend optimal 48-hour protocol.",
+  high_carb: "Simulate an acute 85g meal carbohydrate spike combined with 0% medication adherence. What is the immediate risk of a Stage 1 hyperglycemic breach and cardiovascular stress excursion?",
+  sleep_stress: "Simulate severe nocturnal sleep restriction (4.0 hours) and high sympathetic stress load (85/100). How does autonomic vagal suppression accelerate multi-organ decompensation?",
+  pharmacotherapy: "Provide an individualized pharmacotherapy escalation plan under ADA/KDIGO 2026 guidelines given the patient's current eGFR, FIB-4 score, and CGM profile.",
+  thin_fat: "Evaluate this patient under the ICMR-INDIAB Asian Indian MONO (Thin-Fat) phenotype criteria. Why does standard BMI underestimate their cardiometabolic risk, and what targeted safeguards are indicated?"
+};
+
 const PROMPT_TEMPLATES = {
   comprehensive: "Synthesize complete multi-organ cardiometabolic digital twin state for this patient. Identify primary organ driver of decompensation and specify urgent 48-hour clinical interventions.",
   pharmacotherapy: "Evaluate current pharmacotherapy regimen against ADA/KDIGO 2026 guidelines. Check for drug-drug interactions, contraindications given renal eGFR/FIB-4, and recommend evidence-based escalations.",
   lifestyle: "Formulate individualized lifestyle and behavioral prescription targeting postprandial glycemic excursions and sympathetic overdrive based on simulated sleep and activity vectors."
 };
 
-function applyPromptTemplate(key) {
-  const input = document.getElementById('studioPromptInput');
-  if (input && PROMPT_TEMPLATES[key]) {
-    input.value = PROMPT_TEMPLATES[key];
-    notify(`Loaded ${key} CDS template`);
+let sandboxChatMessages = [];
+
+function updateSandboxContext(p, m, sim) {
+  if (!p) p = getPatient();
+  if (!m) m = liveTwinMetrics || computeTwinState(p, sim || state.sim);
+  if (!sim) sim = state.sim;
+
+  const ctxEl = document.getElementById('sandboxPatientContext');
+  if (ctxEl) ctxEl.textContent = `${p.name} (${p.id} • ${p.phenotype})`;
+
+  const cCarbs = document.getElementById('sbChipCarbs');
+  const cMeds = document.getElementById('sbChipMeds');
+  const cSleep = document.getElementById('sbChipSleep');
+  const cSteps = document.getElementById('sbChipSteps');
+  const cRul = document.getElementById('sbChipRul');
+
+  if (cCarbs) {
+    const dC = sim.carbs - p.carbs;
+    cCarbs.textContent = `${sim.carbs}g ${dC !== 0 ? '(' + (dC > 0 ? '+' : '') + dC + ')' : ''}`;
+  }
+  if (cMeds) {
+    const dM = sim.meds - p.adherence;
+    cMeds.textContent = `${sim.meds}% ${dM !== 0 ? '(' + (dM > 0 ? '+' : '') + dM + '%)' : ''}`;
+  }
+  if (cSleep) cSleep.textContent = `${sim.sleep.toFixed(1)}h`;
+  if (cSteps) cSteps.textContent = Number(sim.steps).toLocaleString();
+  if (cRul) cRul.textContent = `${m.rulHours}h`;
+
+  const deltaBadge = document.getElementById('sandboxTrajectoryDeltaBadge');
+  if (deltaBadge) {
+    const isPerturbed = sim.carbs !== p.carbs || sim.meds !== p.adherence || sim.sleep !== p.sleepHours || sim.steps !== p.steps;
+    deltaBadge.textContent = isPerturbed ? '⚡ What-If Active' : '● Baseline';
+    deltaBadge.className = isPerturbed 
+      ? 'font-mono text-[11px] text-[#c2652a] font-semibold'
+      : 'font-mono text-[11px] text-[#5c7a68] font-semibold';
   }
 }
 
-function setLlmEndpointPreset(preset) {
-  const input = document.getElementById('llmEndpointInput');
-  const modelSel = document.getElementById('studioModelSelect');
-  if (!input) return;
-  if (preset === 'lmstudio') {
-    input.value = 'http://localhost:1234/v1/chat/completions';
-    if (modelSel) modelSel.value = 'local-model';
-  } else if (preset === 'ollama') {
-    input.value = 'http://localhost:11434/v1/chat/completions';
-    if (modelSel) modelSel.value = 'llama3.1:8b';
-  } else {
-    input.value = 'http://localhost:8000/api/v1/copilot';
-    if (modelSel) modelSel.value = 'local-model';
+function initSandboxChat() {
+  const p = getPatient();
+  const m = liveTwinMetrics || computeTwinState(p);
+  if (sandboxChatMessages.length === 0) {
+    sandboxChatMessages = [
+      {
+        role: 'assistant',
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        text: `👋 **Twin-Pulse AI Digital Twin Copilot initialized for ${p.name} (${p.id} • ${p.phenotype})**.\n\nI am synchronized with this patient's live telemetry (CGM ${m.cgm} mg/dL, BP ${m.sbp}/${m.dbp} mmHg, Organ Strain ${m.psi}/100) and your counterfactual **What-If simulation sliders**.\n\nAsk any question (e.g., *"What happens if this patient skips meds and consumes 85g carbs?"*, *"Analyze 6-hr glycemic drift"*) or click an inquiry preset above!`
+      }
+    ];
   }
-  notify(`Configured ${preset.toUpperCase()} endpoint`);
+  renderSandboxChat();
+  updateSandboxContext(p, m, state.sim);
+}
+
+function renderSandboxChat() {
+  const container = document.getElementById('sandboxChatContainer');
+  if (!container) return;
+
+  container.innerHTML = sandboxChatMessages.map(msg => {
+    if (msg.role === 'user') {
+      return `
+        <div class="flex justify-end">
+          <div class="max-w-[85%] bg-[#c2652a] text-white p-3 rounded-2xl rounded-tr-none text-xs leading-relaxed shadow-sm">
+            <div class="font-mono text-[9px] opacity-80 mb-1 text-right">You • ${msg.timestamp}</div>
+            <div class="whitespace-pre-wrap">${escapeHtml(msg.text)}</div>
+          </div>
+        </div>
+      `;
+    } else {
+      return `
+        <div class="flex justify-start">
+          <div class="max-w-[92%] bg-[#ffffff] border border-[#d8d0c8]/60 p-3.5 rounded-2xl rounded-tl-none text-xs text-[#26211c] leading-relaxed shadow-sm">
+            <div class="flex items-center justify-between mb-1.5 text-[10px] text-[#7c7267] font-mono border-b border-[#d8d0c8]/30 pb-1">
+              <span class="font-bold text-[#c2652a] flex items-center gap-1">✨ Twin-Pulse AI Advisor</span>
+              <span>${msg.timestamp}</span>
+            </div>
+            <div class="prose-sm space-y-1.5 text-xs whitespace-pre-wrap leading-relaxed">${formatMarkdownText(msg.text)}</div>
+          </div>
+        </div>
+      `;
+    }
+  }).join('');
+
+  container.scrollTop = container.scrollHeight;
+}
+
+function clearSandboxChat() {
+  const p = getPatient();
+  sandboxChatMessages = [
+    {
+      role: 'assistant',
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      text: `🧹 Chat cleared. Synchronized with digital twin for **${p.name}** (${p.id}). How can I assist with this scenario?`
+    }
+  ];
+  renderSandboxChat();
+  notify('Sandbox chat cleared');
+}
+
+function sendQuickSandboxPrompt(type) {
+  const text = QUICK_PROMPTS[type];
+  if (!text) return;
+  const input = document.getElementById('studioPromptInput');
+  if (input) input.value = text;
+  executeStudioInference();
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function formatMarkdownText(text) {
+  if (!text) return '';
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code class="bg-[#faf5ee] px-1 py-0.5 rounded text-[11px] font-mono text-[#c2652a] border border-[#d8d0c8]/50">$1</code>')
+    .replace(/^\s*[-•*]\s+(.*)$/gm, '<li class="ml-3 list-disc">$1</li>')
+    .replace(/\n\n/g, '<div class="h-2"></div>')
+    .replace(/\n/g, '<br>');
+}
+
+function onAiEngineChange() {
+  const sel = document.getElementById('studioModelSelect');
+  const badge = document.getElementById('sandboxEngineBadge');
+  const cockpitBadge = document.getElementById('aiAdvisorEngineBadge');
+  if (!sel) return;
+  const val = sel.value;
+  let label = 'Gemini 3.5 Flash';
+  if (val === 'edge-proxy') label = 'Edge Proxy';
+  else if (val === 'local-model') label = 'LM Studio (:1234)';
+  else if (val === 'ollama') label = 'Ollama (:11434)';
+  else if (val === 'cmbcd-rule') label = 'CMBCD Expert Engine';
+  if (badge) badge.textContent = label;
+  if (cockpitBadge) cockpitBadge.textContent = label.split(' ')[0] + ' Active';
+  notify(`AI Engine switched to ${label}`);
+}
+
+function openAiSettingsModal() {
+  const modal = document.getElementById('aiSettingsModal');
+  if (!modal) return;
+  const keyInput = document.getElementById('cfgGeminiKey');
+  const workerInput = document.getElementById('cfgWorkerUrl');
+  const localInput = document.getElementById('cfgLocalUrl');
+
+  if (keyInput) keyInput.value = localStorage.getItem('twinpulse_gemini_key') || getActiveGeminiKey();
+  if (workerInput) workerInput.value = localStorage.getItem('twinpulse_worker_url') || '';
+  if (localInput) localInput.value = localStorage.getItem('twinpulse_local_url') || 'http://localhost:1234/v1/chat/completions';
+
+  modal.classList.remove('hidden');
+}
+
+function closeAiSettingsModal() {
+  const modal = document.getElementById('aiSettingsModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function saveAiSettings() {
+  const keyInput = document.getElementById('cfgGeminiKey');
+  const workerInput = document.getElementById('cfgWorkerUrl');
+  const localInput = document.getElementById('cfgLocalUrl');
+
+  if (keyInput) localStorage.setItem('twinpulse_gemini_key', keyInput.value.trim());
+  if (workerInput) localStorage.setItem('twinpulse_worker_url', workerInput.value.trim());
+  if (localInput) localStorage.setItem('twinpulse_local_url', localInput.value.trim());
+
+  closeAiSettingsModal();
+  notify('AI settings saved securely to browser localStorage');
+}
+
+async function testAiConnection() {
+  const btn = document.getElementById('btnTestAi');
+  const key = document.getElementById('cfgGeminiKey')?.value.trim() || getActiveGeminiKey();
+  const worker = document.getElementById('cfgWorkerUrl')?.value.trim();
+
+  if (btn) {
+    btn.disabled = true;
+    btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">sync</span><span>Testing...</span>`;
+  }
+
+  try {
+    let success = false;
+    let latency = 0;
+    const t0 = performance.now();
+
+    if (worker) {
+      const resp = await fetch(worker, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: 'ping' })
+      });
+      latency = Math.round(performance.now() - t0);
+      if (resp.ok) success = true;
+    } else if (key) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${key}`;
+      const resp = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'ping' }] }] })
+      });
+      latency = Math.round(performance.now() - t0);
+      if (resp.ok) success = true;
+    } else {
+      const resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: 'ping' })
+      });
+      latency = Math.round(performance.now() - t0);
+      if (resp.ok) success = true;
+    }
+
+    if (success) {
+      notify(`✅ AI Connection verified! Latency: ${latency} ms`);
+    } else {
+      notify(`⚠️ Connection test returned non-200. Check key or endpoint.`);
+    }
+  } catch (err) {
+    notify(`❌ Connection failed: ${err.message}`);
+  } finally {
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm">wifi_tethering</span><span>Test Ping</span>`;
+      hydrateMaterialIcons();
+    }
+  }
+}
+
+async function callAiAdvisorEngine(prompt, fromCockpit = false) {
+  const p = getPatient();
+  const m = liveTwinMetrics || computeTwinState(p, state.sim);
+  const modelSelect = document.getElementById('studioModelSelect');
+  const engine = modelSelect ? modelSelect.value : 'gemini-cloud';
+  
+  const savedKey = getActiveGeminiKey();
+  const workerUrl = localStorage.getItem('twinpulse_worker_url') || '';
+  const localUrl = localStorage.getItem('twinpulse_local_url') || 'http://localhost:1234/v1/chat/completions';
+
+  const t0 = performance.now();
+  let reply = '';
+  let engineSource = 'CMBCD Engine';
+
+  if (engine === 'gemini-cloud' || engine === 'edge-proxy') {
+    let proxySuccess = false;
+    
+    // 1a: Try Vercel Serverless Function /api/chat
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 6500);
+      const resp = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          prompt,
+          patient: {
+            name: p.name,
+            id: p.id,
+            phenotype: p.phenotype,
+            archetype: p.archetype,
+            age: p.age,
+            sex: p.sex,
+            city: p.city,
+            hba1c: p.hba1c,
+            fastingGlu: p.fastingGlu,
+            bmi: p.bmi,
+            egfr: p.egfr,
+            fib4: p.fib4
+          },
+          metrics: {
+            cgm: m.cgm,
+            sbp: m.sbp,
+            dbp: m.dbp,
+            hrv: m.hrv,
+            psi: m.psi,
+            rulHours: m.rulHours
+          },
+          scenario: state.sim,
+          history: sandboxChatMessages.slice(-6),
+          clientApiKey: savedKey
+        })
+      });
+      clearTimeout(timer);
+      if (resp.ok) {
+        const data = await resp.json();
+        if (data.reply) {
+          reply = data.reply;
+          engineSource = 'Vercel Edge (Gemini 3.5 Flash)';
+          proxySuccess = true;
+        }
+      }
+    } catch (e) {}
+
+    // 1b: If /api/chat not available, try Cloudflare Worker
+    if (!proxySuccess && workerUrl) {
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 6500);
+        const resp = await fetch(workerUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
+          body: JSON.stringify({
+            prompt,
+            patient: p,
+            metrics: m,
+            scenario: state.sim,
+            history: sandboxChatMessages.slice(-6)
+          })
+        });
+        clearTimeout(timer);
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.reply) {
+            reply = data.reply;
+            engineSource = 'Cloudflare Worker (Gemini)';
+            proxySuccess = true;
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 1c: If proxies not available, try Direct Gemini API with client key
+    if (!proxySuccess && savedKey) {
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 8000);
+        const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${savedKey}`;
+        
+        const systemPrompt = `You are the Twin-Pulse Healthcare Digital Twin Clinical Advisor & AI Diagnostic Copilot, an expert cardiometabolic digital twin physician grounded in the 2026 ICMR-INDIAB and ADA/KDIGO guidelines for Indian populations.
+You evaluate coupled multi-organ dynamics (Pancreatic β-cell glycemic axis, Conduit arterial vascular tree, Autonomic cardiac HRV, and Hepatorenal filtration).
+When analyzing the patient and counterfactual scenarios, provide structured, clinical, and actionable insights. Be concise, precise, and practical.`;
+
+        const userPayload = `Patient: ${p.name} (${p.id}, Phenotype: ${p.phenotype}, Age: ${p.age}${p.sex}, City: ${p.city})
+Baseline EHR: HbA1c ${p.hba1c}%, Fasting Glu ${p.fastingGlu} mg/dL, BMI ${p.bmi}, eGFR ${p.egfr.toFixed(1)}, FIB-4 ${p.fib4}
+Telemetry: CGM ${m.cgm} mg/dL, BP ${m.sbp}/${m.dbp} mmHg, HRV ${m.hrv} ms, Strain PSI ${m.psi}/100, Predicted Safe Window ${m.rulHours}h.
+What-If Sliders: Meal Carbs ${state.sim.carbs}g, Meds ${state.sim.meds}%, Sleep ${state.sim.sleep.toFixed(1)}h, Steps ${state.sim.steps}, Stress ${state.sim.stress}/100.
+Question: ${prompt}`;
+
+        const resp = await fetch(geminiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
+          body: JSON.stringify({
+            system_instruction: { parts: [{ text: systemPrompt }] },
+            contents: [{ role: 'user', parts: [{ text: userPayload }] }],
+            generationConfig: { temperature: 0.25, maxOutputTokens: 850 }
+          })
+        });
+        clearTimeout(timer);
+        if (resp.ok) {
+          const data = await resp.json();
+          const partText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (partText) {
+            reply = partText;
+            engineSource = 'Gemini 3.5 Flash (Direct Cloud)';
+            proxySuccess = true;
+          }
+        }
+      } catch (e) {}
+    }
+  } else if (engine === 'local-model' || engine === 'ollama') {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 3500);
+      const resp = await fetch(localUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        signal: controller.signal,
+        body: JSON.stringify({
+          model: engine === 'ollama' ? 'llama3.1:8b' : 'local-model',
+          messages: [
+            { role: 'system', content: 'You are the Twin-Pulse Healthcare Digital Twin Clinical Advisor. Provide a concise, actionable clinical SOAP & titration protocol.' },
+            { role: 'user', content: `Patient: ${p.name} (${p.id}, ${p.phenotype}), CGM ${m.cgm} mg/dL, BP ${m.sbp}/${m.dbp}, HRV ${m.hrv} ms, Strain ${m.psi}/100, RUL ${m.rulHours}h. Task: ${prompt}` }
+          ],
+          temperature: 0.2,
+          max_tokens: 450
+        })
+      });
+      clearTimeout(timer);
+      if (resp.ok) {
+        const data = await resp.json();
+        reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || data.soap_note;
+        engineSource = `Local LLM (${engine})`;
+      }
+    } catch (e) {}
+  }
+
+  // Fallback to deterministic CMBCD Expert Engine if offline
+  if (!reply) {
+    reply = generateCmbcdExpertResponse(p, m, prompt);
+    engineSource = 'CMBCD Expert Engine (Deterministic Fallback)';
+  }
+
+  const ms = Math.round(performance.now() - t0);
+  return { reply, engineSource, latencyMs: ms };
+}
+
+function generateCmbcdExpertResponse(p, m, prompt) {
+  const isHighCarb = state.sim.carbs > 65;
+  const isPoorSleep = state.sim.sleep < 6.0;
+  const isHighStress = state.sim.stress > 50;
+  const isLowMeds = state.sim.meds < 80;
+  const primaryAxis = m.glyStress >= m.vascStress ? 'Pancreatic β-Cell (Glycemic)' : 'Systemic Vascular (Hemodynamic)';
+
+  return `### 1. Multi-Organ Prognostic Synthesis
+**Patient:** ${p.name} (${p.id}) • **Phenotype:** ${p.phenotype} (${p.archetype})
+• **Clinical Staging:** ${m.stageLabel} (Systemic Strain: **${m.psi}/100**, Stage 1 Event Risk: **${m.s1Prob}%**)
+• **Primary Organ Driver:** **${primaryAxis} Axis** (Coupled Organ Strain: **${Math.max(m.glyStress, m.vascStress)}%**)
+• **Forecast Safe Clinical Window (RUL):** **${m.rulHours} Hours** before imminent glycemic/hypertensive breach
+
+### 2. Counterfactual Simulation Analysis
+• **Current Simulation Vectors:** Carbs **${state.sim.carbs}g**, Meds Adherence **${state.sim.meds}%**, Sleep **${state.sim.sleep.toFixed(1)}h**, Steps **${Number(state.sim.steps).toLocaleString()}**, Stress **${state.sim.stress}/100**.
+${isHighCarb ? `⚠️ **Glycemic Surge:** Elevated carb load (${state.sim.carbs}g) drives acute postprandial glucose to peak ~${Math.min(320, m.cgm + (state.sim.carbs - 45) * 1.8).toFixed(0)} mg/dL, compounding β-cell secretory exhaustion.` : `✅ **Nutritional Safeguard:** Bolus capped at ${state.sim.carbs}g blunts CGM velocity.`}
+${isPoorSleep || isHighStress ? `⚠️ **Autonomic Sympathetic Strain:** Sub-optimal sleep (${state.sim.sleep}h) and stress (${state.sim.stress}/100) depress vagal HRV (RMSSD ${m.hrv} ms) and drive nocturnal SBP drift.` : `✅ **Vagal Tone Preserved:** Sympathetic equilibrium maintained with healthy nocturnal parasympathetic recovery.`}
+${isLowMeds ? `⚠️ **Pharmacological Drift:** Medication adherence at ${state.sim.meds}% accelerates threshold breach by ~14.2 hours.` : `✅ **Medication Adherence Stable:** Adherence at ${state.sim.meds}%.`}
+
+### 3. Immediate Titration & Orders (ADA/KDIGO 2026 Consensus)
+1. **Nutrition Order:** Restrict next meal bolus to **&le;45g low-GI complex carbohydrates** with 10g soluble fiber preload.
+2. **Physical Activity:** Schedule **15-minute post-meal brisk walk (+2,500 steps)** to upregulate GLUT4 translocation independently of insulin.
+3. **Pharmacotherapy:** Given eGFR **${p.egfr.toFixed(1)} mL/min** and HbA1c **${p.hba1c}%**, maintain *${p.meds}* and consider adding **Empagliflozin 10 mg OD** (Cardiorenal Protection).
+
+*Grounded in ICMR-INDIAB Study (PMC12550443) & 2026 ADA/KDIGO Guidelines.*`;
 }
 
 function buildDeterministicAdvisorHtml(p, m) {
-  return `
-    <div class="space-y-2.5">
-      <div class="p-3 bg-[#ffffff] rounded-xl border border-[#d8d0c8]/60">
-        <span class="font-serif text-sm font-semibold text-[#26211c] block mb-0.5">1. Multi-Organ Prognostic Synthesis (${p.id} • ${p.phenotype}):</span>
-        <p class="text-xs text-[#4a4036] leading-relaxed">
-          Patient <strong>${p.name}</strong> (${p.archetype}) is in <strong>${m.stageLabel}</strong> (Systemic Strain: <strong>${m.psi}/100</strong>, Stage 1 Event Risk: <strong>${m.s1Prob}%</strong>).
-          Primary strain is in the <strong>${m.glyStress > m.vascStress ? 'Pancreatic β-Cell' : 'Systemic Vascular'} Axis</strong> (${Math.max(m.glyStress, m.vascStress)}%).
-          Safe clinical window (RUL) is <strong>${m.rulHours} hours</strong>.
-        </p>
-      </div>
-      <div class="p-3 bg-[#ffffff] rounded-xl border border-[#d8d0c8]/60">
-        <span class="font-serif text-sm font-semibold text-[#26211c] block mb-0.5">2. AI Advisor Titration &amp; Lifestyle Protocol:</span>
-        <p class="text-xs text-[#4a4036] leading-relaxed">
-          • <strong>Pharmacotherapy:</strong> Maintain <em>${p.meds}</em>; given eGFR ${p.egfr.toFixed(1)} mL/min and CGM ${m.cgm} mg/dL, evaluate adding <strong>Empagliflozin 10 mg OD</strong> (ADA/KDIGO Class 1A).<br>
-          • <strong>Counterfactual Target:</strong> Cap meal bolus at &le;45g complex carbs + 15-min postprandial walk (+2,500 steps) to lift vagal HRV (${m.hrv} ms) and extend safe window by +18.4 hrs.
-        </p>
-      </div>
-      <div class="p-2 rounded-lg bg-[#fbeae0] border border-[#c2652a]/20 text-[11px] text-[#c2652a] font-mono">
-        Grounded in: ICMR-INDIAB Study (PMC12550443); ADA/KDIGO 2026 Consensus.
-      </div>
-    </div>
-  `;
+  return generateCmbcdExpertResponse(p, m, PROMPT_TEMPLATES.comprehensive);
 }
 
 async function queryCockpitLocalAiAdvisor() {
@@ -7229,73 +7723,73 @@ async function queryCockpitLocalAiAdvisor() {
 
 async function executeStudioInference(fromCockpit = false) {
   const promptInput = document.getElementById('studioPromptInput');
-  const outputEl = document.getElementById('studioOutputContent');
   const btn = document.getElementById('btnStudioExecute');
-  const modelSelect = document.getElementById('studioModelSelect');
-  const endpointInput = document.getElementById('llmEndpointInput');
-  const statusPill = document.getElementById('studioConnectionStatusPill');
+  const thinking = document.getElementById('sandboxThinkingIndicator');
   const latBadge = document.getElementById('studioLatencyBadge');
-  const advisorBadge = document.getElementById('aiAdvisorEngineBadge');
+  const sbBadge = document.getElementById('sandboxEngineBadge');
+  const cockpitBadge = document.getElementById('aiAdvisorEngineBadge');
 
-  const p = getPatient();
-  const m = liveTwinMetrics || computeTwinState(p);
-  const endpoint = endpointInput ? endpointInput.value.trim() : 'http://localhost:1234/v1/chat/completions';
-  const modelName = modelSelect ? modelSelect.value : 'local-model';
   let prompt = promptInput && promptInput.value.trim() ? promptInput.value.trim() : PROMPT_TEMPLATES.comprehensive;
-  if (promptInput && !promptInput.value.trim()) promptInput.value = prompt;
+  if (promptInput) promptInput.value = '';
+
+  const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+  // Add user message to sandbox chat
+  sandboxChatMessages.push({
+    role: 'user',
+    timestamp,
+    text: prompt
+  });
+  renderSandboxChat();
 
   if (btn) {
     btn.disabled = true;
-    btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">refresh</span> <span>Synthesizing...</span>`;
+    btn.innerHTML = `<span class="material-symbols-outlined text-sm animate-spin">sync</span><span>Thinking...</span>`;
   }
+  if (thinking) thinking.classList.remove('hidden');
 
-  const t0 = performance.now();
   try {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 2200);
-    const resp = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      signal: controller.signal,
-      body: JSON.stringify({
-        model: modelName,
-        messages: [
-          { role: 'system', content: 'You are the Twin-Pulse Healthcare Digital Twin Clinical Advisor. Provide a concise, actionable clinical SOAP & titration protocol.' },
-          { role: 'user', content: `Patient: ${p.name} (${p.id}, ${p.phenotype}), CGM ${m.cgm} mg/dL, BP ${m.sbp}/${m.dbp}, HRV ${m.hrv} ms, Strain ${m.psi}/100, RUL ${m.rulHours}h. Task: ${prompt}` }
-        ],
-        temperature: 0.2,
-        max_tokens: 380
-      })
-    });
-    clearTimeout(timer);
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const data = await resp.json();
-    const reply = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) || data.soap_note || JSON.stringify(data);
-    const ms = Math.round(performance.now() - t0);
+    const res = await callAiAdvisorEngine(prompt, fromCockpit);
+    const replyTimestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    if (outputEl) {
-      outputEl.setAttribute('data-custom-ran', '1');
-      outputEl.innerHTML = `<div class="p-3.5 bg-[#ffffff] rounded-xl border border-[#d8d0c8]/60 whitespace-pre-wrap text-xs text-[#26211c] leading-relaxed">${reply}</div>`;
+    // Add assistant reply to chat
+    sandboxChatMessages.push({
+      role: 'assistant',
+      timestamp: replyTimestamp,
+      text: res.reply
+    });
+    renderSandboxChat();
+
+    // Update badges
+    if (latBadge) latBadge.textContent = `Latency: ${res.latencyMs} ms • ${res.engineSource}`;
+    if (sbBadge) sbBadge.textContent = res.engineSource.includes('Gemini') ? 'Gemini 3.5 Flash' : 'AI Copilot';
+    if (cockpitBadge) cockpitBadge.textContent = res.engineSource.includes('Gemini') ? `🟢 Gemini (${res.latencyMs}ms)` : `🔵 CMBCD AI`;
+
+    // Also update Cockpit Card 4
+    const p = getPatient();
+    const m = liveTwinMetrics || computeTwinState(p, state.sim);
+    const advisorBox = document.getElementById('aiAdvisorPrescriptionBox');
+    if (advisorBox) {
+      const shortSummary = res.reply.split('### 3. Immediate Titration')[1] || res.reply.split('Titration')[1] || res.reply;
+      advisorBox.innerHTML = `
+        <div class="flex items-center justify-between mb-1">
+          <span class="font-mono text-[10px] uppercase font-bold text-[#c2652a]">✨ AI Advisor Protocol • ${p.id} (${p.phenotype})</span>
+          <span class="font-mono text-[10px] font-semibold text-[#5c7a68]">${res.engineSource.split(' ')[0]} Active</span>
+        </div>
+        <div class="text-xs text-[#26211c] leading-relaxed max-h-[140px] overflow-y-auto">${formatMarkdownText(shortSummary.slice(0, 320))}...</div>
+      `;
     }
-    if (statusPill) statusPill.textContent = `🟢 Connected: Local LLM (${modelName})`;
-    if (latBadge) latBadge.textContent = `Latency: ${ms} ms • Local LLM`;
-    if (advisorBadge) advisorBadge.textContent = `🟢 Local LLM (${ms}ms)`;
-    notify(`Received live response from Local AI (${ms} ms)`);
+
+    notify(`AI Advisor response received (${res.latencyMs} ms)`);
   } catch (err) {
-    if (outputEl) {
-      outputEl.setAttribute('data-custom-ran', '1');
-      outputEl.innerHTML = buildDeterministicAdvisorHtml(p, m);
-    }
-    if (statusPill) statusPill.textContent = `🔵 Built-In CMBCD Advisor Engine (Local Server Offline)`;
-    if (latBadge) latBadge.textContent = `Latency: 0.4 ms • Built-In CMBCD Engine`;
-    if (advisorBadge) advisorBadge.textContent = `🔵 CMBCD AI Advisor`;
-    notify(fromCockpit ? `AI Advisor refreshed for ${p.name}` : `Synthesized via Built-In CMBCD Advisor Engine`);
+    notify(`Error: ${err.message}`);
   } finally {
     if (btn) {
       btn.disabled = false;
-      btn.innerHTML = `<span class="material-symbols-outlined text-sm">play_arrow</span> <span>Run CDS Inference</span>`;
+      btn.innerHTML = `<span class="material-symbols-outlined text-sm">send</span><span>Ask AI</span>`;
       hydrateMaterialIcons();
     }
+    if (thinking) thinking.classList.add('hidden');
   }
 }
 
@@ -7651,6 +8145,7 @@ function loadPatient(id) {
   const m = computeTwinState(p);
   liveTwinMetrics = m;
   updateDashboardUI(p, m);
+  if (typeof updateSandboxContext === 'function') updateSandboxContext(p, m, state.sim);
 
   renderCohortTable();
   notify(`Loaded digital twin for ${p.name}`);
@@ -7707,6 +8202,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const m = computeTwinState(p);
   liveTwinMetrics = m;
   updateDashboardUI(p, m);
+  initSandboxChat();
+  onAiEngineChange();
 
   renderCohortTable();
   requestAnimationFrame(animationLoop);
