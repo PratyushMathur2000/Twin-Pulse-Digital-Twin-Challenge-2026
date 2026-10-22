@@ -770,7 +770,7 @@
       
       <!-- Patient Quick Selector -->
       <div class="relative">
-        <select id="globalPatientSelect" onchange="onGlobalPatientChange(this.value)" aria-label="Select Active Patient Digital Twin" class="appearance-none bg-[#f5efe6] border border-[#d8d0c8] text-[#26211c] text-xs font-semibold rounded-xl px-2.5 sm:px-3 py-1.5 pr-6 sm:pr-7 focus:outline-none focus:border-[#c2652a] shadow-sahara-sm cursor-pointer transition-all max-w-[130px] sm:max-w-[180px] lg:max-w-[210px] truncate">
+        <select id="globalPatientSelect" onchange="onGlobalPatientChange(this.value)" aria-label="Select Active Patient Digital Twin" class="appearance-none bg-[#f5efe6] border border-[#d8d0c8] text-[#26211c] text-xs font-semibold rounded-xl px-2.5 sm:px-3 py-1.5 pr-6 sm:pr-7 focus:outline-none focus:border-[#c2652a] shadow-sahara-sm cursor-pointer transition-all max-w-[180px] sm:max-w-[240px] lg:max-w-[280px] truncate">
           <!-- Populated dynamically via JS -->
         </select>
         <span class="material-symbols-outlined absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none text-[#7c7267] text-base">unfold_more</span>
@@ -942,10 +942,10 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full xl:w-auto shrink-0 border-t xl:border-t-0 xl:border-l border-[#d8d0c8]/60 pt-2 xl:pt-0 xl:pl-4">
             
             <!-- STREAM 1: STATIC EHR (Synthea) -->
-            <div class="flex flex-col bg-[#faf5ee] rounded-xl p-2 px-3 border border-[#d8d0c8]/50">
-              <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-[#7c7267] font-semibold border-b border-[#d8d0c8]/40 pb-1 mb-1">
-                <span>Stream 1: Static EHR (Synthea)</span>
-                <span class="text-[#5c7a68] font-semibold">FHIR Synced</span>
+            <div class="flex flex-col bg-[#faf5ee] rounded-xl p-2 px-3 border border-[#d8d0c8]/50 min-w-[250px]">
+              <div class="flex items-center justify-between gap-2 text-[10px] font-mono uppercase tracking-wider text-[#7c7267] font-semibold border-b border-[#d8d0c8]/40 pb-1 mb-1">
+                <span class="truncate">Stream 1: Static EHR (Synthea)</span>
+                <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#5c7a68]/15 text-[#5c7a68] font-bold shrink-0">FHIR Synced</span>
               </div>
               <div class="grid grid-cols-3 gap-2 text-xs">
                 <div>
@@ -988,66 +988,58 @@
           </div>
         </section>
 
-        <!-- 3. COMPACT HORIZONTAL CLINICAL KPI RIBBON (~64px height) -->
+        <!-- 3. COMPACT HORIZONTAL CLINICAL KPI RIBBON (~64px height — CENTERED & BALANCED) -->
         <section class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-3 lg:px-5 shadow-sahara grid grid-cols-2 lg:grid-cols-4 gap-3 items-center shrink-0">
           
           <!-- Metric 1: Systemic Strain Index (PSI) -->
-          <div class="flex items-center justify-between border-r border-[#d8d0c8]/40 pr-3">
-            <div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Systemic Strain Index</span>
-                <button type="button" class="fx-badge" data-tip-title="Multi-Organ Stress Index (Ψ_CMBCD)" data-tip-math="Ψ = w_G·Φ_gly + w_V·Φ_vasc + w_C·Φ_card + w_R·Φ_ren" data-tip-body="Weighted combination of 4 subsystem strain scores (0-100).">𝑓(x)</button>
-              </div>
-              <div class="flex items-baseline gap-1.5 mt-0.5">
-                <span class="font-serif text-2xl font-semibold text-[#26211c] leading-none" id="kpiPsiValue">65.0</span>
-                <span class="text-[11px] text-[#7c7267]">/ 100</span>
-                <span class="text-[11px] font-semibold text-[#c2652a] ml-1" id="kpiPsiStage">Stage 3: Overt</span>
-              </div>
+          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3">
+            <div class="flex items-center justify-center gap-1.5">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Systemic Strain Index</span>
+              <button type="button" class="fx-badge" data-tip-title="Multi-Organ Stress Index (Ψ_CMBCD)" data-tip-math="Ψ = w_G·Φ_gly + w_V·Φ_vasc + w_C·Φ_card + w_R·Φ_ren" data-tip-body="Weighted combination of 4 subsystem strain scores (0-100).">𝑓(x)</button>
+            </div>
+            <div class="flex items-baseline justify-center gap-1.5 mt-0.5">
+              <span class="font-serif text-2xl font-bold text-[#26211c] leading-none" id="kpiPsiValue">65.0</span>
+              <span class="text-[11px] text-[#7c7267]">/ 100</span>
+              <span class="text-[11px] font-semibold text-[#c2652a] ml-1" id="kpiPsiStage">Stage 3: Overt</span>
             </div>
           </div>
 
           <!-- Metric 2: Estimated Safe Clinical Window (Time-to-Threshold TTT) -->
-          <div class="flex items-center justify-between border-r border-[#d8d0c8]/40 pr-3">
-            <div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Safe Clinical Window</span>
-                <button type="button" class="fx-badge" data-tip-title="Time-to-Threshold Regressor (Stage 3)" data-tip-math="TTT = 168 · ((100 - Ψ)/96)^1.38 - 4.8 · ROC_CGM" data-tip-body="Estimated hours before postprandial glucose breaches 200 mg/dL or end-organ destabilization occurs.">𝑓(x)</button>
-              </div>
-              <div class="flex items-baseline gap-1.5 mt-0.5">
-                <span class="font-serif text-2xl font-semibold text-[#8c3c3c] leading-none" id="kpiRulValue">18.4</span>
-                <span class="text-[11px] text-[#7c7267]">hours</span>
-                <span class="text-[10px] font-mono text-[#8c3c3c] ml-1">Threshold Breach</span>
-              </div>
+          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3">
+            <div class="flex items-center justify-center gap-1.5">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Safe Clinical Window</span>
+              <button type="button" class="fx-badge" data-tip-title="Time-to-Threshold Regressor (Stage 3)" data-tip-math="TTT = 168 · ((100 - Ψ)/96)^1.38 - 4.8 · ROC_CGM" data-tip-body="Estimated hours before postprandial glucose breaches 200 mg/dL or end-organ destabilization occurs.">𝑓(x)</button>
+            </div>
+            <div class="flex items-baseline justify-center gap-1.5 mt-0.5">
+              <span class="font-serif text-2xl font-bold text-[#8c3c3c] leading-none" id="kpiRulValue">18.4</span>
+              <span class="text-[11px] text-[#7c7267]">hours</span>
+              <span class="text-[10px] font-mono text-[#8c3c3c] ml-1">Threshold Breach</span>
             </div>
           </div>
 
           <!-- Metric 3: Hemodynamic Myocardial Load -->
-          <div class="flex items-center justify-between border-r border-[#d8d0c8]/40 pr-3">
-            <div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Myocardial Workload</span>
-                <button type="button" class="fx-badge" data-tip-title="Rate Pressure Product (RPP)" data-tip-math="RPP = (SBP · HR) / 100" data-tip-body="Surrogate measure of myocardial oxygen consumption (MVO2). Normal: <10,000.">𝑓(x)</button>
-              </div>
-              <div class="flex items-baseline gap-1.5 mt-0.5">
-                <span class="font-serif text-2xl font-semibold text-[#26211c] leading-none" id="kpiMvo2Value">115.9</span>
-                <span class="text-[11px] text-[#7c7267]">mmHg·bpm/100</span>
-                <span class="text-[10px] text-[#5c7a68] ml-1">Normal Reserve</span>
-              </div>
+          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3">
+            <div class="flex items-center justify-center gap-1.5">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Myocardial Workload</span>
+              <button type="button" class="fx-badge" data-tip-title="Rate Pressure Product (RPP)" data-tip-math="RPP = (SBP · HR) / 100" data-tip-body="Surrogate measure of myocardial oxygen consumption (MVO2). Normal: <10,000.">𝑓(x)</button>
+            </div>
+            <div class="flex items-baseline justify-center gap-1.5 mt-0.5">
+              <span class="font-serif text-2xl font-bold text-[#26211c] leading-none" id="kpiMvo2Value">115.9</span>
+              <span class="text-[11px] text-[#7c7267]">mmHg·bpm/100</span>
+              <span class="text-[10px] text-[#5c7a68] ml-1">Normal Reserve</span>
             </div>
           </div>
 
           <!-- Metric 4: Glycemic Time-in-Range (TIR 70-180) -->
-          <div class="flex items-center justify-between">
-            <div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Glycemic Time-in-Range</span>
-                <button type="button" class="fx-badge" data-tip-title="Time-In-Range (TIR 70–180 mg/dL)" data-tip-math="TIR = (t_70-180 / t_total) · 100%" data-tip-body="International consensus target for Type 2 Diabetes is >70% in 70-180 mg/dL.">𝑓(x)</button>
-              </div>
-              <div class="flex items-baseline gap-1.5 mt-0.5">
-                <span class="font-serif text-2xl font-semibold text-[#c2652a] leading-none" id="kpiTirValue">64%</span>
-                <span class="text-[11px] text-[#7c7267]">in 70–180</span>
-                <span class="text-[10px] text-[#c2652a] ml-1">Sub-Target &lt;70%</span>
-              </div>
+          <div class="flex flex-col items-center justify-center text-center">
+            <div class="flex items-center justify-center gap-1.5">
+              <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Glycemic Time-in-Range</span>
+              <button type="button" class="fx-badge" data-tip-title="Time-In-Range (TIR 70–180 mg/dL)" data-tip-math="TIR = (t_70-180 / t_total) · 100%" data-tip-body="International consensus target for Type 2 Diabetes is >70% in 70-180 mg/dL.">𝑓(x)</button>
+            </div>
+            <div class="flex items-baseline justify-center gap-1.5 mt-0.5">
+              <span class="font-serif text-2xl font-bold text-[#c2652a] leading-none" id="kpiTirValue">64%</span>
+              <span class="text-[11px] text-[#7c7267]">in 70–180</span>
+              <span class="text-[10px] text-[#c2652a] ml-1">Sub-Target &lt;70%</span>
             </div>
           </div>
 
