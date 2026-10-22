@@ -203,39 +203,88 @@
       background: var(--accent-primary);
     }
 
-    /* Sahara Range Slider Styling */
+    /* Sahara High-Contrast Range Slider Track & Dial Styling */
     input[type=range] {
       -webkit-appearance: none;
       appearance: none;
       width: 100%;
+      height: 22px;
       background: transparent;
+      cursor: pointer;
+      margin: 2px 0;
+      display: block;
     }
     input[type=range]:focus {
       outline: none;
     }
     input[type=range]::-webkit-slider-runnable-track {
       width: 100%;
-      height: 6px;
+      height: 8px;
       cursor: pointer;
-      background: var(--bg-muted);
+      background: linear-gradient(to right, #c2652a var(--slider-pct, 50%), #ded6cc var(--slider-pct, 50%));
+      border: 1.5px solid #8c7d6d;
       border-radius: 9999px;
-      border: 1px solid var(--border-color);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .dark input[type=range]::-webkit-slider-runnable-track {
+      background: linear-gradient(to right, #e07d3c var(--slider-pct, 50%), #3f352b var(--slider-pct, 50%));
+      border: 1.5px solid #736254;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 8px;
+      cursor: pointer;
+      background: #ded6cc;
+      border: 1.5px solid #8c7d6d;
+      border-radius: 9999px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+    .dark input[type=range]::-moz-range-track {
+      background: #3f352b;
+      border: 1.5px solid #736254;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.45);
+    }
+    input[type=range]::-moz-range-progress {
+      height: 8px;
+      background: #c2652a;
+      border-radius: 9999px 0 0 9999px;
+      border: 1.5px solid #8c7d6d;
     }
     input[type=range]::-webkit-slider-thumb {
-      height: 17px;
-      width: 17px;
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
-      background: var(--accent-primary);
+      background: #c2652a;
       cursor: pointer;
       -webkit-appearance: none;
-      margin-top: -6px;
-      box-shadow: 0 2px 8px rgba(194, 101, 42, 0.35);
-      border: 2px solid var(--bg-surface);
+      margin-top: -6.5px;
+      box-shadow: 0 2px 6px rgba(194, 101, 42, 0.5), 0 0 2px rgba(0, 0, 0, 0.3);
+      border: 2.5px solid #ffffff;
       transition: transform 0.15s ease, background-color 0.15s ease;
     }
-    input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-      background: var(--accent-hover);
+    .dark input[type=range]::-webkit-slider-thumb {
+      border: 2.5px solid #26211c;
+      background: #e07d3c;
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background: #c2652a;
+      cursor: pointer;
+      border: 2.5px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(194, 101, 42, 0.5), 0 0 2px rgba(0, 0, 0, 0.3);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    .dark input[type=range]::-moz-range-thumb {
+      border: 2.5px solid #26211c;
+      background: #e07d3c;
+    }
+    input[type=range]::-webkit-slider-thumb:hover,
+    input[type=range]::-moz-range-thumb:hover {
+      transform: scale(1.18);
+      background: #ad5620;
     }
 
     /* View Panel transitions */
@@ -760,7 +809,6 @@
       <div class="flex flex-col">
         <div class="flex items-center gap-1.5">
           <span class="font-serif text-lg sm:text-xl font-semibold tracking-tight text-[#26211c] whitespace-nowrap">Twin-Pulse</span>
-          <span class="text-[9.5px] uppercase font-mono text-[#c2652a] bg-[#fbeae0] px-1.5 py-0.5 rounded border border-[#c2652a]/20 font-bold">T2D V6</span>
         </div>
         <span class="text-[10px] text-[#7c7267] tracking-tight hidden sm:inline">Cardiometabolic Digital Twin</span>
       </div>
@@ -814,7 +862,6 @@
           <!-- Dropdown Header -->
           <div class="px-2.5 py-2 border-b border-[#d8d0c8]/60 flex items-center justify-between">
             <span class="text-[11px] font-mono uppercase font-bold text-[#7c7267] tracking-wider">Clinical Tools &amp; Settings</span>
-            <span class="text-[10px] font-mono text-[#c2652a] bg-[#fbeae0] px-1.5 py-0.5 rounded font-semibold">T2D V6</span>
           </div>
 
           <!-- Items List -->
@@ -6973,6 +7020,19 @@ function syncSlidersToPatient(p) {
   updateSliderLabels();
 }
 
+function updateSliderTrackFills() {
+  const sliderIds = ['simCarbs', 'simMeds', 'simSleep', 'simSteps', 'simStress'];
+  sliderIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const min = parseFloat(el.min) || 0;
+    const max = parseFloat(el.max) || 100;
+    const val = parseFloat(el.value) || 0;
+    const pct = Math.max(0, Math.min(100, ((val - min) / (max - min)) * 100));
+    el.style.setProperty('--slider-pct', pct.toFixed(1) + '%');
+  });
+}
+
 function updateSliderLabels() {
   const lCarbs = document.getElementById('valSimCarbs');
   const lMeds = document.getElementById('valSimMeds');
@@ -6985,6 +7045,8 @@ function updateSliderLabels() {
   if (lSleep) lSleep.textContent = `${state.sim.sleep} hrs`;
   if (lSteps) lSteps.textContent = `${Number(state.sim.steps).toLocaleString()} steps`;
   if (lStress) lStress.textContent = `${state.sim.stress} / 100`;
+
+  updateSliderTrackFills();
 }
 
 function applySimPreset(preset) {
