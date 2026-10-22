@@ -779,6 +779,28 @@
     .pulse-glow {
       animation: pulseGlow 2s ease-in-out infinite;
     }
+    .arch-flow-node {
+      cursor: pointer;
+    }
+    .arch-flow-node .arch-node-inner {
+      transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .arch-flow-node:hover .arch-node-inner {
+      transform: translateY(-6px);
+    }
+    .arch-flow-node:hover .node-box {
+      filter: drop-shadow(0 12px 20px rgba(194, 101, 42, 0.25));
+    }
+    .arch-flow-node.active .node-box {
+      stroke-width: 3.5px !important;
+      stroke: #c2652a !important;
+      filter: drop-shadow(0 0 16px rgba(194, 101, 42, 0.5));
+    }
+    .arch-tab.active {
+      background: #c2652a !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(194, 101, 42, 0.35);
+    }
 
   </style>
 </head>
@@ -1917,7 +1939,265 @@
           </div>
         </div>
 
-        <!-- SECTION 1: GLYCEMIC T2D TWIN & END-ORGAN COUPLING NETWORK -->
+        <!-- SECTION 1: CLOSED-LOOP SYSTEM ARCHITECTURE & SOLUTION FLOWCHART -->
+        <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-6 lg:p-8 shadow-sahara flex flex-col gap-6">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#d8d0c8]/40">
+            <div>
+              <div class="flex items-center gap-2.5">
+                <span class="material-symbols-outlined text-[#c2652a] text-3xl">all_inclusive</span>
+                <h2 class="font-serif text-2xl lg:text-3xl font-bold text-[#26211c]">Closed-Loop Healthcare Digital Twin Solution Architecture</h2>
+              </div>
+              <p class="text-xs sm:text-sm text-[#7c7267] mt-1.5 leading-relaxed max-w-4xl">
+                Continuous closed-loop physiological governance: Multi-Modal Ingestion &rarr; Feature Fusion &rarr; 100 Hz Biophysical ODE Core &rarr; 3-Stage ML Hazard Inference &rarr; AI Counterfactual Studio &rarr; Wearable Sensor Recalibration. <strong>Click any stage box or tab below to inspect full technical and clinical specifications.</strong>
+              </p>
+            </div>
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5c7a68]/15 text-[#5c7a68] text-xs font-mono font-semibold border border-[#5c7a68]/30">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#5c7a68] animate-pulse"></span>
+                <span>Continuous Closed-Loop Active</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Interactive Looping SVG Flowchart with Enlarged Task Boxes (216x220px) -->
+          <div class="w-full bg-[#faf5ee] rounded-2xl border border-[#d8d0c8]/70 p-4 lg:p-7 overflow-x-auto shadow-inner flex flex-col items-center">
+            
+            <svg viewBox="0 0 1280 470" class="w-full min-w-[1080px] max-w-[1280px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <!-- Gradients -->
+                <linearGradient id="gradEhr" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#fbeae0" />
+                </linearGradient>
+                <linearGradient id="gradFusion" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#fdf4e7" />
+                </linearGradient>
+                <linearGradient id="gradOde" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#edf4f0" />
+                </linearGradient>
+                <linearGradient id="gradMl" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#faeeee" />
+                </linearGradient>
+                <linearGradient id="gradAction" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff" />
+                  <stop offset="100%" stop-color="#fbeae0" />
+                </linearGradient>
+
+                <!-- Arrowhead Markers -->
+                <marker id="arrowForward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#c2652a" />
+                </marker>
+                <marker id="arrowReturn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#5c7a68" />
+                </marker>
+              </defs>
+
+              <!-- ========================================== -->
+              <!-- 1. FORWARD FLOW CONNECTING LINES (y = 140) -->
+              <!-- ========================================== -->
+              <!-- Line 1: Ingestion (right edge 251) -> Fusion (left edge 284) -->
+              <path d="M 251 140 L 284 140" fill="none" stroke="#c2652a" stroke-width="3" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- Line 2: Fusion (right edge 500) -> Biophysical ODE (left edge 533) -->
+              <path d="M 500 140 L 533 140" fill="none" stroke="#d49a3d" stroke-width="3" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- Line 3: Biophysical ODE (right edge 749) -> 3-Stage ML (left edge 782) -->
+              <path d="M 749 140 L 782 140" fill="none" stroke="#5c7a68" stroke-width="3" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- Line 4: 3-Stage ML (right edge 998) -> Clinical Action & AI (left edge 1031) -->
+              <path d="M 998 140 L 1031 140" fill="none" stroke="#8c3c3c" stroke-width="3" class="flow-line-forward" marker-end="url(#arrowForward)" />
+
+              <!-- ========================================== -->
+              <!-- 2. THE CLOSED-LOOP RETURN ARC (LOOPING BACK) -->
+              <!-- ========================================== -->
+              <!-- Starts below Node 5 (x=1139, y=250), descends to y=405, sweeps left across bottom, and ascends to Node 1 (x=143, y=250) -->
+              <path d="M 1139 250 C 1139 375, 1060 405, 960 405 L 320 405 C 220 405, 143 375, 143 250"
+                    fill="none" stroke="#5c7a68" stroke-width="3.5" stroke-linecap="round" class="flow-line-return" marker-end="url(#arrowReturn)" />
+
+              <!-- Closed Loop Animated Label Capsule in Middle of Return Line -->
+              <g transform="translate(640, 405)" class="cursor-pointer group" onclick="selectArchStage(5)" title="Continuous Closed-Loop Sensor Telemetry Feedback">
+                <rect x="-270" y="-19" width="540" height="38" rx="19" fill="#ffffff" stroke="#5c7a68" stroke-width="2.5" filter="drop-shadow(0 2px 8px rgba(92,122,104,0.18))" />
+                <circle cx="-245" cy="0" r="6" fill="#5c7a68" class="pulse-glow" />
+                <text x="10" y="4.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#26211c">
+                  ↺ Continuous Closed-Loop: Physiological Response Recorded via Wearables
+                </text>
+              </g>
+
+              <!-- ========================================== -->
+              <!-- 3. FIVE ENLARGED SOLUTION TASK BOXES (216x220) -->
+              <!-- ========================================== -->
+              
+              <!-- NODE 1: DATA INGESTION -->
+              <g id="archNode-1" onclick="selectArchStage(1)" class="arch-flow-node active" transform="translate(35, 30)">
+                <g class="arch-node-inner">
+                <rect width="216" height="220" rx="18" fill="url(#gradEhr)" stroke="#c2652a" stroke-width="2" class="node-box" />
+                <rect x="14" y="14" width="34" height="34" rx="10" fill="#fbeae0" />
+                <text x="31" y="37" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">📥</text>
+                <text x="56" y="27" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#7c7267">STAGE 1</text>
+                <text x="56" y="43" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#26211c">Two-Stream Data</text>
+                
+                <line x1="14" y1="56" x2="202" y2="56" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="16" y="76" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• Stream 1 (EHR)</text>
+                <text x="24" y="91" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">HbA1c, HOMA-IR, eGFR, FIB-4</text>
+                
+                <text x="16" y="113" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#c2652a">• Stream 2 (IoT Wearables)</text>
+                <text x="24" y="128" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">100Hz CGM, Cuffless BP, HRV</text>
+
+                <text x="16" y="150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• Lossless Ingestion</text>
+                <text x="24" y="165" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">&lt;15ms latency • FHIR R4 Ready</text>
+
+                <rect x="14" y="176" width="188" height="22" rx="11" fill="#fbeae0" />
+                <text x="108" y="191" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#c2652a">Synthea EHR + 100Hz BLE</text>
+                <text x="108" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#a09488">👆 Click to inspect spec</text>
+              </g>
+              </g>
+
+              <!-- NODE 2: STREAM FUSION & FEATURE CALIBRATION -->
+              <g id="archNode-2" onclick="selectArchStage(2)" class="arch-flow-node" transform="translate(284, 30)">
+                <g class="arch-node-inner">
+                <rect width="216" height="220" rx="18" fill="url(#gradFusion)" stroke="#d49a3d" stroke-width="2" class="node-box" />
+                <rect x="14" y="14" width="34" height="34" rx="10" fill="#fdf4e7" />
+                <text x="31" y="37" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">⚡</text>
+                <text x="56" y="27" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#7c7267">STAGE 2</text>
+                <text x="56" y="43" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#26211c">Stream Fusion</text>
+                
+                <line x1="14" y1="56" x2="202" y2="56" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="16" y="76" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• 29 Feature Engine</text>
+                <text x="24" y="91" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">ROC, Glycemic Drift, AUC₁₂₀</text>
+                
+                <text x="16" y="113" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#d49a3d">• Phenotype Tuning</text>
+                <text x="24" y="128" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">Thin-Fat Modifier p₃=0.042</text>
+
+                <text x="16" y="150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• Signal Conditioning</text>
+                <text x="24" y="165" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">Kalman Noise Filter • EWMA</text>
+
+                <rect x="14" y="176" width="188" height="22" rx="11" fill="#fdf4e7" />
+                <text x="108" y="191" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#d49a3d">29 Features • ICMR-INDIAB</text>
+                <text x="108" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#a09488">👆 Click to inspect spec</text>
+              </g>
+              </g>
+
+              <!-- NODE 3: BIOPHYSICAL ODE TWIN (RK4) -->
+              <g id="archNode-3" onclick="selectArchStage(3)" class="arch-flow-node" transform="translate(533, 30)">
+                <g class="arch-node-inner">
+                <rect width="216" height="220" rx="18" fill="url(#gradOde)" stroke="#5c7a68" stroke-width="2.5" class="node-box" />
+                <rect x="14" y="14" width="34" height="34" rx="10" fill="#edf4f0" />
+                <text x="31" y="37" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">🧬</text>
+                <text x="56" y="27" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#7c7267">STAGE 3</text>
+                <text x="56" y="43" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#26211c">Biophysical Twin</text>
+                
+                <line x1="14" y1="56" x2="202" y2="56" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="16" y="76" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• Minimal Model</text>
+                <text x="24" y="91" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">Bergman ODE Glucose Solver</text>
+                
+                <text x="16" y="113" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#5c7a68">• 4-Organ Coupling</text>
+                <text x="24" y="128" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">Pancreas ⇄ Vasc ⇄ Heart ⇄ Renal</text>
+
+                <text x="16" y="150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• Numerical Engine</text>
+                <text x="24" y="165" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">RK4 Solver • Δt=0.05h Step</text>
+
+                <rect x="14" y="176" width="188" height="22" rx="11" fill="#edf4f0" />
+                <text x="108" y="191" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#5c7a68">RK4 Solver • 100 Hz Loop</text>
+                <text x="108" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#a09488">👆 Click to inspect spec</text>
+              </g>
+              </g>
+
+              <!-- NODE 4: 3-STAGE PROGNOSTIC ML CORE -->
+              <g id="archNode-4" onclick="selectArchStage(4)" class="arch-flow-node" transform="translate(782, 30)">
+                <g class="arch-node-inner">
+                <rect width="216" height="220" rx="18" fill="url(#gradMl)" stroke="#8c3c3c" stroke-width="2" class="node-box" />
+                <rect x="14" y="14" width="34" height="34" rx="10" fill="#faeeee" />
+                <text x="31" y="37" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">📊</text>
+                <text x="56" y="27" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#7c7267">STAGE 4</text>
+                <text x="56" y="43" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#26211c">3-Stage ML Core</text>
+                
+                <line x1="14" y1="56" x2="202" y2="56" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="16" y="76" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#8c3c3c">• Adverse Event Classifier</text>
+                <text x="24" y="91" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">96.7% Recall Excursion (&gt;200mg/dL)</text>
+                
+                <text x="16" y="113" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• CMBCD Staging</text>
+                <text x="24" y="128" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">Stages 1–4 Soft-Voting (F1: 0.921)</text>
+
+                <text x="16" y="150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#8c3c3c">• Safe Window TTT</text>
+                <text x="24" y="165" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">R² = 0.961 • MAE: 6.15 hrs</text>
+
+                <rect x="14" y="176" width="188" height="22" rx="11" fill="#faeeee" />
+                <text x="108" y="191" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#8c3c3c">Holdout R²=0.961 • 96.7% Recall</text>
+                <text x="108" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#a09488">👆 Click to inspect spec</text>
+              </g>
+              </g>
+
+              <!-- NODE 5: TWIN-PULSE AI & CLINICAL ACTION -->
+              <g id="archNode-5" onclick="selectArchStage(5)" class="arch-flow-node" transform="translate(1031, 30)">
+                <g class="arch-node-inner">
+                <rect width="216" height="220" rx="18" fill="url(#gradAction)" stroke="#c2652a" stroke-width="2" class="node-box" />
+                <rect x="14" y="14" width="34" height="34" rx="10" fill="#fbeae0" />
+                <text x="31" y="37" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="18">👨‍⚕️</text>
+                <text x="56" y="27" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#7c7267">STAGE 5</text>
+                <text x="56" y="43" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="bold" fill="#26211c">Clinical Action</text>
+                
+                <line x1="14" y1="56" x2="202" y2="56" stroke="#d8d0c8" stroke-width="1" />
+                
+                <text x="16" y="76" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• What-If Simulator</text>
+                <text x="24" y="91" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">Carbs, Adherence, Sleep, Steps</text>
+                
+                <text x="16" y="113" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#c2652a">• Titration Guidance</text>
+                <text x="24" y="128" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">ICMR-INDIAB SGLT2i / GLP-1</text>
+
+                <text x="16" y="150" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">• Interoperability Export</text>
+                <text x="24" y="165" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#7c7267">FHIR R4 Bundles + SOAP Notes</text>
+
+                <rect x="14" y="176" width="188" height="22" rx="11" fill="#fbeae0" />
+                <text x="108" y="191" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="bold" fill="#c2652a">What-If • FHIR R4 • SOAP</text>
+                <text x="108" y="210" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#a09488">👆 Click to inspect spec</text>
+              </g>
+              </g>
+
+            </svg>
+
+          </div>
+
+          <!-- Interactive Stage Selection Navigation Tabs -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#d8d0c8]/50">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#c2652a] text-lg">touch_app</span>
+              <span class="text-xs font-semibold text-[#7c7267] uppercase tracking-wider font-mono">Interactive Stage Deep-Dive Inspector:</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-2" id="archStageTabs">
+              <button type="button" onclick="selectArchStage(1)" id="archTab-1" class="arch-tab active px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#c2652a] text-white shadow-sm transition-all cursor-pointer">
+                1. Two-Stream Ingestion
+              </button>
+              <button type="button" onclick="selectArchStage(2)" id="archTab-2" class="arch-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#f5efe6] text-[#4a4036] hover:bg-[#d49a3d] hover:text-white transition-all cursor-pointer">
+                2. Stream Fusion
+              </button>
+              <button type="button" onclick="selectArchStage(3)" id="archTab-3" class="arch-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#f5efe6] text-[#4a4036] hover:bg-[#5c7a68] hover:text-white transition-all cursor-pointer">
+                3. Biophysical ODE
+              </button>
+              <button type="button" onclick="selectArchStage(4)" id="archTab-4" class="arch-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#f5efe6] text-[#4a4036] hover:bg-[#8c3c3c] hover:text-white transition-all cursor-pointer">
+                4. Prognostic ML
+              </button>
+              <button type="button" onclick="selectArchStage(5)" id="archTab-5" class="arch-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#f5efe6] text-[#4a4036] hover:bg-[#c2652a] hover:text-white transition-all cursor-pointer">
+                5. Clinical Action
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Deep-Dive Architecture Inspector Panel -->
+          <div id="archStageInspector" class="p-5 lg:p-7 rounded-2xl bg-[#faf5ee] border border-[#d8d0c8]/80 shadow-sahara-sm transition-all duration-300">
+            <!-- Dynamically populated via selectArchStage(stageNum) -->
+          </div>
+
+        </div>
+
+        <!-- SECTION 2: GLYCEMIC T2D TWIN & END-ORGAN COUPLING NETWORK -->
         <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-6 shadow-sahara flex flex-col gap-5">
           <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-[#d8d0c8]/40">
             <div>
@@ -2077,252 +2357,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-
-        <!-- SECTION 2: CLOSED-LOOP SYSTEM ARCHITECTURE & SOLUTION FLOWCHART -->
-        <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-6 shadow-sahara flex flex-col gap-5">
-          
-          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-[#d8d0c8]/40">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="material-symbols-outlined text-[#c2652a] text-2xl">all_inclusive</span>
-                <h2 class="font-serif text-xl lg:text-2xl font-bold text-[#26211c]">Closed-Loop Healthcare Digital Twin Solution Architecture</h2>
-              </div>
-              <p class="text-xs text-[#7c7267] mt-1 leading-relaxed">
-                End-to-end continuous feedback loop: Multi-Modal Ingestion &rarr; Biophysical ODE Core &rarr; 3-Stage ML Hazard Inference &rarr; AI Counterfactual Studio &rarr; Clinical Action &rarr; Real-Time Wearable Recalibration.
-              </p>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#5c7a68]/15 text-[#5c7a68] text-xs font-mono font-semibold border border-[#5c7a68]/30">
-                <span class="w-2 h-2 rounded-full bg-[#5c7a68] animate-pulse"></span>
-                <span>Continuous Closed-Loop Active</span>
-              </span>
-            </div>
-          </div>
-
-          <!-- Interactive Looping SVG Flowchart -->
-          <div class="w-full bg-[#faf5ee] rounded-2xl border border-[#d8d0c8]/70 p-4 lg:p-6 overflow-x-auto shadow-inner flex flex-col items-center">
-            
-            <svg viewBox="0 0 1020 380" class="w-full min-w-[880px] max-w-[1020px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <!-- Gradients -->
-                <linearGradient id="gradEhr" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="100%" stop-color="#fbeae0" />
-                </linearGradient>
-                <linearGradient id="gradFusion" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="100%" stop-color="#fdf4e7" />
-                </linearGradient>
-                <linearGradient id="gradOde" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="100%" stop-color="#edf4f0" />
-                </linearGradient>
-                <linearGradient id="gradMl" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="100%" stop-color="#faeeee" />
-                </linearGradient>
-                <linearGradient id="gradAction" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="100%" stop-color="#fbeae0" />
-                </linearGradient>
-
-                <!-- Arrowhead Markers -->
-                <marker id="arrowForward" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#c2652a" />
-                </marker>
-                <marker id="arrowReturn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#5c7a68" />
-                </marker>
-              </defs>
-
-              <!-- ========================================== -->
-              <!-- 1. FORWARD FLOW CONNECTING LINES -->
-              <!-- ========================================== -->
-              <!-- Line 1: Ingestion -> Fusion -->
-              <path d="M 175 95 L 235 95" fill="none" stroke="#c2652a" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
-
-              <!-- Line 2: Fusion -> Biophysical ODE -->
-              <path d="M 375 95 L 435 95" fill="none" stroke="#d49a3d" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
-
-              <!-- Line 3: Biophysical ODE -> 3-Stage ML -->
-              <path d="M 575 95 L 635 95" fill="none" stroke="#5c7a68" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
-
-              <!-- Line 4: 3-Stage ML -> Clinical Action & AI -->
-              <path d="M 775 95 L 835 95" fill="none" stroke="#8c3c3c" stroke-width="2.5" class="flow-line-forward" marker-end="url(#arrowForward)" />
-
-              <!-- ========================================== -->
-              <!-- 2. THE CLOSED-LOOP RETURN ARC (LOOPING BACK) -->
-              <!-- ========================================== -->
-              <!-- Starts below Clinical Action (x=905, y=165), descends, sweeps left across bottom, and ascends to Ingestion (x=105, y=165) -->
-              <path d="M 905 165 C 905 285, 840 315, 750 315 L 260 315 C 160 315, 105 285, 105 165"
-                    fill="none" stroke="#5c7a68" stroke-width="3" stroke-linecap="round" class="flow-line-return" marker-end="url(#arrowReturn)" />
-
-              <!-- Closed Loop Animated Label Capsule in Middle of Return Line -->
-              <g transform="translate(510, 315)">
-                <rect x="-240" y="-18" width="480" height="36" rx="18" fill="#ffffff" stroke="#5c7a68" stroke-width="2" filter="drop-shadow(0 2px 8px rgba(92,122,104,0.18))" />
-                <circle cx="-215" cy="0" r="5.5" fill="#5c7a68" class="pulse-glow" />
-                <text x="6" y="4.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">
-                  ↺ Continuous Closed-Loop: Physiological Response Recorded via Wearables
-                </text>
-              </g>
-
-              <!-- ========================================== -->
-              <!-- 3. FIVE SOLUTION NODES -->
-              <!-- ========================================== -->
-              
-              <!-- NODE 1: DATA INGESTION -->
-              <g transform="translate(35, 25)">
-                <rect width="140" height="140" rx="16" fill="url(#gradEhr)" stroke="#c2652a" stroke-width="2" />
-                <rect x="12" y="12" width="28" height="28" rx="8" fill="#fbeae0" />
-                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#c2652a">📥</text>
-                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 1</text>
-                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Two-Stream Data</text>
-                
-                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
-                
-                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#26211c">• Stream 1 (EHR)</text>
-                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">HbA1c, HOMA-IR, eGFR</text>
-                
-                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#c2652a">• Stream 2 (IoT)</text>
-                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">100Hz CGM, HRV, BP</text>
-
-                <rect x="14" y="123" width="112" height="18" rx="9" fill="#fbeae0" />
-                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#c2652a">Synthea + Wearables</text>
-              </g>
-
-              <!-- NODE 2: STREAM FUSION & FEATURE CALIBRATION -->
-              <g transform="translate(235, 25)">
-                <rect width="140" height="140" rx="16" fill="url(#gradFusion)" stroke="#d49a3d" stroke-width="2" />
-                <rect x="12" y="12" width="28" height="28" rx="8" fill="#fdf4e7" />
-                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#d49a3d">⚡</text>
-                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 2</text>
-                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Stream Fusion</text>
-                
-                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
-                
-                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• 29 Feature Engine</text>
-                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">ROC, Glycemic Drift</text>
-                
-                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#d49a3d">• Phenotype Tuning</text>
-                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Thin-Fat Modifier p₃</text>
-
-                <rect x="14" y="123" width="112" height="18" rx="9" fill="#fdf4e7" />
-                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#d49a3d">ICMR-INDIAB Scaled</text>
-              </g>
-
-              <!-- NODE 3: BIOPHYSICAL ODE TWIN (RK4) -->
-              <g transform="translate(435, 25)">
-                <rect width="140" height="140" rx="16" fill="url(#gradOde)" stroke="#5c7a68" stroke-width="2.5" />
-                <rect x="12" y="12" width="28" height="28" rx="8" fill="#edf4f0" />
-                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#5c7a68">🧬</text>
-                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 3</text>
-                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Biophysical Twin</text>
-                
-                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
-                
-                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• Minimal Model</text>
-                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Bergman ODE Solver</text>
-                
-                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#5c7a68">• 4-Organ Coupling</text>
-                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Pancreas &harr; Vasc &harr; Heart</text>
-
-                <rect x="14" y="123" width="112" height="18" rx="9" fill="#edf4f0" />
-                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#5c7a68">RK4 Numerical Core</text>
-              </g>
-
-              <!-- NODE 4: 3-STAGE PROGNOSTIC ML CORE -->
-              <g transform="translate(635, 25)">
-                <rect width="140" height="140" rx="16" fill="url(#gradMl)" stroke="#8c3c3c" stroke-width="2" />
-                <rect x="12" y="12" width="28" height="28" rx="8" fill="#faeeee" />
-                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#8c3c3c">📊</text>
-                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 4</text>
-                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">3-Stage ML Core</text>
-                
-                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
-                
-                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#8c3c3c">• Adverse Event</text>
-                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">96.7% Recall Excursion</text>
-                
-                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• Safe Window TTT</text>
-                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">R&sup2;: 0.961 &bull; MAE: 6.15h</text>
-
-                <rect x="14" y="123" width="112" height="18" rx="9" fill="#faeeee" />
-                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#8c3c3c">CMBCD Staging (1&ndash;4)</text>
-              </g>
-
-              <!-- NODE 5: TWIN-PULSE AI & CLINICAL ACTION -->
-              <g transform="translate(835, 25)">
-                <rect width="140" height="140" rx="16" fill="url(#gradAction)" stroke="#c2652a" stroke-width="2" />
-                <rect x="12" y="12" width="28" height="28" rx="8" fill="#fbeae0" />
-                <text x="26" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#c2652a">👨‍⚕️</text>
-                <text x="48" y="24" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#7c7267">STAGE 5</text>
-                <text x="48" y="36" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#26211c">Clinical Action</text>
-                
-                <line x1="12" y1="48" x2="128" y2="48" stroke="#d8d0c8" stroke-width="1" />
-                
-                <text x="14" y="66" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#26211c">• What-If Sliders</text>
-                <text x="22" y="79" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">Carbs, Adherence, Sleep</text>
-                
-                <text x="14" y="99" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="bold" fill="#c2652a">• Titration / Action</text>
-                <text x="22" y="112" font-family="Arial, Helvetica, sans-serif" font-size="8.5" fill="#7c7267">SGLT2i / GLP-1 RA Plan</text>
-
-                <rect x="14" y="123" width="112" height="18" rx="9" fill="#fbeae0" />
-                <text x="70" y="135.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="bold" fill="#c2652a">FHIR R4 &amp; SOAP Note</text>
-              </g>
-
-            </svg>
-
-          </div>
-
-          <!-- 4 Solution Detail Summary Pillars -->
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch text-xs mt-1">
-            
-            <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-[#fbeae0] font-mono text-[10px] text-[#c2652a] font-semibold">1. DATA INGESTION</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Two-Stream Data Fusion</h4>
-                <p class="mt-2 text-[#4a4036] leading-relaxed">
-                  Ingests static Synthea EHR demographics and lab panels (HbA1c, HOMA-IR, eGFR, FIB-4) alongside continuous 100 Hz live wearable telemetry (CGM, HRV, BP).
-                </p>
-              </div>
-              <span class="text-[10.5px] font-mono text-[#c2652a] mt-2 block">&rarr; 29 Engineered Dynamic Features</span>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-[#fdf4e7] font-mono text-[10px] text-[#d49a3d] font-semibold">2. BIOPHYSICAL ODE</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">RK4 Multi-Organ Engine</h4>
-                <p class="mt-2 text-[#4a4036] leading-relaxed">
-                  Solves Bergman minimal glucose equations coupled with aortic compliance, autonomic baroreflex, and nephron filtration via 4th-order Runge-Kutta numerical solver.
-                </p>
-              </div>
-              <span class="text-[10.5px] font-mono text-[#d49a3d] mt-2 block">&Delta;t = 0.05h Step Size &bull; 100 Hz</span>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-[#faeeee] font-mono text-[10px] text-[#8c3c3c] font-semibold">3. PROGNOSTIC ML</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Hazard &amp; TTT Regression</h4>
-                <p class="mt-2 text-[#4a4036] leading-relaxed">
-                  Gradient boosted trees predict acute glycemic excursions (&gt;200 mg/dL within 45 min) with 96.7% recall, while hazard models calculate the safe clinical buffer window.
-                </p>
-              </div>
-              <span class="text-[10.5px] font-mono text-[#8c3c3c] mt-2 block">TTT R&sup2;: 0.961 &bull; MAE: 6.15 hrs</span>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 flex flex-col justify-between">
-              <div>
-                <span class="px-2 py-0.5 rounded bg-[#edf4f0] font-mono text-[10px] text-[#5c7a68] font-semibold">4. CLOSED LOOP</span>
-                <h4 class="font-serif text-base font-semibold text-[#26211c] mt-1.5">Continuous Clinical Loop</h4>
-                <p class="mt-2 text-[#4a4036] leading-relaxed">
-                  Counterfactual simulations and titration guidance (ICMR-INDIAB) lead to patient action, which continuously feeds back into the wearable sensors to update the digital twin.
-                </p>
-              </div>
-              <span class="text-[10.5px] font-mono text-[#5c7a68] mt-2 block">&circlearrowright; Wearable Closed Feedback Loop</span>
-            </div>
-
           </div>
         </div>
 
@@ -7216,6 +7250,266 @@ function updateDashboardUI(p, metrics) {
   renderStudioEhr(p, metrics);
 }
 
+// ============================================================================
+// CLOSED-LOOP ARCHITECTURE DEEP-DIVE INSPECTOR CONFIGURATION & HANDLERS
+// ============================================================================
+let activeArchStage = 1;
+
+const ARCH_STAGE_CONFIG = {
+  1: {
+    num: 1,
+    title: "Two-Stream Multi-Modal Data Ingestion",
+    icon: "📥",
+    color: "#c2652a",
+    bgSoft: "#fbeae0",
+    border: "#c2652a",
+    tag: "STREAM 1 (EHR) + STREAM 2 (IoT)",
+    summary: "Continuous lossy/lossless ingestion pipeline aligning static clinical records with high-frequency telemetry. Synthea EHR provides longitudinal phenotypic context, while 100 Hz Bluetooth Low Energy (BLE) wearable streams capture dynamic postprandial swings.",
+    inputs: [
+      { name: "Stream 1 (Static EHR)", desc: "HbA1c (%), HOMA-IR, eGFR (CKD-EPI 2021), FIB-4, Fasting Lipids, Asian Indian MONO (Thin-Fat) Visceral Phenotype" },
+      { name: "Stream 2 (Live IoT)", desc: "100 Hz Continuous Glucose Monitor (CGM mg/dL), Cuffless Blood Pressure (SBP/DBP), Autonomic HRV rMSSD (ms), Sleep Stages, Steps" }
+    ],
+    mathTitle: "FHIR R4 Resource Ingestion & Invariant Check",
+    formula: "Obs_CGM(t) = G_sensor(t) + ε_calib,   ε ~ N(0, σ_CGM^2)",
+    details: "Transforms raw Bluetooth Low Energy (BLE) packet streams into standardized HL7 FHIR Release 4 Observation resources with LOINC 14745-4 (Glucose in Capillary Blood) and LOINC 8867-4 (Heart rate). Ingestion buffers validate numerical bounds in real time before passing into the feature engineering engine.",
+    latency: "< 12 ms Ingestion Latency",
+    throughput: "1,200 records / sec",
+    standard: "HL7 FHIR R4 • LOINC • IEEE 11073-10417",
+    actionText: "Inspect 100-Patient Ward Cohort",
+    actionFn: "switchView('cohort')"
+  },
+  2: {
+    num: 2,
+    title: "Stream Fusion & 29-Feature Pipeline",
+    icon: "⚡",
+    color: "#d49a3d",
+    bgSoft: "#fdf4e7",
+    border: "#d49a3d",
+    tag: "DYNAMIC FEATURE CALIBRATION",
+    summary: "Aligns asynchronous time-series signals with longitudinal clinical records into a standardized 29-dimensional cardiometabolic state vector, parameterized for the Asian Indian phenotype.",
+    inputs: [
+      { name: "Glycemic Dynamics", desc: "First Derivative dG/dt, Glycemic Drift Velocity, Postprandial Area-Under-Curve (AUC₁₂₀), Excursion Volatility" },
+      { name: "Hemodynamic & Phenotype", desc: "Pulse Pressure (SBP - DBP), Autonomic Vagal Tone (rMSSD), Visceral Adiposity Scaling Factor p₃ = 0.042 × HOMA-IR" }
+    ],
+    mathTitle: "Kalman Noise Suppression & Feature Compilation",
+    formula: "vec(x)_t = [G_t, (dG/dt)_t, AUC_t, HR_t, rMSSD_t, SBP_t, DBP_t, p_3, eGFR, FIB-4]^T",
+    details: "Applies Exponentially Weighted Moving Average (EWMA, α = 0.15) with an unscented Kalman filter to suppress high-frequency CGM sensor jitter without introducing phase lag. Computes rolling 5-minute rMSSD variance to quantify vagal withdrawal and sympathetic overdrive in diabetic autonomic neuropathy.",
+    latency: "< 6 ms Feature Compilation",
+    throughput: "29 Real-Time Dimensions",
+    standard: "ICMR-INDIAB Asian Indian Anthropometric Standards",
+    actionText: "Open AI Twin Sandbox",
+    actionFn: "switchView('sandbox')"
+  },
+  3: {
+    num: 3,
+    title: "Biophysical Multi-Organ ODE Twin (RK4 Core)",
+    icon: "🧬",
+    color: "#5c7a68",
+    bgSoft: "#edf4f0",
+    border: "#5c7a68",
+    tag: "100 Hz RK4 NUMERICAL SOLVER",
+    summary: "4th-order Runge-Kutta continuous numerical solver executing mechanistic differential equations for pancreatic β-cell kinetics, aortic compliance, autonomic baroreflex, and renal ultrafiltration.",
+    inputs: [
+      { name: "Pancreatic β-Cell Model", desc: "Bergman Minimal Model: dG/dt = -p₁G - X(G + G_b) + D(t),   dX/dt = -p₂X + p₃I" },
+      { name: "Cardiovascular & Renal Coupling", desc: "Windkessel 2-element arterial compliance + Glomerular filtration pressure + Hepatic gluconeogenesis" }
+    ],
+    mathTitle: "Coupled Multi-Organ Differential System",
+    formula: "dvec(Ψ)/dt = J_coupling · [Φ_gly, Φ_vasc, Φ_card, Φ_ren]^T,   Δt = 0.05 h (3.0 min)",
+    details: "Solves 4 coupled physiological domains simultaneously. The pancreatic submodel simulates postprandial glucose absorption from carbohydrates; the vascular tree couples arterial stiffness to mean arterial pressure; the autonomic module modulates heart rate and vagal tone; and the renal module models glycemic osmotic diuresis when serum glucose breaches the 180 mg/dL tubular threshold.",
+    latency: "< 22 ms (120-Step 6-Hr Trajectory)",
+    throughput: "100 Hz Real-Time Continuous Loop",
+    standard: "Bergman Minimal Model • Guyton Hemodynamic Core",
+    actionText: "Inspect 3D Anatomical Twin",
+    actionFn: "switchView('main')"
+  },
+  4: {
+    num: 4,
+    title: "3-Stage Prognostic Machine Learning Core",
+    icon: "📊",
+    color: "#8c3c3c",
+    bgSoft: "#faeeee",
+    border: "#8c3c3c",
+    tag: "PROGNOSTIC ML & SAFE WINDOW (TTT)",
+    summary: "Hybrid physical-neural pipeline fusing biophysical ODE states with serialized scikit-learn models for acute event detection, CMBCD staging, and Safe Window hazard regression.",
+    inputs: [
+      { name: "Stage 1: Acute Glycemic Excursion", desc: "LightGBM Classifier: 96.74% Recall (0.942 F1) predicting postprandial excursion (>200 mg/dL) within 45 min" },
+      { name: "Stage 2 & 3: CMBCD & Safe Window (TTT)", desc: "Soft-voting CMBCD Stager (F1: 0.921) + Non-linear Time-to-Threshold Hazard Regressor (R² = 0.961, MAE: 6.15 hrs)" }
+    ],
+    mathTitle: "Composite Multi-Organ Hazard Staging",
+    formula: "h_crisis(t) = h_0(t) · exp(β_gly G(t) + β_sbp SBP(t) + β_hrv / rMSSD(t)),   TTT = inf{t: Ψ(t) ≥ 80}",
+    details: "Trained and holdout validated on n=1,853 paired longitudinal Indian diabetic profiles. Features an asynchronous multi-stage cascade: Stage 1 prioritizes sensitivity (96.7% recall) to prevent acute crises; Stage 2 maps continuous strain to clinical CMBCD stages (Stage 1 to 4); and Stage 3 estimates remaining safe buffer hours.",
+    latency: "0.035 ms Inference Latency",
+    throughput: "Holdout R² = 0.961 • Recall: 96.7%",
+    standard: "AACE/ACE CMBCD 2023 Consensus Framework",
+    actionText: "View Holdout Metrics Table",
+    actionFn: "document.querySelector('table').scrollIntoView({ behavior: 'smooth' })"
+  },
+  5: {
+    num: 5,
+    title: "AI Counterfactual Studio & Wearable Feedback Loop",
+    icon: "👨‍⚕️",
+    color: "#c2652a",
+    bgSoft: "#fbeae0",
+    border: "#c2652a",
+    tag: "CONTINUOUS CLOSED-LOOP CLINICAL TWIN",
+    summary: "Interactive 'What-If' clinical simulation engine paired with automated titration co-pilot and continuous closed-loop wearable sensor feedback.",
+    inputs: [
+      { name: "What-If Perturbation Controls", desc: "Instant recalculation across Carbs (20-220g), Medication Adherence (0-100%), Sleep (3-10h), and Steps (1-18k)" },
+      { name: "Continuous Wearable Recalibration", desc: "Clinical titration and patient lifestyle actions modify patient physiology, sensed continuously via 100 Hz wearables back to Stage 1" }
+    ],
+    mathTitle: "Counterfactual Optimization & Closed Loop Policy",
+    formula: "u* = argmin_u { E[||G_pred(u) - 130||^2] + λ_1 · ΔMeds + λ_2 · (100 - rMSSD) },   Loop: Action → Sensor → Ingest",
+    details: "Enables clinicians to perform virtual stress-testing before committing therapeutic changes. Calculates real-time deltas in Systemic Strain (ΔΨ), Safe Clinical Window (ΔTTT), and 2-Hour Peak Glycemia. When a treatment plan is approved, exportable HL7 FHIR bundles and SOAP notes document the decision, while continuous wearable telemetry recalibrates the digital twin in real time.",
+    latency: "< 5 ms Live Recalculation",
+    throughput: "Instant Client-Side Counterfactuals",
+    standard: "ICMR-INDIAB 2023 Titration Guidelines • HL7 FHIR R4",
+    actionText: "Launch What-If Simulator in Cockpit",
+    actionFn: "switchView('main')"
+  }
+};
+
+function selectArchStage(num) {
+  activeArchStage = num;
+  
+  // 1. Update SVG node highlight
+  for (let i = 1; i <= 5; i++) {
+    const nodeEl = document.getElementById(`archNode-${i}`);
+    if (nodeEl) {
+      if (i === num) nodeEl.classList.add('active');
+      else nodeEl.classList.remove('active');
+    }
+  }
+
+  // 2. Update Tab buttons
+  for (let i = 1; i <= 5; i++) {
+    const tabEl = document.getElementById(`archTab-${i}`);
+    if (tabEl) {
+      if (i === num) {
+        tabEl.className = 'arch-tab active px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#c2652a] text-white shadow-sm transition-all cursor-pointer';
+      } else {
+        tabEl.className = 'arch-tab px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-[#f5efe6] text-[#4a4036] hover:bg-[#ffffff] transition-all cursor-pointer';
+      }
+    }
+  }
+
+  // 3. Render Inspector Card
+  renderArchStageInspector();
+  notify(`Selected Stage ${num}: ${ARCH_STAGE_CONFIG[num].title}`);
+}
+
+function renderArchStageInspector() {
+  const panel = document.getElementById('archStageInspector');
+  if (!panel) return;
+  const cfg = ARCH_STAGE_CONFIG[activeArchStage] || ARCH_STAGE_CONFIG[1];
+
+  let inputsHtml = '';
+  cfg.inputs.forEach(inp => {
+    inputsHtml += `
+      <div class="p-3 bg-[#ffffff] rounded-xl border border-[#d8d0c8]/60 flex flex-col justify-between">
+        <span class="text-[11px] font-bold text-[#26211c]">${inp.name}</span>
+        <span class="text-[10px] text-[#7c7267] mt-1 leading-relaxed">${inp.desc}</span>
+      </div>
+    `;
+  });
+
+  panel.innerHTML = `
+    <div class="flex flex-col gap-5">
+      <!-- Top Stage Banner -->
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 pb-3 border-b border-[#d8d0c8]/50">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-[${cfg.bgSoft}] border border-[${cfg.border}]/30 flex items-center justify-center text-xl shrink-0">
+            ${cfg.icon}
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded font-mono text-[10px] font-bold uppercase bg-[${cfg.bgSoft}] text-[${cfg.color}]">Stage ${cfg.num}</span>
+              <span class="text-xs font-mono font-semibold text-[#7c7267] uppercase tracking-wider">${cfg.tag}</span>
+            </div>
+            <h3 class="font-serif text-xl lg:text-2xl font-bold text-[#26211c] mt-0.5">${cfg.title}</h3>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="px-3 py-1 rounded-full bg-[#ffffff] border border-[#d8d0c8] text-xs font-mono font-semibold text-[#5c7a68] shadow-sahara-sm">
+            ⚡ ${cfg.latency}
+          </span>
+        </div>
+      </div>
+
+      <!-- Main 2-Column Deep-Dive Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left: Formulations & Mechanisms (8 cols) -->
+        <div class="lg:col-span-8 space-y-4">
+          <p class="text-xs sm:text-sm text-[#4a4036] leading-relaxed">
+            ${cfg.summary}
+          </p>
+
+          <!-- Input Stream Cards -->
+          <div>
+            <span class="text-[10.5px] font-mono uppercase font-bold text-[#7c7267] tracking-wider block mb-2">Telemetry Contracts &amp; Data Feeds</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              ${inputsHtml}
+            </div>
+          </div>
+
+          <!-- Mathematical Formulation Code Box -->
+          <div class="p-3.5 rounded-xl bg-[#26211c] text-[#f5efe6] font-mono text-xs border border-[#3f352b] shadow-inner">
+            <div class="flex items-center justify-between pb-1.5 border-b border-[#473c33] text-[10px] text-[#a09488]">
+              <span>${cfg.mathTitle}</span>
+              <span class="text-[#c2652a] font-bold">𝑓(x) Model Core</span>
+            </div>
+            <div class="pt-2 text-[12px] text-[#e07d3c] font-semibold overflow-x-auto whitespace-nowrap">
+              ${cfg.formula}
+            </div>
+          </div>
+
+          <!-- Engineering Mechanics -->
+          <div class="p-3.5 rounded-xl bg-[#ffffff] border border-[#d8d0c8]/60 text-xs text-[#4a4036] leading-relaxed">
+            <strong class="text-[#26211c] block mb-1">Algorithmic Execution &amp; Biophysical Role:</strong>
+            ${cfg.details}
+          </div>
+        </div>
+
+        <!-- Right: Verification Metrics & Interactive Action (4 cols) -->
+        <div class="lg:col-span-4 flex flex-col gap-3">
+          
+          <div class="p-4 rounded-xl bg-[#ffffff] border border-[#d8d0c8]/60 shadow-sahara-sm flex flex-col gap-2.5">
+            <span class="text-[10px] font-mono uppercase font-bold text-[#7c7267] tracking-wider">Engineering SLA &amp; Benchmarks</span>
+            
+            <div class="flex items-center justify-between text-xs py-1 border-b border-[#d8d0c8]/40">
+              <span class="text-[#7c7267]">Execution Latency</span>
+              <span class="font-mono font-bold text-[#5c7a68]">${cfg.latency}</span>
+            </div>
+
+            <div class="flex items-center justify-between text-xs py-1 border-b border-[#d8d0c8]/40">
+              <span class="text-[#7c7267]">Throughput / Capacity</span>
+              <span class="font-mono font-bold text-[#26211c]">${cfg.throughput}</span>
+            </div>
+
+            <div class="flex items-center justify-between text-xs py-1">
+              <span class="text-[#7c7267]">Clinical Standards</span>
+              <span class="font-mono font-bold text-[#c2652a] text-right truncate ml-2">${cfg.standard}</span>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-[#ffffff] border border-[#d8d0c8]/60 shadow-sahara-sm flex flex-col gap-3">
+            <span class="text-[10px] font-mono uppercase font-bold text-[#7c7267] tracking-wider">Interactive Solution Flow</span>
+            <p class="text-[11px] text-[#7c7267] leading-relaxed">
+              Explore how this stage dynamically influences the patient's digital twin in real time.
+            </p>
+            <button type="button" onclick="${cfg.actionFn}" class="w-full py-2.5 px-4 rounded-xl bg-[#c2652a] hover:bg-[#ad5620] text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-sahara-sm transition-all cursor-pointer">
+              <span>${cfg.actionText}</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
 function renderOrganInspector() {
   const key = state.activeOrgan;
   const cfg = ORGAN_CONFIG[key];
@@ -8606,6 +8900,7 @@ function switchView(viewName) {
     updateSandboxContext(p, liveTwinMetrics, state.sim);
   } else if (viewName === 'specs') {
     renderOrganInspector();
+    if (typeof renderArchStageInspector === 'function') renderArchStageInspector();
   } else if (viewName === 'main') {
     setTimeout(() => {
       render3DViewport(0.016);
