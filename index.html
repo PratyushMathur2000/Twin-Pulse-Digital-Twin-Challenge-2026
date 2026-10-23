@@ -825,8 +825,25 @@
     
     <!-- Brand / Title -->
     <div class="flex items-center gap-2.5 shrink-0">
-      <div class="w-9 h-9 rounded-xl bg-[#c2652a] text-white flex items-center justify-center shadow-sm shrink-0 font-serif font-bold text-lg">
-        TP
+      <!-- Twin-Pulse Brand Emblem Logo -->
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#c2652a] via-[#b65820] to-[#994416] flex items-center justify-center shadow-sahara-sm shrink-0 border border-[#c2652a]/40 p-1.5 group cursor-pointer hover:shadow-md transition-all" title="Twin-Pulse Cardiometabolic Digital Twin">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+          <!-- Subtle digital twin coordinate aura -->
+          <circle cx="16" cy="16" r="14" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.22" stroke-dasharray="2 2" />
+          
+          <!-- Primary Continuous Pulse Wave (Clinical Stream) -->
+          <path d="M 3 16.5 L 8 16.5 L 11 9 L 15 24 L 18 12 L 21 16.5 L 29 16.5" 
+                stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+                
+          <!-- Secondary Digital Twin Echo (In-Silico Forecast) -->
+          <path d="M 5 18.5 L 9 18.5 L 12 13 L 15 24 L 17 15 L 20 18.5 L 27 18.5" 
+                stroke="#fce8dc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.65" stroke-dasharray="1.5 2" />
+                
+          <!-- Luminous Calibration Twin Nodes -->
+          <circle cx="11" cy="9" r="2.2" fill="#ffd4b8" />
+          <circle cx="18" cy="12" r="1.8" fill="#ffffff" />
+          <circle cx="15" cy="24" r="1.6" fill="#ffd4b8" />
+        </svg>
       </div>
       <div class="flex flex-col">
         <div class="flex items-center gap-1.5">
@@ -2576,6 +2593,77 @@
     </div>
   </div>
 
+
+    <!-- =========================================================================
+       COMPARATIVE OUTCOMES & SUB-SYSTEM DETAIL MODAL
+       ========================================================================= -->
+  <div id="sandboxCardDetailModal" onclick="onSandboxModalBackdropClick(event)" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8] shadow-sahara-xl max-w-2xl w-full flex flex-col max-h-[90vh] overflow-hidden" onclick="event.stopPropagation()">
+      
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-[#d8d0c8]/60 bg-[#faf5ee] flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#fbeae0] text-[#c2652a] flex items-center justify-center text-xl shrink-0" id="sandboxModalIcon">
+            <span class="material-symbols-outlined text-2xl">compare_arrows</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded bg-[#fbeae0] text-[#c2652a]" id="sandboxModalCategory">INTERVENTION METRIC</span>
+              <span class="text-xs text-[#7c7267] font-mono" id="sandboxModalPatientTag">Rajesh Sharma (PT-IND-001)</span>
+            </div>
+            <h3 class="font-serif text-xl sm:text-2xl font-bold text-[#26211c] mt-0.5" id="sandboxModalTitle">Metric Title</h3>
+          </div>
+        </div>
+        <button onclick="closeSandboxCardDetailModal()" class="p-2 rounded-lg text-[#7c7267] hover:text-[#26211c] hover:bg-[#ede4d8] transition-all cursor-pointer" title="Close">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 sm:p-6 overflow-y-auto flex-1 space-y-4 bg-[#ffffff]">
+        
+        <!-- Live vs Simulated Metric Comparison Banner -->
+        <div class="p-4 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/70 flex flex-wrap items-center justify-between gap-3" id="sandboxModalDeltaCard">
+          <!-- Dynamically inserted -->
+        </div>
+
+        <!-- Clinical & Biological Significance -->
+        <div>
+          <h4 class="text-xs font-mono uppercase font-bold text-[#7c7267] tracking-wider mb-1">Clinical &amp; Physiological Role</h4>
+          <p class="text-xs sm:text-sm text-[#4a4036] leading-relaxed" id="sandboxModalDescription">
+            <!-- Dynamically inserted -->
+          </p>
+        </div>
+
+        <!-- Mathematical & Algorithmic Formulation -->
+        <div class="p-3.5 rounded-xl bg-[#26211c] text-[#f5efe6] font-mono text-xs border border-[#3f352b]">
+          <div class="flex items-center justify-between pb-1.5 border-b border-[#473c33] text-[10px] text-[#a09488]">
+            <span id="sandboxModalMathHeader">Governing Differential / ML Formulation</span>
+            <span class="text-[#c2652a] font-bold">𝑓(x) Twin Engine</span>
+          </div>
+          <div class="pt-2 text-[12px] text-[#e07d3c] font-semibold overflow-x-auto whitespace-nowrap" id="sandboxModalFormula">
+            <!-- Formula -->
+          </div>
+        </div>
+
+        <!-- Evidence-Based Guidance (ICMR-INDIAB & ADA) -->
+        <div class="p-3.5 rounded-xl bg-[#f5efe6] border border-[#d8d0c8]/60 text-xs text-[#4a4036] leading-relaxed">
+          <strong class="text-[#26211c] block mb-1" id="sandboxModalGuidanceTitle">Evidence-Based Clinical Protocol (ICMR-INDIAB):</strong>
+          <span id="sandboxModalGuidanceText">Recommendations</span>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 sm:p-5 border-t border-[#d8d0c8]/60 bg-[#faf5ee] flex flex-wrap items-center justify-between gap-3">
+        <span class="text-xs text-[#7c7267] font-mono" id="sandboxModalFooterNote">Calibrated against Holdout Cohort (n=1,853)</span>
+        <div class="flex items-center gap-2" id="sandboxModalActionButtons">
+          <!-- Action buttons -->
+        </div>
+      </div>
+
+    </div>
+  </div>
 
   <!-- =========================================================================
        FHIR R4 EXPORT MODAL
@@ -6652,9 +6740,339 @@ function toggleLayer(layer) {
 
 function selectOrgan(key) {
   state.activeOrgan = key;
-  renderOrganInspector();
-  notify(`Inspecting ${ORGAN_CONFIG[key].title}`);
+  
+  // 1. Re-render sandbox pills so active button styling updates immediately
+  const p = getPatient();
+  const metrics = liveTwinMetrics || computeTwinState(p, state.sim);
+  renderSandboxAndTrajectory(p, metrics);
+  
+  // 2. Update selected organ telemetry banner below 3D viewport
+  const bannerTitle = document.getElementById('activeOrganTitle');
+  const bannerBadge = document.getElementById('organStrainBadge');
+  const cfg = ORGAN_CONFIG[key];
+  if (bannerTitle && cfg) {
+    bannerTitle.textContent = `${cfg.title} (${cfg.anatomicalRegion})`;
+  }
+  if (bannerBadge && metrics && metrics.organStress) {
+    bannerBadge.textContent = `Strain: ${metrics.organStress[key]}%`;
+  }
+  
+  // 3. Highlight the matching 3D callout card
+  ['vascular', 'hepatorenal', 'heart', 'pancreas'].forEach(k => {
+    const card = document.getElementById(`callout-${k}`);
+    if (card) {
+      if (k === key) {
+        card.classList.add('ring-2', 'ring-[#c2652a]', 'bg-[#fbeae0]');
+        card.classList.remove('bg-[#ffffff]/95');
+      } else {
+        card.classList.remove('ring-2', 'ring-[#c2652a]', 'bg-[#fbeae0]');
+        card.classList.add('bg-[#ffffff]/95');
+      }
+    }
+  });
+
+  // 4. Automatically focus trajectory chart to relevant metric
+  if (key === 'pancreas') {
+    setSandboxChartMetric('cgm');
+  } else if (key === 'vascular' || key === 'heart') {
+    setSandboxChartMetric('bp');
+  }
+
+  // 5. If in Validation & Arch tab, update organ inspector
+  if (typeof renderOrganInspector === 'function') {
+    renderOrganInspector();
+  }
+
+  // 6. Open the interactive organ detail modal
+  openOrganDetailModal(key);
 }
+
+function openOrganDetailModal(key) {
+  const cfg = ORGAN_CONFIG[key];
+  if (!cfg) return;
+  const p = getPatient();
+  const metrics = liveTwinMetrics || computeTwinState(p, state.sim);
+  const baseMetrics = computeTwinState(p, {
+    carbs: p.carbs, meds: p.adherence, sleep: p.sleepHours, steps: p.steps, stress: p.stressLoad
+  });
+
+  const stress = metrics.organStress[key];
+  const baseStress = baseMetrics.organStress[key];
+  const delta = (stress - baseStress).toFixed(1);
+
+  const modal = document.getElementById('sandboxCardDetailModal');
+  if (!modal) return;
+
+  document.getElementById('sandboxModalCategory').textContent = "ORGAN SUBSYSTEM TELEMETRY";
+  document.getElementById('sandboxModalPatientTag').textContent = `${p.name} (${p.id})`;
+  document.getElementById('sandboxModalTitle').textContent = `${cfg.title} (${cfg.anatomicalRegion})`;
+  
+  document.getElementById('sandboxModalIcon').innerHTML = `<span class="material-symbols-outlined text-2xl" style="color:${cfg.color}">hub</span>`;
+
+  document.getElementById('sandboxModalDeltaCard').innerHTML = `
+    <div>
+      <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Active Subsystem Strain</span>
+      <div class="font-serif text-2xl font-bold text-[#26211c] mt-0.5">${stress}%</div>
+    </div>
+    <div class="text-right">
+      <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Simulated &Delta; from Baseline</span>
+      <span class="font-mono text-sm font-bold ${Number(delta) <= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(delta) > 0 ? '+' : ''}${delta}% Strain</span>
+    </div>
+    <div class="w-full pt-2 border-t border-[#d8d0c8]/50 flex items-center justify-between text-xs font-mono text-[#7c7267]">
+      <span>Baseline: ${baseStress}%</span>
+      <span class="text-[#c2652a] font-semibold">${Number(delta) <= 0 ? 'Protective Drift' : 'Adverse Stress Spike'}</span>
+    </div>
+  `;
+
+  document.getElementById('sandboxModalDescription').textContent = cfg.clinicalSummary || "Coupled organ feedback governing cardiometabolic homeostasis in Type 2 Diabetes.";
+
+  document.getElementById('sandboxModalMathHeader').textContent = `${cfg.title} — Governing Differential Formulation`;
+  document.getElementById('sandboxModalFormula').textContent = cfg.eq || "dΨ/dt = J_coupling · [Φ_gly, Φ_vasc, Φ_card, Φ_ren]^T";
+
+  document.getElementById('sandboxModalGuidanceTitle').textContent = "ICMR-INDIAB Clinical Action Guidance:";
+  document.getElementById('sandboxModalGuidanceText').textContent = cfg.clinicalImpact || "Individualized lifestyle perturbation and pharmacotherapy titration calibrated on Asian Indian cohorts.";
+
+  document.getElementById('sandboxModalFooterNote').textContent = `Coupled Jacobian Derivative • ${cfg.title}`;
+
+  document.getElementById('sandboxModalActionButtons').innerHTML = `
+    <button type="button" onclick="runAiSandboxOptimizer(); closeSandboxCardDetailModal();" class="px-3.5 py-2 rounded-xl bg-[#c2652a] hover:bg-[#ad5620] text-white text-xs font-semibold shadow-sahara-sm transition-all cursor-pointer">
+      AI Auto-Optimize for this Organ
+    </button>
+    <button type="button" onclick="closeSandboxCardDetailModal()" class="px-3 py-2 rounded-xl bg-[#f5efe6] hover:bg-[#ded6cc] text-[#26211c] text-xs font-semibold transition-all cursor-pointer">
+      Dismiss
+    </button>
+  `;
+
+  modal.classList.remove('hidden');
+  notify(`Inspecting ${cfg.title}`);
+}
+
+function openComparisonModal(type) {
+  const p = getPatient();
+  const simRes = liveTwinMetrics || computeTwinState(p, state.sim);
+  const baseRes = computeTwinState(p, {
+    carbs: p.carbs, meds: p.adherence, sleep: p.sleepHours, steps: p.steps, stress: p.stressLoad
+  });
+
+  const modal = document.getElementById('sandboxCardDetailModal');
+  if (!modal) return;
+
+  const probDelta = (simRes.s1Prob - baseRes.s1Prob).toFixed(1);
+  const rulDelta = (simRes.rulHours - baseRes.rulHours).toFixed(1);
+
+  document.getElementById('sandboxModalPatientTag').textContent = `${p.name} (${p.id})`;
+
+  if (type === 'stage1') {
+    document.getElementById('sandboxModalCategory').textContent = "STAGE 1 PROGNOSTIC ML";
+    document.getElementById('sandboxModalTitle').textContent = "Stage 1 Acute Glycemic Excursion Risk";
+    document.getElementById('sandboxModalIcon').innerHTML = `<span class="material-symbols-outlined text-2xl text-[#8c3c3c]">warning</span>`;
+
+    document.getElementById('sandboxModalDeltaCard').innerHTML = `
+      <div>
+        <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Excursion Probability</span>
+        <div class="font-mono text-2xl font-bold text-[#26211c] mt-0.5">${baseRes.s1Prob}% &rarr; ${simRes.s1Prob}%</div>
+      </div>
+      <div class="text-right">
+        <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Simulated Risk Delta</span>
+        <span class="font-mono text-sm font-bold ${Number(probDelta) <= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(probDelta) > 0 ? '+' : ''}${probDelta}%</span>
+      </div>
+      <div class="w-full pt-2 border-t border-[#d8d0c8]/50 flex items-center justify-between text-xs font-mono text-[#7c7267]">
+        <span>Model: LightGBM Ensemble (.pkl)</span>
+        <span class="text-[#8c3c3c] font-semibold">96.74% Sensitivity (Recall)</span>
+      </div>
+    `;
+
+    document.getElementById('sandboxModalDescription').textContent = 
+      "Predicts the probability of an acute postprandial glycemic excursion exceeding 200 mg/dL within 45 minutes of nutritional intake. Asian Indian individuals exhibiting the 'Thin-Fat' phenotype possess blunted early-phase insulin release, causing rapid postprandial spikes.";
+
+    document.getElementById('sandboxModalMathHeader').textContent = "LightGBM Gradient Boosted Excursion Classifier";
+    document.getElementById('sandboxModalFormula').textContent = 
+      "P(G_peak > 200) = σ( ∑ w_i · f_i(Carbs, S_I, CGM_0, dG/dt, Adherence, Sleep) )   [AUROC: 0.942]";
+
+    document.getElementById('sandboxModalGuidanceTitle').textContent = "ICMR-INDIAB Clinical Guidance:";
+    document.getElementById('sandboxModalGuidanceText').textContent = 
+      "Restrict meal carbohydrate density to ≤45g per sitting. For persistent excursion risks >70%, consider pre-meal GLP-1 RA or SGLT2i administration to blunt postprandial hepatic glucose output.";
+
+    document.getElementById('sandboxModalFooterNote').textContent = "Prognostic Classifier • Holdout Validated (n=1,853)";
+
+    document.getElementById('sandboxModalActionButtons').innerHTML = `
+      <button type="button" onclick="applySimPreset('spike'); closeSandboxCardDetailModal();" class="px-3 py-2 rounded-xl bg-[#faeeee] text-[#8c3c3c] hover:bg-[#8c3c3c] hover:text-white text-xs font-semibold transition-all cursor-pointer">
+        Simulate Spike Stress
+      </button>
+      <button type="button" onclick="runAiSandboxOptimizer(); closeSandboxCardDetailModal();" class="px-3.5 py-2 rounded-xl bg-[#c2652a] hover:bg-[#ad5620] text-white text-xs font-semibold shadow-sahara-sm transition-all cursor-pointer">
+        Auto-Mitigate Risk
+      </button>
+      <button type="button" onclick="closeSandboxCardDetailModal()" class="px-3 py-2 rounded-xl bg-[#f5efe6] hover:bg-[#ded6cc] text-[#26211c] text-xs font-semibold transition-all cursor-pointer">
+        Close
+      </button>
+    `;
+    notify("Stage 1 Acute Glycemic Excursion details opened");
+
+  } else if (type === 'stage2') {
+    document.getElementById('sandboxModalCategory').textContent = "CMBCD STAGING CONSENSUS";
+    document.getElementById('sandboxModalTitle').textContent = "Stage 2 CMBCD Multi-Organ State";
+    document.getElementById('sandboxModalIcon').innerHTML = `<span class="material-symbols-outlined text-2xl text-[#d49a3d]">layers</span>`;
+
+    document.getElementById('sandboxModalDeltaCard').innerHTML = `
+      <div>
+        <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Current Staging</span>
+        <div class="font-serif text-xl font-bold text-[#26211c] mt-0.5">${simRes.stageLabel}</div>
+      </div>
+      <div class="text-right">
+        <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Consensus Standard</span>
+        <span class="font-mono text-xs font-bold text-[#c2652a]">AACE/ACE CMBCD 2023</span>
+      </div>
+      <div class="w-full pt-2 border-t border-[#d8d0c8]/50 grid grid-cols-4 gap-1 text-center text-xs font-mono">
+        <div class="p-1.5 rounded bg-[#ffffff] border border-[#d8d0c8]/60">S1: ${Math.round(simRes.stageProbs[0])}%</div>
+        <div class="p-1.5 rounded bg-[#fbeae0] border border-[#c2652a]/50 text-[#c2652a] font-bold">S2: ${Math.round(simRes.stageProbs[1])}%</div>
+        <div class="p-1.5 rounded bg-[#ffffff] border border-[#d8d0c8]/60">S3: ${Math.round(simRes.stageProbs[2])}%</div>
+        <div class="p-1.5 rounded bg-[#ffffff] border border-[#d8d0c8]/60">S4: ${Math.round(simRes.stageProbs[3])}%</div>
+      </div>
+    `;
+
+    document.getElementById('sandboxModalDescription').textContent = 
+      "The Cardiometabolic-Based Chronic Disease (CMBCD) model stages disease from Adiposity (Stage 1) to Subclinical Organ Strain (Stage 2), Overt Clinical Disease (Stage 3), and End-Stage Complications (Stage 4). Rajesh Sharma is currently in Stage 2 (Subclinical Drift), driven by coupled β-cell exhaustion (76.6%) and vascular arterial stiffness.";
+
+    document.getElementById('sandboxModalMathHeader').textContent = "Soft-Voting Multi-Organ Staging Ensemble";
+    document.getElementById('sandboxModalFormula').textContent = 
+      "CMBCD_k = argmax_k { P(S_k | J_coupling · [Φ_gly, Φ_vasc, Φ_card, Φ_ren]^T) }   [Macro F1: 0.921]";
+
+    document.getElementById('sandboxModalGuidanceTitle').textContent = "Clinical Staging Protocol:";
+    document.getElementById('sandboxModalGuidanceText').textContent = 
+      "Aggressive lifestyle management and early dual-pathway pharmacotherapy (Metformin + SGLT2i) aim to halt subclinical progression, preventing irreversible progression to Stage 3 overt vascular complications.";
+
+    document.getElementById('sandboxModalFooterNote').textContent = "AACE/ACE CMBCD Multi-Class Soft Ensemble";
+
+    document.getElementById('sandboxModalActionButtons').innerHTML = `
+      <button type="button" onclick="runAiSandboxOptimizer(); closeSandboxCardDetailModal();" class="px-3.5 py-2 rounded-xl bg-[#c2652a] hover:bg-[#ad5620] text-white text-xs font-semibold shadow-sahara-sm transition-all cursor-pointer">
+        Optimize Stage Profile
+      </button>
+      <button type="button" onclick="closeSandboxCardDetailModal()" class="px-3 py-2 rounded-xl bg-[#f5efe6] hover:bg-[#ded6cc] text-[#26211c] text-xs font-semibold transition-all cursor-pointer">
+        Close
+      </button>
+    `;
+    notify("Stage 2 CMBCD Staging details opened");
+
+  } else if (type === 'stage3') {
+    document.getElementById('sandboxModalCategory').textContent = "SAFE CLINICAL BUFFER";
+    document.getElementById('sandboxModalTitle').textContent = "Stage 3 Safe Clinical Window (TTT)";
+    document.getElementById('sandboxModalIcon').innerHTML = `<span class="material-symbols-outlined text-2xl text-[#5c7a68]">timer</span>`;
+
+    document.getElementById('sandboxModalDeltaCard').innerHTML = `
+      <div>
+        <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Time-to-Threshold (TTT)</span>
+        <div class="font-mono text-2xl font-bold text-[#26211c] mt-0.5">${baseRes.rulHours}h &rarr; ${simRes.rulHours}h</div>
+      </div>
+      <div class="text-right">
+        <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Net Safe Window Delta</span>
+        <span class="font-mono text-sm font-bold ${Number(rulDelta) >= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(rulDelta) >= 0 ? '+' : ''}${rulDelta} hrs</span>
+      </div>
+      <div class="w-full pt-2 border-t border-[#d8d0c8]/50 flex items-center justify-between text-xs font-mono text-[#7c7267]">
+        <span>Model: Gradient Boosted Hazard Regressor</span>
+        <span class="text-[#5c7a68] font-semibold">R² = 0.961 (MAE: 6.15 hrs)</span>
+      </div>
+    `;
+
+    document.getElementById('sandboxModalDescription').textContent = 
+      "Calculates the continuous clinical buffer margin (in hours) remaining before systemic strain breaches an acute homeostatic failure threshold (CGM >200 mg/dL or SBP ≥160 mmHg). Replaces industrial 'RUL' terminology with clinically actionable Time-to-Threshold buffer.";
+
+    document.getElementById('sandboxModalMathHeader').textContent = "Non-Linear Survival & Threshold Hazard Regression";
+    document.getElementById('sandboxModalFormula').textContent = 
+      "TTT = inf{ t > 0 : G(t) > 200 mg/dL ∨ SBP(t) ≥ 160 mmHg }   |   h(t) = h_0(t) · exp(β^T X_t)";
+
+    document.getElementById('sandboxModalGuidanceTitle').textContent = "Clinical Threshold Protocol:";
+    document.getElementById('sandboxModalGuidanceText').textContent = 
+      "A clinical buffer >36 hours represents a stable, safe therapeutic window. Buffers below 24 hours trigger early physician alert notifications for regimen recalibration.";
+
+    document.getElementById('sandboxModalFooterNote').textContent = "Empirical Hazard Model • R² = 0.961";
+
+    document.getElementById('sandboxModalActionButtons').innerHTML = `
+      <button type="button" onclick="applySimPreset('remission'); closeSandboxCardDetailModal();" class="px-3 py-2 rounded-xl bg-[#edf4f0] text-[#5c7a68] hover:bg-[#5c7a68] hover:text-white text-xs font-semibold transition-all cursor-pointer">
+        Simulate Remission Buffer
+      </button>
+      <button type="button" onclick="closeSandboxCardDetailModal()" class="px-3 py-2 rounded-xl bg-[#f5efe6] hover:bg-[#ded6cc] text-[#26211c] text-xs font-semibold transition-all cursor-pointer">
+        Close
+      </button>
+    `;
+    notify("Stage 3 Safe Clinical Window details opened");
+
+  } else if (type === 'biometrics') {
+    document.getElementById('sandboxModalCategory').textContent = "IN-VIVO TELEMETRY";
+    document.getElementById('sandboxModalTitle').textContent = "Simulated Physiological Biometrics";
+    document.getElementById('sandboxModalIcon').innerHTML = `<span class="material-symbols-outlined text-2xl text-[#c2652a]">ecg_heart</span>`;
+
+    document.getElementById('sandboxModalDeltaCard').innerHTML = `
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
+        <div class="p-2.5 rounded-lg bg-[#ffffff] border border-[#d8d0c8]/60">
+          <span class="text-[10px] uppercase font-mono text-[#7c7267] block">CGM Glucose</span>
+          <span class="font-mono text-base font-bold text-[#c2652a]">${simRes.cgm} mg/dL</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-[#ffffff] border border-[#d8d0c8]/60">
+          <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Arterial BP</span>
+          <span class="font-mono text-base font-bold text-[#26211c]">${simRes.sbp}/${simRes.dbp} mmHg</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-[#ffffff] border border-[#d8d0c8]/60">
+          <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Vagal HRV</span>
+          <span class="font-mono text-base font-bold text-[#5c7a68]">${simRes.hrv} ms</span>
+        </div>
+        <div class="p-2.5 rounded-lg bg-[#ffffff] border border-[#d8d0c8]/60">
+          <span class="text-[10px] uppercase font-mono text-[#7c7267] block">Heart Rate</span>
+          <span class="font-mono text-base font-bold text-[#26211c]">${simRes.hr} bpm</span>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('sandboxModalDescription').textContent = 
+      "Synthesizes coupled multi-modal biometrics incorporating interstitial continuous glucose monitoring (100 Hz), cuffless pulse-wave blood pressure, and autonomic root mean square of successive differences (rMSSD) heart rate variability.";
+
+    document.getElementById('sandboxModalMathHeader').textContent = "Biophysical Telemetry Transfer Functions";
+    document.getElementById('sandboxModalFormula').textContent = 
+      "V_CGM(t) = G_physio(t - τ_lag) + noise   |   BP(t) = SVR · CO(t) + P_venous";
+
+    document.getElementById('sandboxModalGuidanceTitle').textContent = "Interactive Trajectory Canvas:";
+    document.getElementById('sandboxModalGuidanceText').textContent = 
+      "Use the buttons below to switch the 6-Hour Trajectory Canvas between the Glycemic excursion curve and the Hemodynamic arterial blood pressure curve.";
+
+    document.getElementById('sandboxModalFooterNote').textContent = "100 Hz Biophysical Synthesized Telemetry";
+
+    document.getElementById('sandboxModalActionButtons').innerHTML = `
+      <button type="button" onclick="setSandboxChartMetric('cgm'); closeSandboxCardDetailModal();" class="px-3 py-2 rounded-xl bg-[#c2652a] text-white text-xs font-semibold hover:bg-[#ad5620] transition-all cursor-pointer">
+        View CGM Trajectory
+      </button>
+      <button type="button" onclick="setSandboxChartMetric('bp'); closeSandboxCardDetailModal();" class="px-3 py-2 rounded-xl bg-[#f5efe6] text-[#4a4036] hover:bg-[#ded6cc] text-xs font-semibold transition-all cursor-pointer">
+        View BP Trajectory
+      </button>
+      <button type="button" onclick="closeSandboxCardDetailModal()" class="px-3 py-2 rounded-xl bg-[#f5efe6] hover:bg-[#ded6cc] text-[#26211c] text-xs font-semibold transition-all cursor-pointer">
+        Close
+      </button>
+    `;
+    notify("Simulated Biometrics details opened");
+  }
+
+  modal.classList.remove('hidden');
+}
+
+function closeSandboxCardDetailModal() {
+  const modal = document.getElementById('sandboxCardDetailModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+function onSandboxModalBackdropClick(e) {
+  if (e.target && e.target.id === 'sandboxCardDetailModal') {
+    closeSandboxCardDetailModal();
+  }
+}
+
+// Global Escape Key Listener for Modals
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeSandboxCardDetailModal();
+    if (typeof closeFhirModal === 'function') closeFhirModal();
+    if (typeof closeAiSettingsModal === 'function') closeAiSettingsModal();
+    if (typeof closeSettingsDropdown === 'function') closeSettingsDropdown();
+  }
+});
+
 
 // ============================================================================
 // TELEMETRY CANVASES: REAL-TIME ECG + AUTO-SCALING 2-HR CGM FORECAST CHART
@@ -7603,14 +8021,14 @@ function renderSandboxAndTrajectory(p, simRes) {
       const delta = (stress - baseStress).toFixed(1);
       const isSel = state.activeOrgan === key;
       return `
-        <button type="button" onclick="selectOrgan('${key}')" class="p-2.5 rounded-xl border text-left transition-all ${isSel ? 'bg-[#fbeae0] border-[#c2652a]' : 'bg-[#f5efe6] border-[#d8d0c8]/60 hover:bg-[#faf5ee]'}">
+        <button type="button" onclick="selectOrgan('${key}')" class="p-2.5 rounded-xl border text-left transition-all cursor-pointer group ${isSel ? 'bg-[#fbeae0] border-[#c2652a] ring-2 ring-[#c2652a]/50 shadow-sm' : 'bg-[#f5efe6] border-[#d8d0c8]/60 hover:bg-[#faf5ee] hover:border-[#c2652a]/40'}" title="Click to inspect ${cfg.title} ODE & Telemetry">
           <div class="flex items-center justify-between gap-1">
-            <span class="text-[11px] font-semibold text-[#26211c] truncate">${cfg.shortLabel}</span>
-            <span class="w-2 h-2 rounded-full shrink-0" style="background:${cfg.color}"></span>
+            <span class="text-[11px] font-semibold text-[#26211c] truncate group-hover:text-[#c2652a] transition-colors">${cfg.shortLabel}</span>
+            <span class="w-2.5 h-2.5 rounded-full shrink-0 ${isSel ? 'animate-pulse' : ''}" style="background:${cfg.color}"></span>
           </div>
           <div class="flex items-baseline justify-between mt-1">
             <span class="font-mono text-sm font-bold text-[#26211c]">${stress}%</span>
-            <span class="font-mono text-[10px] ${Number(delta) <= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(delta) > 0 ? '+' : ''}${delta}%</span>
+            <span class="font-mono text-[10px] font-semibold ${Number(delta) <= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(delta) > 0 ? '+' : ''}${delta}%</span>
           </div>
         </button>
       `;
@@ -7622,25 +8040,60 @@ function renderSandboxAndTrajectory(p, simRes) {
   const rulDelta = (simRes.rulHours - baseRes.rulHours).toFixed(1);
   if (compEl) {
     compEl.innerHTML = `
-      <div class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60">
-        <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 1 Event Risk</span>
-        <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${baseRes.s1Prob}% &rarr; ${simRes.s1Prob}%</div>
-        <span class="font-mono text-[11px] font-semibold ${Number(probDelta) <= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(probDelta) > 0 ? '+' : ''}${probDelta}% (96.7% Recall)</span>
+      <div onclick="openComparisonModal('stage1')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect Stage 1 Acute Risk details">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 1 Event Risk</span>
+            <span class="material-symbols-outlined text-[14px] text-[#7c7267] group-hover:text-[#c2652a] transition-colors">info</span>
+          </div>
+          <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${baseRes.s1Prob}% &rarr; ${simRes.s1Prob}%</div>
+        </div>
+        <div class="mt-1 flex items-center justify-between">
+          <span class="font-mono text-[11px] font-semibold ${Number(probDelta) <= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(probDelta) > 0 ? '+' : ''}${probDelta}%</span>
+          <span class="text-[9.5px] text-[#7c7267] font-mono">96.7% Recall</span>
+        </div>
       </div>
-      <div class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60">
-        <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 2 CMBCD State</span>
-        <div class="font-serif text-sm font-semibold text-[#26211c] mt-1 truncate">${simRes.stageLabel}</div>
-        <span class="font-mono text-[10px] text-[#7c7267]">S1:${Math.round(simRes.stageProbs[0])}% S2:${Math.round(simRes.stageProbs[1])}% S3:${Math.round(simRes.stageProbs[2])}% S4:${Math.round(simRes.stageProbs[3])}%</span>
+
+      <div onclick="openComparisonModal('stage2')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect CMBCD Staging details">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 2 CMBCD State</span>
+            <span class="material-symbols-outlined text-[14px] text-[#7c7267] group-hover:text-[#c2652a] transition-colors">info</span>
+          </div>
+          <div class="font-serif text-sm font-semibold text-[#26211c] mt-1 truncate">${simRes.stageLabel}</div>
+        </div>
+        <div class="mt-1 flex items-center justify-between">
+          <span class="font-mono text-[10px] text-[#7c7267]">S1:${Math.round(simRes.stageProbs[0])}% S2:${Math.round(simRes.stageProbs[1])}%</span>
+          <span class="font-mono text-[10px] text-[#7c7267]">S3:${Math.round(simRes.stageProbs[2])}% S4:${Math.round(simRes.stageProbs[3])}%</span>
+        </div>
       </div>
-      <div class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60">
-        <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 3 Safe Window</span>
-        <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${baseRes.rulHours}h &rarr; ${simRes.rulHours}h</div>
-        <span class="font-mono text-[11px] font-semibold ${Number(rulDelta) >= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(rulDelta) >= 0 ? '+' : ''}${rulDelta} hrs (TTT)</span>
+
+      <div onclick="openComparisonModal('stage3')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect Safe Window (TTT) details">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 3 Safe Window</span>
+            <span class="material-symbols-outlined text-[14px] text-[#7c7267] group-hover:text-[#c2652a] transition-colors">info</span>
+          </div>
+          <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${baseRes.rulHours}h &rarr; ${simRes.rulHours}h</div>
+        </div>
+        <div class="mt-1 flex items-center justify-between">
+          <span class="font-mono text-[11px] font-semibold ${Number(rulDelta) >= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(rulDelta) >= 0 ? '+' : ''}${rulDelta} hrs</span>
+          <span class="text-[9.5px] text-[#7c7267] font-mono">TTT Hazard</span>
+        </div>
       </div>
-      <div class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60">
-        <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Simulated Biometrics</span>
-        <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${simRes.cgm} mg/dL • ${simRes.sbp}/${simRes.dbp}</div>
-        <span class="font-mono text-[11px] text-[#7c7267]">HRV: ${simRes.hrv} ms • HR: ${simRes.hr} bpm</span>
+
+      <div onclick="openComparisonModal('biometrics')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect Simulated Biometrics details">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Simulated Biometrics</span>
+            <span class="material-symbols-outlined text-[14px] text-[#7c7267] group-hover:text-[#c2652a] transition-colors">info</span>
+          </div>
+          <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${simRes.cgm} mg/dL • ${simRes.sbp}/${simRes.dbp}</div>
+        </div>
+        <div class="mt-1 flex items-center justify-between">
+          <span class="font-mono text-[11px] text-[#7c7267]">HRV: ${simRes.hrv} ms</span>
+          <span class="font-mono text-[10px] text-[#c2652a] font-semibold group-hover:underline">View Details &rarr;</span>
+        </div>
       </div>
     `;
   }
