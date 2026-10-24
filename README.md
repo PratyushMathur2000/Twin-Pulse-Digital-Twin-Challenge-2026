@@ -4,10 +4,12 @@
 *Reimagining and Reforming Healthcare in India Summit 2026, Bengaluru*
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
+[![Presentation Deck](https://img.shields.io/badge/Presentation-PPTX%20Deck-orange?style=for-the-badge&logo=microsoftpowerpoint)](Twin-Pulse-Final-ppt.pptx)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![FastAPI](https://img.shields.io/badge/API-FastAPI%20REST-009688.svg?style=for-the-badge&logo=fastapi)](project_files/app_server.py)
 
 > 🌐 **Live Production Deployment:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)  
+> 📊 **Official Presentation Deck:** [Download Twin-Pulse-Final-ppt.pptx](Twin-Pulse-Final-ppt.pptx)  
 > *Zero-setup, fully responsive clinician cockpit featuring real-time 3D anatomical visualization, 6-hour counterfactual What-If simulator, and 100-patient Indian cohort triage.*
 
 ## 1. Team Details
@@ -164,6 +166,7 @@ Twin-Pulse-Digital-Twin-Challenge-2026/
 │   ├── requirements.txt                                    # Python environment dependencies
 │   └── verify_setup.py                                     # Automated environment verification script
 ├── .gitignore                                              # Version control ignore definitions
+├── Twin-Pulse-Final-ppt.pptx                               # Official Challenge Presentation Deck (PowerPoint)
 ├── index.html                                              # KEY FINAL DELIVERABLE: Live Twin Cockpit (Vercel)
 ├── LICENSE                                                 # MIT Open-Source License
 ├── README.md                                               # Clinical Documentation & Submission Dossier
