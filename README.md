@@ -127,8 +127,15 @@ In Indian clinical cohorts (n = 1,853 and n = 319), continuous sensor + EHR digi
 | **Edge / Local AI** | **LM Studio (`:1234`), Ollama (`:11434`), Gemini API** | Privacy-first local LLM inference with zero hospital data exfiltration under DPDP Act 2023. |
 
 ### 4.2 Architecture Diagram (PDF & PPT Format)
-* 📄 **Download Standalone Architecture Diagram (PDF):** [`Twin-Pulse-Architecture-Diagram.pdf`](Twin-Pulse-Architecture-Diagram.pdf)
+* 📄 **Download Architecture Diagram (PDF):** [`Twin-Pulse-Architecture-Diagram.pdf`](Twin-Pulse-Architecture-Diagram.pdf)
+* 🖼️ **High-Resolution Flowchart Screenshot (PNG):** [`Twin-Pulse-Architecture-Diagram.png`](Twin-Pulse-Architecture-Diagram.png)
 * 📊 **View in Presentation Deck (PPTX):** Slide 5 of [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx)
+
+<p align="center">
+  <a href="Twin-Pulse-Architecture-Diagram.png">
+    <img src="Twin-Pulse-Architecture-Diagram.png" alt="Closed-Loop Healthcare Digital Twin Solution Architecture" width="100%" style="border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" />
+  </a>
+</p>
 
 ```text
 +---------------------------------------------------------------------------------------------------+
@@ -267,7 +274,8 @@ Twin-Pulse-Digital-Twin-Challenge-2026/
 ├── .gitignore                                              # Version control ignore definitions
 ├── Proximity_NMIMS.pptx                                    # Official Challenge Presentation Deck (PowerPoint)
 ├── Proximity_NMIMS.pdf                                     # Official Challenge Presentation Deck (Adobe PDF)
-├── Twin-Pulse-Architecture-Diagram.pdf                     # System Architecture Diagram (Standalone Vector PDF)
+├── Twin-Pulse-Architecture-Diagram.pdf                     # System Architecture Diagram (High-Resolution PDF)
+├── Twin-Pulse-Architecture-Diagram.png                     # System Architecture Diagram (Simulation Screenshot)
 ├── index.html                                              # KEY FINAL DELIVERABLE: Live Twin Cockpit (Vercel)
 ├── LICENSE                                                 # MIT Open-Source License
 ├── README.md                                               # Clinical Documentation & Submission Dossier
