@@ -12,7 +12,7 @@
 
 ## 1. Team Details
 
-* **Team Name:** Twin-Pulse
+* **Team Name:** Proximity
 * **Institution:** SVKM's NMIMS, Mumbai (Second Year)
 * **Team Members:**
   * **Pratyush Mathur (Team Leader)** — [`mr.mathurpratyush@gmail.com`](mailto:mr.mathurpratyush@gmail.com) • [GitHub (@PratyushMathur2000)](https://github.com/PratyushMathur2000)
