@@ -14,9 +14,31 @@
 
 * **Team Name:** Twin-Pulse
 * **Institution:** SVKM's NMIMS, Mumbai (Second Year)
-* **Team Members (2 Members):**
-  * **Pratyush Mathur (Team Leader)** — Second Year, SVKM's NMIMS, Mumbai
-  * **Aryan Jain (Team Member)** — Second Year, SVKM's NMIMS, Mumbai
+
+<table align="center" style="margin: 0 auto; border: none; background: transparent;">
+  <tr>
+    <td align="center" width="260" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
+      <a href="https://github.com/PratyushMathur2000">
+        <img src="https://github.com/PratyushMathur2000.png" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Pratyush Mathur" />
+      </a>
+      <br /><br />
+      <b style="font-size: 16px;">Pratyush Mathur</b><br />
+      <span style="color: #7c7267; font-size: 13px;">Team Leader</span><br />
+      <span style="color: #7c7267; font-size: 12px;">Second Year, SVKM's NMIMS, Mumbai</span><br /><br />
+      <a href="https://github.com/PratyushMathur2000">
+        <img src="https://img.shields.io/badge/GitHub-PratyushMathur2000-181717?style=flat&logo=github" alt="GitHub Profile" />
+      </a>
+    </td>
+    <td align="center" width="260" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
+      <img src="https://ui-avatars.com/api/?name=Aryan+Jain&background=c2652a&color=fff&size=256&bold=true" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Aryan Jain" />
+      <br /><br />
+      <b style="font-size: 16px;">Aryan Jain</b><br />
+      <span style="color: #7c7267; font-size: 13px;">Team Member</span><br />
+      <span style="color: #7c7267; font-size: 12px;">Second Year, SVKM's NMIMS, Mumbai</span><br /><br />
+      <img src="https://img.shields.io/badge/NMIMS-Mumbai-b65820?style=flat" alt="NMIMS Mumbai" />
+    </td>
+  </tr>
+</table>
 
 ## 2. Clinical Problem & Indian Healthcare Context
 
