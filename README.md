@@ -4,15 +4,15 @@
 *Reimagining and Reforming Healthcare in India Summit 2026, Bengaluru*
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
-[![Presentation PPTX](https://img.shields.io/badge/Presentation-PPTX%20Deck-orange?style=for-the-badge&logo=microsoftpowerpoint)](Twin-Pulse-Final-ppt.pptx)
-[![Presentation PDF](https://img.shields.io/badge/Presentation-PDF%20Deck-red?style=for-the-badge&logo=adobeacrobatreader)](Twin-Pulse-Final-ppt.pdf)
+[![Presentation PPTX](https://img.shields.io/badge/Presentation-PPTX%20Deck-orange?style=for-the-badge&logo=microsoftpowerpoint)](Proximity_NMIMS.pptx)
+[![Presentation PDF](https://img.shields.io/badge/Presentation-PDF%20Deck-red?style=for-the-badge&logo=adobeacrobatreader)](Proximity_NMIMS.pdf)
 [![Architecture PDF](https://img.shields.io/badge/Architecture-Diagram%20PDF-blue?style=for-the-badge&logo=adobeacrobatreader)](Twin-Pulse-Architecture-Diagram.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 [![FastAPI](https://img.shields.io/badge/API-FastAPI%20REST-009688.svg?style=for-the-badge&logo=fastapi)](project_files/app_server.py)
 
 > 🌐 **Live Interactive Deployment:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)  
-> 📊 **Official Presentation Deck:** [Download PowerPoint (.pptx)](Twin-Pulse-Final-ppt.pptx) • [Download PDF (.pdf)](Twin-Pulse-Final-ppt.pdf)  
-> 🏛️ **System Architecture Diagram:** [Download Architecture PDF](Twin-Pulse-Architecture-Diagram.pdf) • [View in Presentation (Slide 5)](Twin-Pulse-Final-ppt.pptx)  
+> 📊 **Official Presentation Deck:** [Download PowerPoint (.pptx)](Proximity_NMIMS.pptx) • [Download PDF (.pdf)](Proximity_NMIMS.pdf)  
+> 🏛️ **System Architecture Diagram:** [Download Architecture PDF](Twin-Pulse-Architecture-Diagram.pdf) • [View in Presentation (Slide 5)](Proximity_NMIMS.pptx)  
 > 🎥 **20-Minute Video Demonstration:** [Watch 20-Minute Prototype Walkthrough (Unlisted Video)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)  
 > *Zero-setup, fully responsive clinician cockpit featuring real-time 3D anatomical visualization, 6-hour counterfactual What-If simulator, and 100-patient Indian cohort triage.*
 
@@ -28,8 +28,8 @@
 | **4** | **Technical Stack, AI/ML Models & Frameworks** | 100 Hz RK4 ODE Biophysical Engine, 3-Stage Scikit-Learn Ensemble, Three.js WebGL, FastAPI REST | [Section 4: Technical Stack, AI/ML Models & Framework Details](#4-technical-stack-aiml-models--framework-details) |
 | **5** | **Minimum 20-Minute Video Demonstration** | Recorded in-silico simulation walkthrough, prototype demo & presentation recording | [Section 6: Prototype Demonstration & 20-Minute Video Walkthrough](#6-prototype-demonstration--20-minute-video-walkthrough) |
 | **6** | **Open-Source License Details** | MIT Open-Source License with complete permissive rights | [Section 10: Open-Source License Details](#10-open-source-license-details) • [`LICENSE`](LICENSE) |
-| **7** | **Architecture Diagram (PDF / PPT)** | Standalone Vector PDF & Slide 5 of Presentation Deck | [`Twin-Pulse-Architecture-Diagram.pdf`](Twin-Pulse-Architecture-Diagram.pdf) • [`Twin-Pulse-Final-ppt.pptx`](Twin-Pulse-Final-ppt.pptx) |
-| **8** | **Presentation Deck (PDF / PPT)** | 7-Slide Comprehensive Presentation with Project Details & Outcomes | [`Twin-Pulse-Final-ppt.pptx`](Twin-Pulse-Final-ppt.pptx) • [`Twin-Pulse-Final-ppt.pdf`](Twin-Pulse-Final-ppt.pdf) |
+| **7** | **Architecture Diagram (PDF / PPT)** | Standalone Vector PDF & Slide 5 of Presentation Deck | [`Twin-Pulse-Architecture-Diagram.pdf`](Twin-Pulse-Architecture-Diagram.pdf) • [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx) |
+| **8** | **Presentation Deck (PDF / PPT)** | 7-Slide Comprehensive Presentation with Project Details & Outcomes | [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx) • [`Proximity_NMIMS.pdf`](Proximity_NMIMS.pdf) |
 
 ---
 
@@ -128,7 +128,7 @@ In Indian clinical cohorts (n = 1,853 and n = 319), continuous sensor + EHR digi
 
 ### 4.2 Architecture Diagram (PDF & PPT Format)
 * 📄 **Download Standalone Architecture Diagram (PDF):** [`Twin-Pulse-Architecture-Diagram.pdf`](Twin-Pulse-Architecture-Diagram.pdf)
-* 📊 **View in Presentation Deck (PPTX):** Slide 5 of [`Twin-Pulse-Final-ppt.pptx`](Twin-Pulse-Final-ppt.pptx)
+* 📊 **View in Presentation Deck (PPTX):** Slide 5 of [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx)
 
 ```text
 +---------------------------------------------------------------------------------------------------+
@@ -201,7 +201,7 @@ Evaluated on a strict patient-grouped 80/20 holdout split (80 training patients 
 A comprehensive **20-minute video demonstration** has been prepared to showcase the clinical digital twin in action:
 
 * 🎥 **Video Demonstration Link:** [Watch the 20-Minute Unlisted Video Walkthrough](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE) *(Replace placeholder with your uploaded unlisted YouTube / Loom link)*
-* 📊 **Presentation Recording Slides:** [`Twin-Pulse-Final-ppt.pptx`](Twin-Pulse-Final-ppt.pptx) • [`Twin-Pulse-Final-ppt.pdf`](Twin-Pulse-Final-ppt.pdf)
+* 📊 **Presentation Recording Slides:** [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx) • [`Proximity_NMIMS.pdf`](Proximity_NMIMS.pdf)
 * 🌐 **Live Interactive Platform:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
 
 ### 20-Minute In-Silico Simulation Encounter Breakdown
@@ -222,8 +222,8 @@ Phase 7 [18:00 - 20:00]: Biophysical Solver Verification, Clinical Remission Par
 
 The complete official project pitch deck summarizing the clinical problem, two-stream architecture, synthetic test results, and stakeholder outcomes is available in both Microsoft PowerPoint and Adobe Acrobat PDF formats:
 
-* 📊 **PowerPoint Presentation (.pptx):** [`Twin-Pulse-Final-ppt.pptx`](Twin-Pulse-Final-ppt.pptx) (17 MB, 7 widescreen slides)
-* 📄 **Adobe Acrobat PDF Presentation (.pdf):** [`Twin-Pulse-Final-ppt.pdf`](Twin-Pulse-Final-ppt.pdf) (3.1 MB, high-resolution vector export)
+* 📊 **PowerPoint Presentation (.pptx):** [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx) (17 MB, 7 widescreen slides)
+* 📄 **Adobe Acrobat PDF Presentation (.pdf):** [`Proximity_NMIMS.pdf`](Proximity_NMIMS.pdf) (3.1 MB, high-resolution vector export)
 
 ### Summary of Slide Deck Contents & Outcomes
 * **Slide 1 (The 90-Day Clinical Void):** The invisible gap between clinic visits where silent glycemic spikes and vascular end-organ damage occur.
@@ -265,8 +265,8 @@ Twin-Pulse-Digital-Twin-Challenge-2026/
 │   ├── requirements.txt                                    # Python environment dependencies
 │   └── verify_setup.py                                     # Automated environment verification script
 ├── .gitignore                                              # Version control ignore definitions
-├── Twin-Pulse-Final-ppt.pptx                               # Official Challenge Presentation Deck (PowerPoint)
-├── Twin-Pulse-Final-ppt.pdf                                # Official Challenge Presentation Deck (Adobe PDF)
+├── Proximity_NMIMS.pptx                                    # Official Challenge Presentation Deck (PowerPoint)
+├── Proximity_NMIMS.pdf                                     # Official Challenge Presentation Deck (Adobe PDF)
 ├── Twin-Pulse-Architecture-Diagram.pdf                     # System Architecture Diagram (Standalone Vector PDF)
 ├── index.html                                              # KEY FINAL DELIVERABLE: Live Twin Cockpit (Vercel)
 ├── LICENSE                                                 # MIT Open-Source License
