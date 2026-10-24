@@ -9472,18 +9472,326 @@ function setupSmartTooltips() {
   const tipBody = document.getElementById('tipBody');
   if (!tipBox) return;
 
-  function showTipFor(target) {
-    const title = target.getAttribute('data-tip-title') || 'Engineering Formulation';
-    const math = target.getAttribute('data-tip-math') || '';
-    const body = target.getAttribute('data-tip-body') || '';
+  // Enhance tipBox with dark mode and high z-index
+  tipBox.classList.add('dark:bg-[#1a1512]/98', 'dark:border-[#42372d]', 'dark:text-[#ede4d8]', 'z-[99999]', 'backdrop-blur-md');
+  if (tipMath) tipMath.classList.add('dark:bg-[#261f19]', 'dark:border-[#42372d]', 'dark:text-[#f3ede4]');
+  if (tipBody) tipBody.classList.add('dark:text-[#d4c9be]');
 
-    tipTitle.textContent = title;
-    tipMath.textContent = math;
-    tipMath.style.display = math ? 'block' : 'none';
-    tipBody.textContent = body;
+  // Suppress old clipped inline CSS tooltip on phenotype pill
+  const oldPhenoTip = document.getElementById('patientPhenotypeTooltip');
+  if (oldPhenoTip) {
+    const parentPopup = oldPhenoTip.closest('div.group-hover\\:block, div[class*="group-hover"]');
+    if (parentPopup) parentPopup.style.display = 'none';
+  }
+
+  // Comprehensive biophysical & clinical simulation tooltip registry
+  const TOOLTIP_MAP = [
+    // 1. What-If Sliders (by input ID, label, value, or container row)
+    {
+      match: el => el.closest('#simCarbs, [for="simCarbs"], #valSimCarbs') || (el.closest('#rightPanelSim > div') && el.closest('#rightPanelSim > div').querySelector('#simCarbs')),
+      target: el => el.closest('#rightPanelSim > div') || el,
+      data: () => ({
+        title: 'Meal Carbohydrate Challenge (Bergman Minimal Model)',
+        math: 'R_meal(t) = (Carbs · Bioavail / τ_gut) · (t/τ_gut) · e^{-t/τ_gut}',
+        body: 'Simulates postprandial glucose influx and gut absorption. Each +10g carbohydrate intake increases peak glycemic excursion by ~8.2 mg/dL in Asian Indian cohorts.'
+      })
+    },
+    {
+      match: el => el.closest('#simMeds, [for="simMeds"], #valSimMeds') || (el.closest('#rightPanelSim > div') && el.closest('#rightPanelSim > div').querySelector('#simMeds')),
+      target: el => el.closest('#rightPanelSim > div') || el,
+      data: () => ({
+        title: 'Pharmacological Adherence (Metformin + SGLT2i)',
+        math: 'E_med = Adherence · (ΔE_metformin + ΔE_glimepiride)',
+        body: 'Simulates compliance with prescribed oral hypoglycemic agents. 100% adherence suppresses hepatic gluconeogenesis (-62 mg/dL) and lowers systemic vascular resistance (-22 mmHg).'
+      })
+    },
+    {
+      match: el => el.closest('#simSleep, [for="simSleep"], #valSimSleep') || (el.closest('#rightPanelSim > div') && el.closest('#rightPanelSim > div').querySelector('#simSleep')),
+      target: el => el.closest('#rightPanelSim > div') || el,
+      data: () => ({
+        title: 'Sleep Duration & Nocturnal Recovery',
+        math: 'ΔSBP = -3.6 · (Sleep - 7.0)   |   ΔCortisol ∝ -(Sleep - 7.0)',
+        body: 'Simulates restorative slow-wave sleep. Sleep deprivation (<6 hrs) drives nocturnal sympathetic surge, elevating morning fasting glucose and arterial blood pressure.'
+      })
+    },
+    {
+      match: el => el.closest('#simSteps, [for="simSteps"], #valSimSteps') || (el.closest('#rightPanelSim > div') && el.closest('#rightPanelSim > div').querySelector('#simSteps')),
+      target: el => el.closest('#rightPanelSim > div') || el,
+      data: () => ({
+        title: 'Physical Activity & GLUT-4 Translocation',
+        math: 'ΔG_exercise = -3.8 mg/dL per 1,000 steps (insulin-independent)',
+        body: 'Simulates skeletal muscle contraction-mediated glucose uptake. 7,000–10,000 daily steps improves vascular compliance and reduces postprandial glycemic excursions by ~38 mg/dL.'
+      })
+    },
+    {
+      match: el => el.closest('#simStress, [for="simStress"], #valSimStress') || (el.closest('#rightPanelSim > div') && el.closest('#rightPanelSim > div').querySelector('#simStress')),
+      target: el => el.closest('#rightPanelSim > div') || el,
+      data: () => ({
+        title: 'Autonomic Sympathetic Tone & Cortisol Load',
+        math: 'ΔSBP = +0.34 · Stress   |   RMSSD = RMSSD_base · (1 - 0.006 · Stress)',
+        body: 'Simulates sympathetic nervous system overdrive. Elevated stress suppresses parasympathetic vagal tone (RMSSD), increasing arterial stiffness and hepatic glucose output.'
+      })
+    },
+    // 2. Simulation Delta Footer
+    {
+      match: el => el.closest('#simDeltaPsi') || (el.closest('.mt-2 > div') && el.closest('.mt-2 > div').querySelector('#simDeltaPsi')),
+      target: el => el.closest('.mt-2 > div') || el,
+      data: () => ({
+        title: 'Simulated Systemic Strain (Ψ_sim)',
+        body: 'Composite multi-organ stress index (0–100) dynamically recalculated under current slider interventions.'
+      })
+    },
+    {
+      match: el => el.closest('#simDeltaRul') || (el.closest('.mt-2 > div') && el.closest('.mt-2 > div').querySelector('#simDeltaRul')),
+      target: el => el.closest('.mt-2 > div') || el,
+      data: () => ({
+        title: 'Safe Clinical Window Delta (ΔTTT)',
+        body: 'Net gain or loss in safety margin before postprandial glucose breaches 200 mg/dL or end-organ decompensation occurs.'
+      })
+    },
+    {
+      match: el => el.closest('#simDeltaSbp') || (el.closest('.mt-2 > div') && el.closest('.mt-2 > div').querySelector('#simDeltaSbp')),
+      target: el => el.closest('.mt-2 > div') || el,
+      data: () => ({
+        title: 'Simulated Arterial Blood Pressure',
+        body: 'Coupled systolic and diastolic pressure calculated via 2-element Windkessel vascular compliance.'
+      })
+    },
+    {
+      match: el => el.closest('[onclick*="commitSimulatedCarePlan"]'),
+      data: () => ({
+        title: 'Commit Counterfactual Care Plan',
+        body: 'Applies these simulated lifestyle and medication parameters to update the active patient electronic health record.'
+      })
+    },
+    {
+      match: el => el.closest('[onclick*="resetSimSliders"]'),
+      data: () => ({
+        title: 'Reset What-If Simulator',
+        body: 'Restores all 5 intervention sliders to the patient baseline values.'
+      })
+    },
+    // 3. Phenotype Pill
+    {
+      match: el => el.closest('#patientPhenotypePill, .group:has(#patientPhenotypePill)'),
+      target: el => document.getElementById('patientPhenotypePill') || el,
+      data: () => {
+        const p = (typeof getPatient === 'function' ? getPatient() : null) || {};
+        const pheno = p.phenotype || 'MONO';
+        const desc = {
+          MONO: 'Metabolically Obese, Normal Weight (Thin-Fat Phenotype): Normal/borderline BMI (<23 kg/m²), elevated visceral adiposity, high HOMA-IR, severe hepatic steatosis, and early β-cell secretory failure typical in Asian Indian populations (ICMR-INDIAB criteria).',
+          MOO: 'Metabolically Obese, Obese Weight: Elevated BMI (≥25 kg/m²), marked systemic insulin resistance, dyslipidemia (high TG, low HDL), and accelerated progression to vascular stiffness.',
+          MHNO: 'Metabolically Healthy, Non-Obese: Preserved β-cell reserve, normal insulin sensitivity, and stable autonomic baroreflex tone.'
+        };
+        return {
+          title: `ICMR-INDIAB Phenotype: ${pheno}`,
+          body: desc[pheno] || desc.MONO
+        };
+      }
+    },
+    // 4. Organ Subsystem Pills (#sandboxOrganPills)
+    {
+      match: el => el.closest('#sandboxOrganPills button'),
+      target: el => el.closest('#sandboxOrganPills button') || el,
+      data: el => {
+        const btn = el.closest('#sandboxOrganPills button');
+        const onclickAttr = btn ? btn.getAttribute('onclick') || '' : '';
+        const match = onclickAttr.match(/selectOrgan\(['"]([^'"]+)['"]\)/);
+        const organKey = match ? match[1] : 'pancreas';
+        const cfg = (typeof ORGAN_CONFIG !== 'undefined' && ORGAN_CONFIG[organKey]) ? ORGAN_CONFIG[organKey] : null;
+        if (cfg) {
+          return {
+            title: cfg.title,
+            math: cfg.eq,
+            body: cfg.tooltipBody || cfg.clinicalSummary
+          };
+        }
+        return null;
+      }
+    },
+    // 5. Comparison Cards (#sandboxComparisonGrid)
+    {
+      match: el => el.closest('#sandboxComparisonGrid > div'),
+      target: el => el.closest('#sandboxComparisonGrid > div') || el,
+      data: el => {
+        const card = el.closest('#sandboxComparisonGrid > div');
+        const onclickAttr = card ? card.getAttribute('onclick') || '' : '';
+        if (onclickAttr.includes('stage1')) {
+          return {
+            title: 'Stage 1: Acute Adverse Glycemic Event Predictor',
+            math: 'P(Acute Event) = σ(W_t · h_t + b)   |   AUROC: 0.942',
+            body: 'Ensemble XGBoost + BiLSTM classifier calibrated with Platt scaling. Predicts >200 mg/dL hyperglycemic excursion within 45 minutes.'
+          };
+        } else if (onclickAttr.includes('stage2')) {
+          return {
+            title: 'Stage 2: 4-Stage Cardiometabolic Staging',
+            math: 'P(Stage = k) = Softmax(W_stage · Φ + b_stage)',
+            body: 'LightGBM ordinal classification mapping multi-organ burden to Stages 1–4 of Cardiometabolic-Based Chronic Disease (CMBCD).'
+          };
+        } else if (onclickAttr.includes('stage3')) {
+          return {
+            title: 'Stage 3: Safe Clinical Window (TTT Regressor)',
+            math: 'TTT = 168 · ((100 - Ψ)/96)^1.38 - 4.8 · ROC_CGM',
+            body: 'Random Survival Forest predicting hours before postprandial glucose breaches 200 mg/dL or multi-organ destabilization occurs (C-Index: 0.88).'
+          };
+        }
+        return {
+          title: 'Counterfactual Trajectory Comparison',
+          body: 'Compares patient baseline physiological state against simulated post-intervention outcome.'
+        };
+      }
+    },
+    // 6. 3D Anatomical Callout Cards
+    {
+      match: el => el.closest('#callout-vascular'),
+      target: el => document.getElementById('callout-vascular') || el,
+      data: () => ({
+        title: 'Systemic Arterial Tree & Conduit Aorta (T4)',
+        math: 'MAP = CO · SVR + ΔP_sympathetic(HRV, Sleep)',
+        body: 'Click to select vascular subsystem and inspect Windkessel arterial compliance, pulse pressure, and systemic vascular resistance.'
+      })
+    },
+    {
+      match: el => el.closest('#callout-heart'),
+      target: el => document.getElementById('callout-heart') || el,
+      data: () => ({
+        title: 'Cardiac Autonomic & Coronary Axis (T5–T8)',
+        math: 'dHRV/dt = -γ·SympLoad + β·VagalTone - k_mvo2·RPP',
+        body: 'Click to inspect real-time 250 Hz P-QRS-T electrocardiogram, RMSSD vagal tone, and myocardial oxygen demand (RPP).'
+      })
+    },
+    {
+      match: el => el.closest('#callout-pancreas'),
+      target: el => document.getElementById('callout-pancreas') || el,
+      data: () => ({
+        title: 'Pancreatic β-Cell & Glycemic Axis (L1–L2)',
+        math: 'dG/dt = -p₁(G - G_b) - X·G + R_meal(t)/V_G',
+        body: 'Click to inspect Bergman minimal model glucose-insulin dynamics, β-cell secretory reserve, and CGM predictive horizon.'
+      })
+    },
+    {
+      match: el => el.closest('#callout-hepatorenal'),
+      target: el => document.getElementById('callout-hepatorenal') || el,
+      data: () => ({
+        title: 'Hepatorenal Filtration Axis (T12–L3)',
+        math: 'Wear(t) = ∫ [α·Gly_Stress + β·Vasc_Stress] dτ',
+        body: 'Click to select liver and kidney subsystems and inspect microvascular eGFR filtration and hepatic FIB-4 index.'
+      })
+    },
+    // 7. Sandbox Telemetry Chips in #view-sandbox
+    {
+      match: el => el.closest('#sbChipCarbs'),
+      data: () => ({
+        title: 'Meal Carbohydrates Telemetry',
+        body: 'Patient acute meal carbohydrate intake synced live from What-If Simulator.'
+      })
+    },
+    {
+      match: el => el.closest('#sbChipMeds'),
+      data: () => ({
+        title: 'Medication Adherence Telemetry',
+        body: 'Compliance percentage to prescribed Metformin and oral hypoglycemic agents.'
+      })
+    },
+    {
+      match: el => el.closest('#sbChipSleep'),
+      data: () => ({
+        title: 'Restorative Sleep Duration',
+        body: 'Hours of nocturnal slow-wave sleep recorded via wearable IoT sensor.'
+      })
+    },
+    {
+      match: el => el.closest('#sbChipSteps'),
+      data: () => ({
+        title: 'Ambulatory Steps Telemetry',
+        body: 'Daily physical activity steps measured via 3-axis accelerometer.'
+      })
+    },
+    {
+      match: el => el.closest('#sbChipRul'),
+      data: () => ({
+        title: 'Safe Clinical Margin (TTT)',
+        body: 'Estimated prognostic buffer before postprandial glucose breaches 200 mg/dL or end-organ decompensation occurs.'
+      })
+    },
+    // 8. Stream 1 and Stream 2
+    {
+      match: el => el.closest('#heroHba1c, #heroHoma, #heroEgfrFib4') || (el.closest('.grid > div') && el.closest('.grid > div').textContent.includes('Stream 1')),
+      target: el => el.closest('.grid > div') || el,
+      data: () => ({
+        title: 'Stream 1: Longitudinal EHR Telemetry (Synthea FHIR)',
+        body: 'Longitudinal clinical laboratory records: Glycated hemoglobin (HbA1c 8.2%), HOMA-IR (4.9), and renal eGFR (84 mL/min) ingested via FHIR R4.'
+      })
+    },
+    {
+      match: el => el.closest('#heroCgm, #heroBp, #heroHrvHr') || (el.closest('.grid > div') && el.closest('.grid > div').textContent.includes('Stream 2')),
+      target: el => el.closest('.grid > div') || el,
+      data: () => ({
+        title: 'Stream 2: Live Wearable IoT Telemetry',
+        body: 'Continuous 100 Hz subcutaneous continuous glucose monitor (CGM 198 mg/dL), cuffless optical blood pressure (138/88 mmHg), and PPG-derived heart rate / HRV (27.5 ms).'
+      })
+    }
+  ];
+
+  function resolveTooltip(target) {
+    if (!target) return null;
+
+    // 1. Direct .fx-badge or elements with data-tip attributes
+    const fxBtn = target.closest('.fx-badge, [data-tip-title]');
+    if (fxBtn) {
+      return {
+        title: fxBtn.getAttribute('data-tip-title') || 'Engineering Formulation',
+        math: fxBtn.getAttribute('data-tip-math') || '',
+        body: fxBtn.getAttribute('data-tip-body') || '',
+        targetEl: fxBtn
+      };
+    }
+
+    // 2. Check TOOLTIP_MAP registry
+    for (const item of TOOLTIP_MAP) {
+      try {
+        if (item.match(target)) {
+          const res = item.data(target);
+          if (res) {
+            return {
+              title: res.title || '',
+              math: res.math || '',
+              body: res.body || '',
+              targetEl: item.target ? item.target(target) : target
+            };
+          }
+        }
+      } catch (e) {}
+    }
+
+    // 3. Fallback: native title attributes
+    const titleEl = target.closest('[title]');
+    if (titleEl && !titleEl.closest('.fx-badge')) {
+      const t = titleEl.getAttribute('title');
+      if (t) {
+        return {
+          title: 'System Information',
+          math: '',
+          body: t,
+          targetEl: titleEl
+        };
+      }
+    }
+
+    return null;
+  }
+
+  function showTipFor(res) {
+    if (!res || !res.targetEl) return;
+    tipTitle.textContent = res.title;
+    tipMath.textContent = res.math;
+    tipMath.style.display = res.math ? 'block' : 'none';
+    tipBody.textContent = res.body;
 
     tipBox.classList.remove('hidden');
-    const r = target.getBoundingClientRect();
+    tipBox.style.opacity = '1';
+
+    const r = res.targetEl.getBoundingClientRect();
     const boxW = tipBox.offsetWidth || 300;
     const boxH = tipBox.offsetHeight || 130;
 
@@ -9503,22 +9811,57 @@ function setupSmartTooltips() {
     tipBox.classList.add('hidden');
   }
 
+  let currentTrigger = null;
+
   document.addEventListener('mouseover', (e) => {
-    const btn = e.target.closest('.fx-badge');
-    if (btn) showTipFor(btn);
-  });
+    const res = resolveTooltip(e.target);
+    if (res) {
+      if (currentTrigger && currentTrigger === res.targetEl) return;
+      currentTrigger = res.targetEl;
+      showTipFor(res);
+    }
+  }, true);
+
   document.addEventListener('mouseout', (e) => {
-    const btn = e.target.closest('.fx-badge');
-    if (btn) hideTip();
-  });
+    if (currentTrigger) {
+      if (e.relatedTarget && currentTrigger.contains(e.relatedTarget)) {
+        return; // Mouse moved onto a child inside the trigger container
+      }
+      currentTrigger = null;
+      hideTip();
+    }
+  }, true);
+
   document.addEventListener('focusin', (e) => {
-    const btn = e.target.closest('.fx-badge');
-    if (btn) showTipFor(btn);
+    const res = resolveTooltip(e.target);
+    if (res) {
+      currentTrigger = res.targetEl;
+      showTipFor(res);
+    }
   });
+
   document.addEventListener('focusout', (e) => {
-    const btn = e.target.closest('.fx-badge');
-    if (btn) hideTip();
+    if (currentTrigger) {
+      currentTrigger = null;
+      hideTip();
+    }
   });
+
+  // Touch device dismiss on outside tap
+  document.addEventListener('pointerdown', (e) => {
+    if (tipBox && !tipBox.contains(e.target) && (!currentTrigger || !currentTrigger.contains(e.target))) {
+      currentTrigger = null;
+      hideTip();
+    }
+  });
+
+  // Dismiss on scrolling to avoid detached floating cards
+  window.addEventListener('scroll', () => {
+    if (currentTrigger) {
+      currentTrigger = null;
+      hideTip();
+    }
+  }, { capture: true, passive: true });
 }
 
 function loadPatient(id) {
