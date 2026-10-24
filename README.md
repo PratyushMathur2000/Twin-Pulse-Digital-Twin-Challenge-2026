@@ -109,19 +109,16 @@ Access the complete interactive digital twin workstation directly in your web br
 * **Zero Cloud Latency:** High-performance client-side biophysical solver (100 Hz RK4 ODE integration, 60 FPS Three.js point-cloud, and real-time counterfactual trajectories).
 
 ### 💻 Local Execution
-To run the workstation locally:
-1. **Windows:** Double-click `Launch_Dashboard (windows).bat`.
-2. **macOS / Linux:** Execute `chmod +x Launch_Dashboard\ (macOS).sh && ./Launch_Dashboard\ (macOS).sh`.
-3. **Manual Browser / HTTP Server:**
-   ```bash
-   # Option A: Open directly in your browser
-   open index.html  # macOS
-   start index.html # Windows
+To run the workstation locally, simply open `index.html` in any web browser or serve it locally:
+```bash
+# Option A: Open directly in your browser
+open index.html   # macOS / Linux
+start index.html  # Windows
 
-   # Option B: Run via local Python HTTP server
-   python -m http.server 8080
-   # Open http://localhost:8080 in your browser
-   ```
+# Option B: Run via local Python HTTP server
+python -m http.server 8080
+# Navigate to http://localhost:8080
+```
 
 ### 🔬 Optional Local LLM Studio / Ollama Integration
 To connect your local AI clinical co-pilot:
