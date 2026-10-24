@@ -5,7 +5,7 @@
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![FastAPI](https://img.shields.io/badge/API-FastAPI%20REST-009688.svg?style=for-the-badge&logo=fastapi)](project_files/service/app.py)
+[![FastAPI](https://img.shields.io/badge/API-FastAPI%20REST-009688.svg?style=for-the-badge&logo=fastapi)](project_files/app_server.py)
 
 > 🌐 **Live Production Deployment:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)  
 > *Zero-setup, fully responsive clinician cockpit featuring real-time 3D anatomical visualization, 6-hour counterfactual What-If simulator, and 100-patient Indian cohort triage.*
@@ -100,13 +100,47 @@ Evaluated on a strict patient-grouped 80/20 holdout split (80 training patients 
 | **Stage 3: Safe Clinical Window (TTT) Regressor** | Continuous forecast of hours remaining (1–168h) before threshold breach | **R² = 0.9607** | **MAE = 6.15 Hours**, RMSE = 7.59 Hours | **0.028 ms** |
 | **2-Hour CGM Horizon Forecaster** | Postprandial glycemic trajectory with 95% confidence cone | **RMSE = 11.2 mg/dL** | 94.10% Sensitivity, 92.60% Specificity | **1.80 ms** |
 
-## 6. Live Web Deployment & Local Quickstart
+## 6. Repository Structure & Key Deliverables
+
+This repository is curated to maintain a lean, production-ready architecture for Vercel deployment while preserving all reproducible ML training pipelines, biophysical ODE simulation models, and synthetic clinical cohorts:
+
+```text
+Twin-Pulse-Digital-Twin-Challenge-2026/
+├── api/
+│   └── chat.js                     # Vercel Serverless Function (Gemini AI Clinical Advisor proxy)
+├── project_files/
+│   ├── data/
+│   │   ├── synthea_ehr_patients.csv                        # 100 Indian Patient EHR Cohort (DPDP & HIPAA compliant)
+│   │   └── twin_pulse_cardiometabolic_ehr_wearable_data.csv # 1,500 Continuous In-Vivo Wearable Windows
+│   ├── saved_models/
+│   │   ├── feature_schema.json                             # 28-Biomarker Clinical Feature Definitions
+│   │   ├── model_evaluation_metrics.json                   # Holdout 80/20 Benchmark Evaluation Records
+│   │   ├── stage1_adverse_event_classifier.pkl             # Imminent Glycemic Spike / Crisis Classifier (96.7% Recall)
+│   │   ├── stage2_cmbcd_stage_ensemble.pkl                 # CMBCD 4-Stage Soft-Voting Progression Ensemble (0.9209 F1)
+│   │   └── stage3_time_to_threshold_rul.pkl                # Safe Clinical Window (TTT) Hazard Regressor (R² = 0.96)
+│   ├── ui/
+│   │   └── twin_pulse_clinical_dashboard.html              # Standalone UI reference archive
+│   ├── utils/
+│   │   ├── clinical_copilot.py                             # CMBCD Clinical Expert Reasoning Engine
+│   │   ├── data_generator.py                               # ICMR-INDIAB Synthea Patient Generator
+│   │   └── digital_twin_engine.py                          # 100 Hz RK4 Physiological Coupling ODE Engine
+│   ├── app_server.py                                       # Local FastAPI REST Microservice
+│   ├── requirements.txt                                    # Python environment dependencies
+│   └── verify_setup.py                                     # Automated environment verification script
+├── .gitignore                                              # Version control ignore definitions
+├── index.html                                              # KEY FINAL DELIVERABLE: Live Twin Cockpit (Vercel)
+├── LICENSE                                                 # MIT Open-Source License
+├── README.md                                               # Clinical Documentation & Submission Dossier
+└── vercel.json                                             # Vercel Single-Page & Clean-URL Routing Rules
+```
+
+## 7. Live Web Deployment & Local Quickstart
 
 ### 🌐 Live Production Application
 Access the complete interactive digital twin workstation directly in your web browser:
 * **Live Deployment URL:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
-* **Hosting:** Deployed on Vercel with automated CI/CD pipeline from `main`.
-* **Zero Cloud Latency:** High-performance client-side biophysical solver (100 Hz RK4 ODE integration, 60 FPS Three.js point-cloud, and real-time counterfactual trajectories).
+* **Zero-Setup Hosting:** Deployed on Vercel with automated CI/CD pipeline from `main`.
+* **Zero Cloud Latency:** High-performance client-side biophysical solver (100 Hz RK4 ODE integration, 60 FPS Three.js point-cloud, and real-time counterfactual trajectories running entirely in-browser).
 
 ### 💻 Local Execution
 To run the workstation locally, simply open `index.html` in any web browser or serve it locally:
@@ -126,6 +160,6 @@ To connect your local AI clinical co-pilot:
 * **Ollama:** Start Ollama on port `http://localhost:11434` (`ollama run llama3`).
 * In the workstation top bar, click the **Settings Wheel** ⚙️ or view the Clinical Advisor panel to toggle Local AI mode. If unavailable, the dashboard automatically falls back to its built-in rule-based CMBCD clinical expert system.
 
-## 7. License
+## 8. License
 
 Released under the **MIT Open-Source License**. Copyright (c) 2026 Pratyush Mathur & Aryan Jain (SVKM's NMIMS, Mumbai).
