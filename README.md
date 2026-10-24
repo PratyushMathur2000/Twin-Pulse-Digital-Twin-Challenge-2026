@@ -14,10 +14,13 @@
 
 * **Team Name:** Twin-Pulse
 * **Institution:** SVKM's NMIMS, Mumbai (Second Year)
+* **Team Members:**
+  * **Pratyush Mathur (Team Leader)** — [`mr.mathurpratyush@gmail.com`](mailto:mr.mathurpratyush@gmail.com) • [GitHub (@PratyushMathur2000)](https://github.com/PratyushMathur2000)
+  * **Aryan Jain (Team Member)** — [`ajain070912@gmail.com`](mailto:ajain070912@gmail.com) • [GitHub (@jainzyy)](https://github.com/jainzyy)
 
 <table align="center" style="margin: 0 auto; border: none; background: transparent;">
   <tr>
-    <td align="center" width="260" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
+    <td align="center" width="280" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
       <a href="https://github.com/PratyushMathur2000">
         <img src="project_files/assets/pratyush_mathur.png" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Pratyush Mathur" />
       </a>
@@ -27,15 +30,25 @@
       <span style="color: #7c7267; font-size: 12px;">Second Year, SVKM's NMIMS, Mumbai</span><br /><br />
       <a href="https://github.com/PratyushMathur2000">
         <img src="https://img.shields.io/badge/GitHub-PratyushMathur2000-181717?style=flat&logo=github" alt="GitHub Profile" />
+      </a><br />
+      <a href="mailto:mr.mathurpratyush@gmail.com">
+        <img src="https://img.shields.io/badge/Email-mr.mathurpratyush%40gmail.com-ea4335?style=flat&logo=gmail&logoColor=white" alt="Email Pratyush" />
       </a>
     </td>
-    <td align="center" width="260" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
-      <img src="project_files/assets/aryan_jain.jpeg" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Aryan Jain" />
+    <td align="center" width="280" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
+      <a href="https://github.com/jainzyy">
+        <img src="project_files/assets/aryan_jain.jpeg" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Aryan Jain" />
+      </a>
       <br /><br />
       <b style="font-size: 16px;">Aryan Jain</b><br />
       <span style="color: #7c7267; font-size: 13px;">Team Member</span><br />
       <span style="color: #7c7267; font-size: 12px;">Second Year, SVKM's NMIMS, Mumbai</span><br /><br />
-      <img src="https://img.shields.io/badge/NMIMS-Mumbai-b65820?style=flat" alt="NMIMS Mumbai" />
+      <a href="https://github.com/jainzyy">
+        <img src="https://img.shields.io/badge/GitHub-jainzyy-181717?style=flat&logo=github" alt="GitHub Profile" />
+      </a><br />
+      <a href="mailto:ajain070912@gmail.com">
+        <img src="https://img.shields.io/badge/Email-ajain070912%40gmail.com-ea4335?style=flat&logo=gmail&logoColor=white" alt="Email Aryan" />
+      </a>
     </td>
   </tr>
 </table>
