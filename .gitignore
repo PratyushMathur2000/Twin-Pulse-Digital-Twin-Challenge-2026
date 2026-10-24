@@ -14,3 +14,7 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# Local Presentation Documents & Scripts
+*Presentation_Script*
+*.docx
