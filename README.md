@@ -19,7 +19,7 @@
   <tr>
     <td align="center" width="260" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
       <a href="https://github.com/PratyushMathur2000">
-        <img src="https://github.com/PratyushMathur2000.png" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Pratyush Mathur" />
+        <img src="project_files/assets/pratyush_mathur.png" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Pratyush Mathur" />
       </a>
       <br /><br />
       <b style="font-size: 16px;">Pratyush Mathur</b><br />
@@ -30,7 +30,7 @@
       </a>
     </td>
     <td align="center" width="260" style="padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #faf9f6;">
-      <img src="https://ui-avatars.com/api/?name=Aryan+Jain&background=c2652a&color=fff&size=256&bold=true" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Aryan Jain" />
+      <img src="project_files/assets/aryan_jain.jpeg" width="130" height="130" style="border-radius: 50%; object-fit: cover; border: 3px solid #c2652a; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);" alt="Aryan Jain" />
       <br /><br />
       <b style="font-size: 16px;">Aryan Jain</b><br />
       <span style="color: #7c7267; font-size: 13px;">Team Member</span><br />
@@ -131,6 +131,7 @@ Twin-Pulse-Digital-Twin-Challenge-2026/
 ├── api/
 │   └── chat.js                     # Vercel Serverless Function (Gemini AI Clinical Advisor proxy)
 ├── project_files/
+│   ├── assets/                     # Team headshots & static branding assets
 │   ├── data/
 │   │   ├── synthea_ehr_patients.csv                        # 100 Indian Patient EHR Cohort (DPDP & HIPAA compliant)
 │   │   └── twin_pulse_cardiometabolic_ehr_wearable_data.csv # 1,500 Continuous In-Vivo Wearable Windows
