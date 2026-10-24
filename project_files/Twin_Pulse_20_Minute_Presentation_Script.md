@@ -1,6 +1,7 @@
 # Twin-Pulse: 20-Minute Video Presentation Script
 **Happiest Health Digital Twin Challenge 2026 | Reimagining Healthcare in India Summit, Bengaluru**  
-**Team:** Twin-Pulse (SVKM's NMIMS, Mumbai)  
+**Team Name:** Proximity (SVKM's NMIMS, Mumbai)
+**Project:** Twin-Pulse (Cardiometabolic Digital Twin Workstation)  
 **Presenters:** Pratyush Mathur (Team Leader) & Aryan Jain (Team Member)  
 **Live Platform Reference:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
 
@@ -33,7 +34,7 @@ Slide background: Clean dark/warm Sahara aesthetic with Twin-Pulse emblem and
 ```
 
 **PRATYUSH:**  
-"Respected jury members, clinicians, and health-tech leaders at the Reimagining Healthcare in India Summit 2026. My name is Pratyush Mathur, and together with my co-founder Aryan Jain from SVKM's NMIMS, Mumbai, we are honored to present **Twin-Pulse**—an in-silico, real-time Cardiometabolic Digital Twin workstation built specifically for the unique physiological and clinical landscape of India.
+"Respected jury members, clinicians, and health-tech leaders at the Reimagining Healthcare in India Summit 2026. My name is Pratyush Mathur, and together with my teammate Aryan Jain representing Team Proximity from SVKM's NMIMS, Mumbai, we are honored to present **Twin-Pulse**—an in-silico, real-time Cardiometabolic Digital Twin workstation built specifically for the unique physiological and clinical landscape of India.
 
 India is currently recognized as the diabetes capital of the world, home to over 101 million individuals living with Type 2 Diabetes, and another 136 million with prediabetes. But behind these staggering macro-statistics lies a fatal clinical blindspot in standard care."
 
