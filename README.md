@@ -13,7 +13,7 @@
 > 🌐 **Live Interactive Deployment:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)  
 > 📊 **Official Presentation Deck:** [Download PowerPoint (.pptx)](Proximity_NMIMS.pptx) • [Download PDF (.pdf)](Proximity_NMIMS.pdf)  
 > 🏛️ **System Architecture Diagram:** [Download Architecture PDF](Twin-Pulse-Architecture-Diagram.pdf) • [View in Presentation (Slide 5)](Proximity_NMIMS.pptx)  
-> 🎥 **20-Minute Video Demonstration:** [Watch 20-Minute Prototype Walkthrough (Unlisted Video)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE)  
+> 🎥 **20-Minute Video Demonstration:** [Watch 20-Minute Prototype Walkthrough (YouTube)](https://youtu.be/A8uOWU5jnGw)  
 > *Zero-setup, fully responsive clinician cockpit featuring real-time 3D anatomical visualization, 6-hour counterfactual What-If simulator, and 100-patient Indian cohort triage.*
 
 ---
@@ -26,7 +26,7 @@
 | **2** | **Project Title** | Twin-Pulse: Cardiometabolic Digital Twin Workstation | [Header](#project-title-twin-pulse--cardiometabolic-digital-twin-workstation) |
 | **3** | **Problem Statement & Healthcare Use Case** | Type 2 Diabetes in India, ICMR-INDIAB `MONO` "Thin-Fat" Phenotype & Coupled End-Organ Complications | [Section 2: Problem Statement & Healthcare Use Case](#2-problem-statement--healthcare-use-case) |
 | **4** | **Technical Stack, AI/ML Models & Frameworks** | 100 Hz RK4 ODE Biophysical Engine, 3-Stage Scikit-Learn Ensemble, Three.js WebGL, FastAPI REST | [Section 4: Technical Stack, AI/ML Models & Framework Details](#4-technical-stack-aiml-models--framework-details) |
-| **5** | **Minimum 20-Minute Video Demonstration** | Recorded in-silico simulation walkthrough, prototype demo & presentation recording | [Section 6: Prototype Demonstration & 20-Minute Video Walkthrough](#6-prototype-demonstration--20-minute-video-walkthrough) |
+| **5** | **Minimum 20-Minute Video Demonstration** | Recorded in-silico simulation walkthrough, prototype demo & presentation recording | [Section 6: Prototype Demonstration](#6-prototype-demonstration--20-minute-video-walkthrough) • [Watch Video (YouTube)](https://youtu.be/A8uOWU5jnGw) |
 | **6** | **Open-Source License Details** | MIT Open-Source License with complete permissive rights | [Section 10: Open-Source License Details](#10-open-source-license-details) • [`LICENSE`](LICENSE) |
 | **7** | **Architecture Diagram (PDF / PPT)** | Standalone Vector PDF & Slide 5 of Presentation Deck | [`Twin-Pulse-Architecture-Diagram.pdf`](Twin-Pulse-Architecture-Diagram.pdf) • [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx) |
 | **8** | **Presentation Deck (PDF / PPT)** | 7-Slide Comprehensive Presentation with Project Details & Outcomes | [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx) • [`Proximity_NMIMS.pdf`](Proximity_NMIMS.pdf) |
@@ -207,7 +207,7 @@ Evaluated on a strict patient-grouped 80/20 holdout split (80 training patients 
 
 A comprehensive **20-minute video demonstration** has been prepared to showcase the clinical digital twin in action:
 
-* 🎥 **Video Demonstration Link:** [Watch the 20-Minute Unlisted Video Walkthrough](https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE) *(Replace placeholder with your uploaded unlisted YouTube / Loom link)*
+* 🎥 **Video Demonstration Link:** [Watch the 20-Minute Prototype Walkthrough on YouTube](https://youtu.be/A8uOWU5jnGw) (`https://youtu.be/A8uOWU5jnGw`)
 * 📊 **Presentation Recording Slides:** [`Proximity_NMIMS.pptx`](Proximity_NMIMS.pptx) • [`Proximity_NMIMS.pdf`](Proximity_NMIMS.pdf)
 * 🌐 **Live Interactive Platform:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
 
