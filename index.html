@@ -809,13 +809,13 @@
   <!-- =========================================================================
        GLOBAL SMART FORMULA & ENGINEERING TOOLTIP PORTAL (NEVER CLIPS)
        ========================================================================= -->
-  <div id="globalSmartTooltip" role="tooltip" class="fixed z-[99999] hidden pointer-events-none max-w-xs sm:max-w-sm bg-[#ffffff]/98 dark:bg-[#1a1512]/98 backdrop-blur-md border border-[#d8d0c8] dark:border-[#42372d] shadow-sahara-lg dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] rounded-xl p-3.5 text-xs transition-opacity duration-150">
-    <div class="flex items-center justify-between gap-2 pb-1.5 mb-1.5 border-b border-[#d8d0c8]/60 dark:border-[#42372d]/70">
-      <span class="font-semibold uppercase tracking-wider text-[10px] text-[#c2652a] font-mono truncate" id="tipTitle">Biophysical Formulation</span>
-      <span class="text-[9.5px] font-mono px-2 py-0.5 rounded-md bg-[#f5efe6] dark:bg-[#2c221a] text-[#7c7267] dark:text-[#c4b8aa] border border-[#d8d0c8]/60 dark:border-[#42372d]/60 font-semibold uppercase tracking-wider shrink-0" id="tipTag">Engineering Note</span>
+  <div id="globalSmartTooltip" role="tooltip" class="fixed z-[100] hidden pointer-events-none max-w-xs sm:max-w-sm bg-[#ffffff] border border-[#d8d0c8] shadow-sahara-lg rounded-xl p-3.5 text-xs transition-opacity duration-150">
+    <div class="flex items-center justify-between gap-2 pb-1.5 mb-1.5 border-b border-[#d8d0c8]/50">
+      <span class="font-semibold uppercase tracking-wider text-[10px] text-[#c2652a] font-mono" id="tipTitle">Biophysical Formulation</span>
+      <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-[#f5efe6] text-[#7c7267]">Engineering Note</span>
     </div>
-    <code class="block font-mono text-[11px] text-[#26211c] dark:text-[#f3ede4] bg-[#faf5ee] dark:bg-[#261f19] px-2.5 py-2 rounded-lg border border-[#d8d0c8]/70 dark:border-[#42372d] mb-2 leading-relaxed break-words" id="tipMath"></code>
-    <p class="text-[11.5px] text-[#4a4036] dark:text-[#d4c9be] leading-relaxed font-sans" id="tipBody"></p>
+    <code class="block font-mono text-[11px] text-[#26211c] bg-[#faf5ee] px-2.5 py-2 rounded-lg border border-[#d8d0c8]/60 mb-2 leading-relaxed break-words" id="tipMath"></code>
+    <p class="text-[11.5px] text-[#4a4036] leading-relaxed" id="tipBody"></p>
   </div>
 
   <!-- =========================================================================
@@ -1028,18 +1028,21 @@
                 <span class="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-[#fbeae0] text-[#c2652a] border border-[#c2652a]/20">Type 2 Diabetes (T2D)</span>
                 
                 <!-- Single Interactive Phenotype Pill with Tooltip -->
-                <div class="relative inline-block cursor-help" id="patientPhenotypePill"
-                  data-tip-title="ICMR-INDIAB Phenotype: MONO"
-                  data-tip-tag="Phenotype Profile"
-                  data-tip-body="Metabolically Obese, Normal Weight (Thin-Fat Phenotype): Normal/borderline BMI (<23 kg/m²), elevated visceral adiposity, high HOMA-IR, severe hepatic steatosis, and early β-cell secretory exhaustion typical in Asian Indian populations (ICMR-INDIAB criteria).">
-                  <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#ede4d8] dark:bg-[#332820] text-[#4a4036] dark:text-[#d8cdbf] hover:bg-[#c2652a] hover:text-white transition-all inline-flex items-center gap-1">
+                <div class="relative group inline-block">
+                  <span class="cursor-help text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-[#ede4d8] text-[#4a4036] hover:bg-[#c2652a] hover:text-white transition-all inline-flex items-center gap-1" id="patientPhenotypePill">
                     <span id="patientPhenotypeText">Phenotype: MONO (Thin-Fat)</span>
                     <span class="material-symbols-outlined text-[13px]">info</span>
                   </span>
+                  <!-- Rich Hover Tooltip -->
+                  <div class="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-72 p-3 bg-[#ffffff] border border-[#d8d0c8] shadow-sahara-lg rounded-xl text-xs text-[#4a4036] pointer-events-none transition-all">
+                    <div class="font-semibold text-[#c2652a] text-[11px] uppercase tracking-wider mb-1">ICMR-INDIAB Phenotype</div>
+                    <p class="leading-relaxed text-[11.5px]" id="patientPhenotypeTooltip">
+                      <strong>Metabolically Obese, Normal Weight (Thin-Fat Phenotype):</strong> Normal/borderline BMI (&lt;23 kg/m²), elevated visceral adiposity, high HOMA-IR, severe hepatic steatosis, and early β-cell secretory exhaustion typical in Asian Indian populations.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <p class="text-xs text-[#7c7267] mt-0.5 flex flex-wrap items-center gap-x-2 font-sans truncate">
+              <p class="text-xs text-[#7c7267] mt-0.5 flex flex-wrap items-center gap-x-2 font-sans truncate">
                 <span id="patientDemographics">46y Male • Bengaluru, India</span>
                 <span>•</span>
                 <span class="text-[#c2652a] font-semibold truncate" id="patientMeds">Metformin 1000mg BD + Glimepiride 1mg</span>
@@ -1051,10 +1054,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full xl:w-auto shrink-0 border-t xl:border-t-0 xl:border-l border-[#d8d0c8]/60 pt-2 xl:pt-0 xl:pl-4">
             
             <!-- STREAM 1: STATIC EHR (Synthea) -->
-            <div class="flex flex-col bg-[#faf5ee] rounded-xl p-2 px-3 border border-[#d8d0c8]/50 min-w-[250px] cursor-help"
-              data-tip-title="Stream 1: Longitudinal EHR Telemetry (Synthea FHIR)"
-              data-tip-body="Static FHIR R4 clinical health record ingested periodically: Baseline HbA1c (8.2%), HOMA-IR (4.9), renal eGFR (84 mL/min), and hepatic FIB-4 index (1.48) from electronic medical records."
-              data-tip-tag="EHR Stream">
+            <div class="flex flex-col bg-[#faf5ee] rounded-xl p-2 px-3 border border-[#d8d0c8]/50 min-w-[250px]">
               <div class="flex items-center justify-between gap-2 text-[10px] font-mono uppercase tracking-wider text-[#7c7267] font-semibold border-b border-[#d8d0c8]/40 pb-1 mb-1">
                 <span class="truncate">Stream 1: Static EHR (Synthea)</span>
                 <span class="text-[9px] font-mono px-1.5 py-0.5 rounded bg-[#5c7a68]/15 text-[#5c7a68] font-bold shrink-0">FHIR Synced</span>
@@ -1076,10 +1076,7 @@
             </div>
 
             <!-- STREAM 2: LIVE WEARABLES (IoT) -->
-            <div class="flex flex-col bg-[#faf5ee] rounded-xl p-2 px-3 border border-[#d8d0c8]/50 cursor-help"
-              data-tip-title="Stream 2: High-Frequency Wearable IoT Telemetry"
-              data-tip-body="Continuous 100 Hz sensor ingestion: Subcutaneous continuous glucose monitor (CGM, 198 mg/dL), cuffless optical blood pressure (138/88 mmHg), and PPG-derived heart rate / HRV (27.5 ms)."
-              data-tip-tag="Live 100Hz Stream">
+            <div class="flex flex-col bg-[#faf5ee] rounded-xl p-2 px-3 border border-[#d8d0c8]/50">
               <div class="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-[#c2652a] font-semibold border-b border-[#d8d0c8]/40 pb-1 mb-1">
                 <span>Stream 2: Live Wearables (IoT)</span>
                 <span class="flex items-center gap-1 text-[#5c7a68] text-[10px]"><span class="w-1.5 h-1.5 rounded-full bg-[#5c7a68] animate-pulse"></span> 100Hz</span>
@@ -1107,11 +1104,7 @@
         <section class="bg-[#ffffff] rounded-2xl border border-[#d8d0c8]/60 p-3 lg:px-5 shadow-sahara grid grid-cols-2 lg:grid-cols-4 gap-3 items-center shrink-0">
           
           <!-- Metric 1: Systemic Strain Index (PSI) -->
-          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3 cursor-help"
-            data-tip-title="Systemic Multi-Organ Stress Index (Ψ_CMBCD)"
-            data-tip-math="Ψ = w_G·Φ_gly + w_V·Φ_vasc + w_C·Φ_card + w_R·Φ_ren"
-            data-tip-body="Weighted combination of 4 subsystem strain scores (0-100). Reflects composite multi-organ burden across Pancreas, Vasculature, Heart, and Kidneys."
-            data-tip-tag="Composite Metric">
+          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3">
             <div class="flex items-center justify-center gap-1.5">
               <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Systemic Strain Index</span>
               <button type="button" class="fx-badge" data-tip-title="Multi-Organ Stress Index (Ψ_CMBCD)" data-tip-math="Ψ = w_G·Φ_gly + w_V·Φ_vasc + w_C·Φ_card + w_R·Φ_ren" data-tip-body="Weighted combination of 4 subsystem strain scores (0-100).">𝑓(x)</button>
@@ -1124,11 +1117,7 @@
           </div>
 
           <!-- Metric 2: Estimated Safe Clinical Window (Time-to-Threshold TTT) -->
-          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3 cursor-help"
-            data-tip-title="Time-to-Threshold Regressor (Stage 3)"
-            data-tip-math="TTT = 168 · ((100 - Ψ)/96)^1.38 - 4.8 · ROC_CGM"
-            data-tip-body="Estimated hours before postprandial glucose breaches 200 mg/dL or end-organ destabilization occurs."
-            data-tip-tag="Prognostic Regressor">
+          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3">
             <div class="flex items-center justify-center gap-1.5">
               <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Safe Clinical Window</span>
               <button type="button" class="fx-badge" data-tip-title="Time-to-Threshold Regressor (Stage 3)" data-tip-math="TTT = 168 · ((100 - Ψ)/96)^1.38 - 4.8 · ROC_CGM" data-tip-body="Estimated hours before postprandial glucose breaches 200 mg/dL or end-organ destabilization occurs.">𝑓(x)</button>
@@ -1141,11 +1130,7 @@
           </div>
 
           <!-- Metric 3: Hemodynamic Myocardial Load -->
-          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3 cursor-help"
-            data-tip-title="Rate Pressure Product (RPP)"
-            data-tip-math="RPP = (SBP · HR) / 100"
-            data-tip-body="Surrogate measure of myocardial oxygen consumption (MVO2). Normal reference: <10,000 mmHg·bpm."
-            data-tip-tag="Hemodynamic Reserve">
+          <div class="flex flex-col items-center justify-center text-center border-r border-[#d8d0c8]/40 pr-3">
             <div class="flex items-center justify-center gap-1.5">
               <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Myocardial Workload</span>
               <button type="button" class="fx-badge" data-tip-title="Rate Pressure Product (RPP)" data-tip-math="RPP = (SBP · HR) / 100" data-tip-body="Surrogate measure of myocardial oxygen consumption (MVO2). Normal: <10,000.">𝑓(x)</button>
@@ -1158,11 +1143,7 @@
           </div>
 
           <!-- Metric 4: Glycemic Time-in-Range (TIR 70-180) -->
-          <div class="flex flex-col items-center justify-center text-center cursor-help"
-            data-tip-title="Time-In-Range (TIR 70–180 mg/dL)"
-            data-tip-math="TIR = (t_70-180 / t_total) · 100%"
-            data-tip-body="International consensus target for Type 2 Diabetes is >70% in 70-180 mg/dL to prevent microvascular complications."
-            data-tip-tag="Glycemic Target">
+          <div class="flex flex-col items-center justify-center text-center">
             <div class="flex items-center justify-center gap-1.5">
               <span class="text-[11px] uppercase tracking-wider font-semibold text-[#7c7267]">Glycemic Time-in-Range</span>
               <button type="button" class="fx-badge" data-tip-title="Time-In-Range (TIR 70–180 mg/dL)" data-tip-math="TIR = (t_70-180 / t_total) · 100%" data-tip-body="International consensus target for Type 2 Diabetes is >70% in 70-180 mg/dL.">𝑓(x)</button>
@@ -1228,11 +1209,7 @@
                 <svg id="calloutSvgOverlay" class="absolute inset-0 w-full h-full pointer-events-none z-10"></svg>
 
                 <!-- Floating Anatomical Callout Card: Top-Left -> Vascular & Aortic Arch -->
-                <div id="callout-vascular" onclick="selectOrgan('vascular')" class="absolute top-3 left-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]"
-                  data-tip-title="Vascular Tree & Aortic Arch (T4)"
-                  data-tip-math="MAP = CO · SVR + ΔP_sympathetic(HRV, Sleep)"
-                  data-tip-body="Click to select vascular subsystem and inspect Windkessel arterial compliance, pulse pressure, and systemic vascular resistance."
-                  data-tip-tag="3D Anatomical Subsystem">
+                <div id="callout-vascular" onclick="selectOrgan('vascular')" class="absolute top-3 left-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]">
                   <div class="flex items-center justify-between gap-1">
                     <span class="text-[9.5px] font-semibold uppercase text-[#7c7267] tracking-wider">Aortic Conduit</span>
                     <span class="w-2 h-2 rounded-full bg-[#c2652a]"></span>
@@ -1245,11 +1222,7 @@
                 </div>
 
                 <!-- Floating Anatomical Callout Card: Bottom-Left -> Hepatorenal & Kidneys -->
-                <div id="callout-hepatorenal" onclick="selectOrgan('hepatorenal')" class="absolute bottom-9 left-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]"
-                  data-tip-title="Hepatorenal Axis & Kidneys (T12–L3)"
-                  data-tip-math="Wear(t) = ∫ [α·Gly_Stress + β·Vasc_Stress] dτ"
-                  data-tip-body="Click to select liver and kidney subsystems and inspect microvascular eGFR filtration and hepatic FIB-4 index."
-                  data-tip-tag="3D Anatomical Subsystem">
+                <div id="callout-hepatorenal" onclick="selectOrgan('hepatorenal')" class="absolute bottom-9 left-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]">
                   <div class="flex items-center justify-between gap-1">
                     <span class="text-[9.5px] font-semibold uppercase text-[#7c7267] tracking-wider">Hepatorenal Axis</span>
                     <span class="w-2 h-2 rounded-full bg-[#5c7a68]"></span>
@@ -1262,11 +1235,7 @@
                 </div>
 
                 <!-- Floating Anatomical Callout Card: Top-Right -> Cardiac & Autonomic -->
-                <div id="callout-heart" onclick="selectOrgan('heart')" class="absolute top-3 right-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]"
-                  data-tip-title="Cardiac Axis & Sinoatrial Node (T5–T8)"
-                  data-tip-math="dHRV/dt = -γ·SympLoad + β·VagalTone - k_mvo2·RPP"
-                  data-tip-body="Click to inspect real-time 250 Hz P-QRS-T electrocardiogram, RMSSD autonomic vagal tone, and myocardial oxygen demand."
-                  data-tip-tag="3D Anatomical Subsystem">
+                <div id="callout-heart" onclick="selectOrgan('heart')" class="absolute top-3 right-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]">
                   <div class="flex items-center justify-between gap-1">
                     <span class="text-[9.5px] font-semibold uppercase text-[#7c7267] tracking-wider">Cardiac Axis</span>
                     <span class="w-2 h-2 rounded-full bg-[#8c3c3c]"></span>
@@ -1279,11 +1248,7 @@
                 </div>
 
                 <!-- Floating Anatomical Callout Card: Bottom-Right -> Pancreas & Beta Cell -->
-                <div id="callout-pancreas" onclick="selectOrgan('pancreas')" class="absolute bottom-9 right-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]"
-                  data-tip-title="Endocrine Pancreas & β-Cell Axis (L1–L2)"
-                  data-tip-math="dG/dt = -p₁(G - G_b) - X·G + R_meal(t)/V_G"
-                  data-tip-body="Click to inspect Bergman minimal model glucose-insulin dynamics, β-cell secretory reserve, and CGM horizon."
-                  data-tip-tag="3D Anatomical Subsystem">
+                <div id="callout-pancreas" onclick="selectOrgan('pancreas')" class="absolute bottom-9 right-3 z-20 bg-[#ffffff]/95 backdrop-blur-sm border border-[#d8d0c8]/80 rounded-xl p-2 shadow-sahara-sm hover:border-[#c2652a] hover:shadow-sahara transition-all cursor-pointer w-[160px] sm:w-[176px]">
                   <div class="flex items-center justify-between gap-1">
                     <span class="text-[9.5px] font-semibold uppercase text-[#7c7267] tracking-wider">Endocrine Pancreas</span>
                     <span class="w-2 h-2 rounded-full bg-[#d49a3d]"></span>
@@ -1507,128 +1472,61 @@
 
               <!-- SLIDERS VIEW -->
               <div id="rightPanelSim" class="space-y-2 pt-2">
-                <div class="p-1 rounded-lg hover:bg-[#faf5ee] transition-all cursor-pointer"
-                  data-tip-title="Meal Carbohydrate Challenge (Bergman Minimal Model)"
-                  data-tip-math="R_meal(t) = (Carbs · Bioavail / τ_gut) · (t/τ_gut) · e^{-t/τ_gut}"
-                  data-tip-body="Simulates postprandial carbohydrate ingestion and gut absorption rate. Calibrated for typical South Asian meals (+0.82 mg/dL peak per +1g carb)."
-                  data-tip-tag="What-If Intervention">
+                <div>
                   <div class="flex justify-between text-xs mb-0.5 font-medium">
-                    <label for="simCarbs" class="text-[#4a4036] flex items-center gap-1 cursor-help">
-                      <span>Meal Carbohydrates (g)</span>
-                      <span class="material-symbols-outlined text-[12px] text-[#7c7267]">info</span>
-                    </label>
+                    <label for="simCarbs" class="text-[#4a4036]">Meal Carbohydrates (g)</label>
                     <span class="font-mono text-[#c2652a] font-semibold" id="valSimCarbs">95 g</span>
                   </div>
-                  <input type="range" id="simCarbs" min="20" max="220" value="95" oninput="onSimInput()" class="w-full cursor-pointer"
-                    data-tip-title="Meal Carbohydrate Challenge (Bergman Minimal Model)"
-                    data-tip-math="R_meal(t) = (Carbs · Bioavail / τ_gut) · (t/τ_gut) · e^{-t/τ_gut}"
-                    data-tip-body="Simulates postprandial carbohydrate ingestion and gut absorption rate. Calibrated for typical South Asian meals (+0.82 mg/dL peak per +1g carb)."
-                    data-tip-tag="What-If Intervention">
+                  <input type="range" id="simCarbs" min="20" max="220" value="95" oninput="onSimInput()" class="w-full">
                 </div>
 
-                <div class="p-1 rounded-lg hover:bg-[#faf5ee] transition-all cursor-pointer"
-                  data-tip-title="Pharmacological Adherence (Metformin + SGLT2i)"
-                  data-tip-math="E_med = Adherence · (ΔE_metformin + ΔE_glimepiride)"
-                  data-tip-body="Simulates prescribed medication compliance. 100% adherence suppresses hepatic gluconeogenesis (-62 mg/dL) and lowers systemic vascular resistance (-22 mmHg)."
-                  data-tip-tag="What-If Intervention">
+                <div>
                   <div class="flex justify-between text-xs mb-0.5 font-medium">
-                    <label for="simMeds" class="text-[#4a4036] flex items-center gap-1 cursor-help">
-                      <span>Medication Adherence (%)</span>
-                      <span class="material-symbols-outlined text-[12px] text-[#7c7267]">info</span>
-                    </label>
+                    <label for="simMeds" class="text-[#4a4036]">Medication Adherence (%)</label>
                     <span class="font-mono text-[#c2652a] font-semibold" id="valSimMeds">70 %</span>
                   </div>
-                  <input type="range" id="simMeds" min="0" max="100" value="70" oninput="onSimInput()" class="w-full cursor-pointer"
-                    data-tip-title="Pharmacological Adherence (Metformin + SGLT2i)"
-                    data-tip-math="E_med = Adherence · (ΔE_metformin + ΔE_glimepiride)"
-                    data-tip-body="Simulates prescribed medication compliance. 100% adherence suppresses hepatic gluconeogenesis (-62 mg/dL) and lowers systemic vascular resistance (-22 mmHg)."
-                    data-tip-tag="What-If Intervention">
+                  <input type="range" id="simMeds" min="0" max="100" value="70" oninput="onSimInput()" class="w-full">
                 </div>
 
-                <div class="p-1 rounded-lg hover:bg-[#faf5ee] transition-all cursor-pointer"
-                  data-tip-title="Sleep Architecture & Nocturnal Recovery"
-                  data-tip-math="ΔSBP = -3.6 · (Sleep - 7.0)   |   ΔCortisol ∝ -(Sleep - 7.0)"
-                  data-tip-body="Simulates slow-wave sleep restorative effect. Sleep restriction (<6h) triggers nocturnal sympathetic surges and increases morning insulin resistance."
-                  data-tip-tag="What-If Intervention">
+                <div>
                   <div class="flex justify-between text-xs mb-0.5 font-medium">
-                    <label for="simSleep" class="text-[#4a4036] flex items-center gap-1 cursor-help">
-                      <span>Sleep Duration (hrs)</span>
-                      <span class="material-symbols-outlined text-[12px] text-[#7c7267]">info</span>
-                    </label>
+                    <label for="simSleep" class="text-[#4a4036]">Sleep Duration (hrs)</label>
                     <span class="font-mono text-[#c2652a] font-semibold" id="valSimSleep">5.5 hrs</span>
                   </div>
-                  <input type="range" id="simSleep" min="3.0" max="10.0" step="0.5" value="5.5" oninput="onSimInput()" class="w-full cursor-pointer"
-                    data-tip-title="Sleep Architecture & Nocturnal Recovery"
-                    data-tip-math="ΔSBP = -3.6 · (Sleep - 7.0)   |   ΔCortisol ∝ -(Sleep - 7.0)"
-                    data-tip-body="Simulates slow-wave sleep restorative effect. Sleep restriction (<6h) triggers nocturnal sympathetic surges and increases morning insulin resistance."
-                    data-tip-tag="What-If Intervention">
+                  <input type="range" id="simSleep" min="3.0" max="10.0" step="0.5" value="5.5" oninput="onSimInput()" class="w-full">
                 </div>
 
-                <div class="p-1 rounded-lg hover:bg-[#faf5ee] transition-all cursor-pointer"
-                  data-tip-title="Physical Activity & GLUT-4 Translocation"
-                  data-tip-math="ΔG_exercise = -3.8 mg/dL per 1,000 steps (independent of insulin)"
-                  data-tip-body="Simulates skeletal muscle contraction-mediated non-insulin dependent glucose uptake. 7,000–10,000 daily steps reduces postprandial glycemic excursions by ~38 mg/dL."
-                  data-tip-tag="What-If Intervention">
+                <div>
                   <div class="flex justify-between text-xs mb-0.5 font-medium">
-                    <label for="simSteps" class="text-[#4a4036] flex items-center gap-1 cursor-help">
-                      <span>Physical Activity (steps)</span>
-                      <span class="material-symbols-outlined text-[12px] text-[#7c7267]">info</span>
-                    </label>
+                    <label for="simSteps" class="text-[#4a4036]">Physical Activity (steps)</label>
                     <span class="font-mono text-[#c2652a] font-semibold" id="valSimSteps">3,800 steps</span>
                   </div>
-                  <input type="range" id="simSteps" min="1000" max="18000" step="500" value="3800" oninput="onSimInput()" class="w-full cursor-pointer"
-                    data-tip-title="Physical Activity & GLUT-4 Translocation"
-                    data-tip-math="ΔG_exercise = -3.8 mg/dL per 1,000 steps (independent of insulin)"
-                    data-tip-body="Simulates skeletal muscle contraction-mediated non-insulin dependent glucose uptake. 7,000–10,000 daily steps reduces postprandial glycemic excursions by ~38 mg/dL."
-                    data-tip-tag="What-If Intervention">
+                  <input type="range" id="simSteps" min="1000" max="18000" step="500" value="3800" oninput="onSimInput()" class="w-full">
                 </div>
 
-                <div class="p-1 rounded-lg hover:bg-[#faf5ee] transition-all cursor-pointer"
-                  data-tip-title="Autonomic Sympathetic Tone & Cortisol Drive"
-                  data-tip-math="ΔSBP = +0.34 · Stress   |   RMSSD = RMSSD_base · (1 - 0.006 · Stress)"
-                  data-tip-body="Simulates sympathetic overdrive. Elevated stress suppresses parasympathetic vagal tone (RMSSD), aggravating postprandial hepatic glucose output and arterial stiffness."
-                  data-tip-tag="What-If Intervention">
+                <div>
                   <div class="flex justify-between text-xs mb-0.5 font-medium">
-                    <label for="simStress" class="text-[#4a4036] flex items-center gap-1 cursor-help">
-                      <span>Sympathetic Stress Index</span>
-                      <span class="material-symbols-outlined text-[12px] text-[#7c7267]">info</span>
-                    </label>
+                    <label for="simStress" class="text-[#4a4036]">Sympathetic Stress Index</label>
                     <span class="font-mono text-[#c2652a] font-semibold" id="valSimStress">60 / 100</span>
                   </div>
-                  <input type="range" id="simStress" min="10" max="100" value="60" oninput="onSimInput()" class="w-full cursor-pointer"
-                    data-tip-title="Autonomic Sympathetic Tone & Cortisol Drive"
-                    data-tip-math="ΔSBP = +0.34 · Stress   |   RMSSD = RMSSD_base · (1 - 0.006 · Stress)"
-                    data-tip-body="Simulates sympathetic overdrive. Elevated stress suppresses parasympathetic vagal tone (RMSSD), aggravating postprandial hepatic glucose output and arterial stiffness."
-                    data-tip-tag="What-If Intervention">
+                  <input type="range" id="simStress" min="10" max="100" value="60" oninput="onSimInput()" class="w-full">
                 </div>
 
                 <!-- Simulation Delta Footer -->
                 <div class="mt-2 p-2.5 rounded-xl bg-[#f5efe6] border border-[#d8d0c8]/60 flex items-center justify-between text-xs">
-                  <div class="cursor-help"
-                    data-tip-title="Simulated Systemic Strain (Ψ_sim)"
-                    data-tip-body="Recalculated multi-organ stress index (0–100) responding dynamically to slider perturbations."
-                    data-tip-tag="Simulation Metric">
+                  <div>
                     <span class="text-[#7c7267] block text-[9.5px] uppercase">Sim Strain</span>
                     <span class="font-serif text-lg text-[#26211c] font-semibold" id="simDeltaPsi">65.0</span>
                   </div>
-                  <div class="cursor-help"
-                    data-tip-title="Safe Clinical Window Delta (ΔTTT)"
-                    data-tip-body="Net gain or loss in safety margin before critical glycemic excursion (>200 mg/dL) or end-organ decompensation."
-                    data-tip-tag="Prognostic Delta">
+                  <div>
                     <span class="text-[#7c7267] block text-[9.5px] uppercase">Safe Window &Delta;</span>
                     <span class="font-mono text-xs font-semibold text-[#5c7a68]" id="simDeltaRul">+0.0 hrs</span>
                   </div>
-                  <div class="cursor-help"
-                    data-tip-title="Simulated Arterial Blood Pressure"
-                    data-tip-body="Coupled systolic and diastolic pressure calculated via Windkessel arterial compliance responding to lifestyle and medication."
-                    data-tip-tag="Hemodynamic Output">
+                  <div>
                     <span class="text-[#7c7267] block text-[9.5px] uppercase">Sim Arterial BP</span>
                     <span class="font-mono text-xs font-semibold text-[#26211c]" id="simDeltaSbp">138/88 mmHg</span>
                   </div>
-                  <button onclick="commitSimulatedCarePlan()" class="px-3 py-1 rounded-lg bg-[#c2652a] text-white font-semibold hover:bg-[#ad5620] transition-all shadow-sahara-sm text-xs cursor-pointer"
-                    data-tip-title="Commit Counterfactual Care Plan"
-                    data-tip-body="Applies these simulated lifestyle and medication parameters to update the patient's long-term digital twin trajectory in EHR."
-                    data-tip-tag="Clinical Action">
+                  <button onclick="commitSimulatedCarePlan()" class="px-3 py-1 rounded-lg bg-[#c2652a] text-white font-semibold hover:bg-[#ad5620] transition-all shadow-sahara-sm text-xs">
                     Commit
                   </button>
                 </div>
@@ -1906,38 +1804,23 @@
 
               <!-- 5 Telemetry Chips -->
               <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-2 text-center text-xs font-mono">
-                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50 cursor-help"
-                  data-tip-title="Meal Carbohydrate Challenge"
-                  data-tip-body="Patient acute meal carbohydrate intake synced live from What-If Simulator."
-                  data-tip-tag="Sandbox Context">
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
                   <span class="text-[#7c7267] block text-[9.5px] uppercase">Meal Carbs</span>
                   <span class="font-bold text-sm text-[#26211c]" id="sbChipCarbs">95g</span>
                 </div>
-                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50 cursor-help"
-                  data-tip-title="Medication Adherence Rate"
-                  data-tip-body="Percentage compliance to prescribed Metformin and oral hypoglycemic agents."
-                  data-tip-tag="Sandbox Context">
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
                   <span class="text-[#7c7267] block text-[9.5px] uppercase">Adherence</span>
                   <span class="font-bold text-sm text-[#26211c]" id="sbChipMeds">70%</span>
                 </div>
-                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50 cursor-help"
-                  data-tip-title="Restorative Sleep Duration"
-                  data-tip-body="Hours of nocturnal slow-wave sleep recorded via wearable IoT sensor."
-                  data-tip-tag="Sandbox Context">
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
                   <span class="text-[#7c7267] block text-[9.5px] uppercase">Sleep</span>
                   <span class="font-bold text-sm text-[#26211c]" id="sbChipSleep">5.5h</span>
                 </div>
-                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50 cursor-help"
-                  data-tip-title="Physical Activity (Ambulatory Steps)"
-                  data-tip-body="Daily steps measured via 3-axis wearable accelerometer."
-                  data-tip-tag="Sandbox Context">
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50">
                   <span class="text-[#7c7267] block text-[9.5px] uppercase">Daily Steps</span>
                   <span class="font-bold text-sm text-[#26211c]" id="sbChipSteps">3,800</span>
                 </div>
-                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50 col-span-2 cursor-help"
-                  data-tip-title="Safe Clinical Margin (Time-to-Threshold)"
-                  data-tip-body="Estimated prognostic buffer before postprandial glucose breaches 200 mg/dL or multi-organ decompensation occurs."
-                  data-tip-tag="Prognostic Horizon">
+                <div class="bg-[#faf5ee] p-2 rounded-xl border border-[#d8d0c8]/50 col-span-2">
                   <span class="text-[#7c7267] block text-[9.5px] uppercase">Safe Clinical Window</span>
                   <span class="font-bold text-sm text-[#8c3c3c]" id="sbChipRul">18.4 hrs (Threshold Breach)</span>
                 </div>
@@ -1959,42 +1842,27 @@
               </div>
 
               <div class="space-y-2">
-                <button type="button" onclick="sendQuickSandboxPrompt('remission')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs cursor-pointer"
-                  data-tip-title="Counterfactual Remission Protocol"
-                  data-tip-body="Tests aggressive lifestyle counterfactual (low carb, optimal sleep, 10k steps) to evaluate diabetes reversal potential under ICMR-INDIAB criteria."
-                  data-tip-tag="Preset Inquiry">
+                <button type="button" onclick="sendQuickSandboxPrompt('remission')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
                   <span>⚡ Counterfactual Remission Protocol</span>
                   <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
                 </button>
 
-                <button type="button" onclick="sendQuickSandboxPrompt('high_carb')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs cursor-pointer"
-                  data-tip-title="150g Meal Spike + Missed Meds"
-                  data-tip-body="Simulates severe postprandial glucose spike with 0% medication adherence to evaluate acute glycemic decompensation."
-                  data-tip-tag="Preset Inquiry">
+                <button type="button" onclick="sendQuickSandboxPrompt('high_carb')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
                   <span>🥪 150g Meal Spike + Missed Meds</span>
                   <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
                 </button>
 
-                <button type="button" onclick="sendQuickSandboxPrompt('sleep_stress')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs cursor-pointer"
-                  data-tip-title="Sleep Deprivation &amp; Sympathetic Stress"
-                  data-tip-body="Simulates 4.0h sleep restriction with 90/100 sympathetic stress to demonstrate vagal withdrawal, low RMSSD, and arterial stiffness."
-                  data-tip-tag="Preset Inquiry">
+                <button type="button" onclick="sendQuickSandboxPrompt('sleep_stress')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
                   <span>🌙 Sleep Deprivation &amp; Sympathetic Stress</span>
                   <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
                 </button>
 
-                <button type="button" onclick="sendQuickSandboxPrompt('pharmacotherapy')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs cursor-pointer"
-                  data-tip-title="ADA/KDIGO 2026 Pharmacotherapy Titration"
-                  data-tip-body="Queries clinical recommendations for SGLT2i / GLP-1 RA escalation based on patient's eGFR and cardiovascular risk profile."
-                  data-tip-tag="Preset Inquiry">
+                <button type="button" onclick="sendQuickSandboxPrompt('pharmacotherapy')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
                   <span>💊 ADA/KDIGO 2026 Pharmacotherapy Titration</span>
                   <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
                 </button>
 
-                <button type="button" onclick="sendQuickSandboxPrompt('thin_fat')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs cursor-pointer"
-                  data-tip-title="ICMR-INDIAB Thin-Fat Phenotype Risk"
-                  data-tip-body="Analyzes normal-BMI South Asian metabolic risks: high visceral adiposity, severe hepatic steatosis, and accelerated β-cell failure."
-                  data-tip-tag="Preset Inquiry">
+                <button type="button" onclick="sendQuickSandboxPrompt('thin_fat')" class="w-full text-left p-2.5 rounded-xl text-xs font-medium bg-[#faf5ee] text-[#26211c] border border-[#d8d0c8]/60 hover:bg-[#c2652a] hover:text-white transition-all flex items-center justify-between group shadow-2xs">
                   <span>🧬 ICMR-INDIAB Thin-Fat Phenotype Risk</span>
                   <span class="material-symbols-outlined text-sm text-[#7c7267] group-hover:text-white">chevron_right</span>
                 </button>
@@ -7733,13 +7601,9 @@ function updateDashboardUI(p, metrics) {
   };
 
   const pText = document.getElementById('patientPhenotypeText');
-  const pPill = document.getElementById('patientPhenotypePill');
+  const pTip = document.getElementById('patientPhenotypeTooltip');
   if (pText) pText.textContent = phenoTitles[p.phenotype] || `Phenotype: ${p.phenotype}`;
-  if (pPill) {
-    pPill.setAttribute('data-tip-title', phenoTitles[p.phenotype] || `Phenotype: ${p.phenotype}`);
-    pPill.setAttribute('data-tip-body', phenoDescriptions[p.phenotype] || "Clinical phenotype classification under ICMR-INDIAB criteria.");
-    pPill.setAttribute('data-tip-tag', 'ICMR-INDIAB Subtype');
-  }
+  if (pTip) pTip.textContent = phenoDescriptions[p.phenotype] || "Clinical phenotype classification under ICMR-INDIAB criteria.";
 
   // Two Visible Data Streams
   const hHba1c = document.getElementById('heroHba1c');
@@ -8157,12 +8021,7 @@ function renderSandboxAndTrajectory(p, simRes) {
       const delta = (stress - baseStress).toFixed(1);
       const isSel = state.activeOrgan === key;
       return `
-        <button type="button" onclick="selectOrgan('${key}')"
-          class="p-2.5 rounded-xl border text-left transition-all cursor-pointer group ${isSel ? 'bg-[#fbeae0] border-[#c2652a] ring-2 ring-[#c2652a]/50 shadow-sm' : 'bg-[#f5efe6] border-[#d8d0c8]/60 hover:bg-[#faf5ee] hover:border-[#c2652a]/40'}"
-          data-tip-title="${cfg.title}"
-          data-tip-math="${cfg.eq}"
-          data-tip-body="${cfg.tooltipBody}"
-          data-tip-tag="ODE Subsystem">
+        <button type="button" onclick="selectOrgan('${key}')" class="p-2.5 rounded-xl border text-left transition-all cursor-pointer group ${isSel ? 'bg-[#fbeae0] border-[#c2652a] ring-2 ring-[#c2652a]/50 shadow-sm' : 'bg-[#f5efe6] border-[#d8d0c8]/60 hover:bg-[#faf5ee] hover:border-[#c2652a]/40'}" title="Click to inspect ${cfg.title} ODE & Telemetry">
           <div class="flex items-center justify-between gap-1">
             <span class="text-[11px] font-semibold text-[#26211c] truncate group-hover:text-[#c2652a] transition-colors">${cfg.shortLabel}</span>
             <span class="w-2.5 h-2.5 rounded-full shrink-0 ${isSel ? 'animate-pulse' : ''}" style="background:${cfg.color}"></span>
@@ -8181,11 +8040,7 @@ function renderSandboxAndTrajectory(p, simRes) {
   const rulDelta = (simRes.rulHours - baseRes.rulHours).toFixed(1);
   if (compEl) {
     compEl.innerHTML = `
-      <div onclick="openComparisonModal('stage1')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between"
-        data-tip-title="Stage 1: Acute Adverse Glycemic Event Predictor"
-        data-tip-math="P(Acute Event) = σ(W_t · h_t + b)   |   AUROC: 0.942"
-        data-tip-body="Ensemble XGBoost + BiLSTM classifier calibrated with Platt scaling. Predicts >200 mg/dL hyperglycemic excursion within 45 minutes."
-        data-tip-tag="Stage 1 Classifier">
+      <div onclick="openComparisonModal('stage1')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect Stage 1 Acute Risk details">
         <div>
           <div class="flex items-center justify-between">
             <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 1 Event Risk</span>
@@ -8199,11 +8054,7 @@ function renderSandboxAndTrajectory(p, simRes) {
         </div>
       </div>
 
-      <div onclick="openComparisonModal('stage2')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between"
-        data-tip-title="Stage 2: 4-Stage Cardiometabolic Staging"
-        data-tip-math="P(Stage = k) = Softmax(W_stage · Φ + b_stage)"
-        data-tip-body="LightGBM ordinal classifier mapping multi-organ burden to Stages 1–4 of Cardiometabolic-Based Chronic Disease (CMBCD)."
-        data-tip-tag="Stage 2 Classifier">
+      <div onclick="openComparisonModal('stage2')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect CMBCD Staging details">
         <div>
           <div class="flex items-center justify-between">
             <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 2 CMBCD State</span>
@@ -8217,11 +8068,7 @@ function renderSandboxAndTrajectory(p, simRes) {
         </div>
       </div>
 
-      <div onclick="openComparisonModal('stage3')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between"
-        data-tip-title="Stage 3: Time-to-Threshold (TTT) Regressor"
-        data-tip-math="TTT = 168 · ((100 - Ψ)/96)^1.38 - 4.8 · ROC_CGM"
-        data-tip-body="Random Survival Forest predicting hours before postprandial glucose breaches 200 mg/dL or end-organ destabilization occurs."
-        data-tip-tag="Stage 3 Regressor">
+      <div onclick="openComparisonModal('stage3')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect Safe Window (TTT) details">
         <div>
           <div class="flex items-center justify-between">
             <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Stage 3 Safe Window</span>
@@ -8231,25 +8078,21 @@ function renderSandboxAndTrajectory(p, simRes) {
         </div>
         <div class="mt-1 flex items-center justify-between">
           <span class="font-mono text-[11px] font-semibold ${Number(rulDelta) >= 0 ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Number(rulDelta) >= 0 ? '+' : ''}${rulDelta} hrs</span>
-          <span class="text-[9.5px] text-[#7c7267] font-mono">C-Index: 0.88</span>
+          <span class="text-[9.5px] text-[#7c7267] font-mono">TTT Hazard</span>
         </div>
       </div>
 
-      <div onclick="openComparisonModal('cgm_apex')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between"
-        data-tip-title="Glycemic Recovery & 2-Hour Apex"
-        data-tip-math="ΔG_peak = +0.82·ΔCarb - 62·ΔMed - 3.8·ΔSteps/1k"
-        data-tip-body="Bergman minimal model projection of peak postprandial glucose under current lifestyle and medication parameters."
-        data-tip-tag="Postprandial Apex">
+      <div onclick="openComparisonModal('biometrics')" class="p-3 rounded-xl bg-[#faf5ee] border border-[#d8d0c8]/60 hover:border-[#c2652a] hover:bg-[#ffffff] hover:shadow-sahara-sm transition-all cursor-pointer group flex flex-col justify-between" title="Click to inspect Simulated Biometrics details">
         <div>
           <div class="flex items-center justify-between">
-            <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">2-Hr CGM Peak</span>
+            <span class="text-[10px] uppercase tracking-wider font-semibold text-[#7c7267] block">Simulated Biometrics</span>
             <span class="material-symbols-outlined text-[14px] text-[#7c7267] group-hover:text-[#c2652a] transition-colors">info</span>
           </div>
-          <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${Math.round(baseRes.cgm)} &rarr; ${Math.round(simRes.cgm)} mg/dL</div>
+          <div class="font-mono text-sm font-bold text-[#26211c] mt-1">${simRes.cgm} mg/dL • ${simRes.sbp}/${simRes.dbp}</div>
         </div>
         <div class="mt-1 flex items-center justify-between">
-          <span class="font-mono text-[11px] font-semibold ${Math.round(simRes.cgm) <= Math.round(baseRes.cgm) ? 'text-[#5c7a68]' : 'text-[#8c3c3c]'}">${Math.round(simRes.cgm) - Math.round(baseRes.cgm) > 0 ? '+' : ''}${Math.round(simRes.cgm) - Math.round(baseRes.cgm)} mg/dL</span>
-          <span class="text-[9.5px] text-[#7c7267] font-mono">TIR ${simRes.tir}%</span>
+          <span class="font-mono text-[11px] text-[#7c7267]">HRV: ${simRes.hrv} ms</span>
+          <span class="font-mono text-[10px] text-[#c2652a] font-semibold group-hover:underline">View Details &rarr;</span>
         </div>
       </div>
     `;
@@ -9625,59 +9468,24 @@ function toggleDarkMode() {
 function setupSmartTooltips() {
   const tipBox = document.getElementById('globalSmartTooltip');
   const tipTitle = document.getElementById('tipTitle');
-  const tipTag = document.getElementById('tipTag');
   const tipMath = document.getElementById('tipMath');
   const tipBody = document.getElementById('tipBody');
   if (!tipBox) return;
 
-  const SELECTOR = '[data-tip-title], [data-tip-body], [data-tip-math], [data-tooltip], .fx-badge, [title]';
-  let activeTrigger = null;
-
   function showTipFor(target) {
-    if (!target) return;
-    activeTrigger = target;
+    const title = target.getAttribute('data-tip-title') || 'Engineering Formulation';
+    const math = target.getAttribute('data-tip-math') || '';
+    const body = target.getAttribute('data-tip-body') || '';
 
-    // Resolve attributes
-    let title = target.getAttribute('data-tip-title') || '';
-    let math = target.getAttribute('data-tip-math') || '';
-    let body = target.getAttribute('data-tip-body') || '';
-    let tag = target.getAttribute('data-tip-tag') || '';
-    const simpleTooltip = target.getAttribute('data-tooltip') || '';
-    const nativeTitle = target.getAttribute('title');
+    tipTitle.textContent = title;
+    tipMath.textContent = math;
+    tipMath.style.display = math ? 'block' : 'none';
+    tipBody.textContent = body;
 
-    // Auto-migrate native browser title so default browser popup does not clash
-    if (nativeTitle && !title && !body && !simpleTooltip) {
-      body = nativeTitle;
-      target.setAttribute('data-tooltip', nativeTitle);
-      target.removeAttribute('title');
-    } else if (simpleTooltip && !body) {
-      body = simpleTooltip;
-    }
-
-    if (!title && !body && !math) return;
-
-    if (!title) {
-      title = target.closest('button, [role="button"]') ? 'Clinical Parameter' : 'System Telemetry';
-    }
-    if (!tag) {
-      tag = math ? 'Biophysical ODE' : 'Clinical Note';
-    }
-
-    if (tipTitle) tipTitle.textContent = title;
-    if (tipTag) tipTag.textContent = tag;
-    if (tipMath) {
-      tipMath.textContent = math;
-      tipMath.style.display = math ? 'block' : 'none';
-    }
-    if (tipBody) tipBody.textContent = body;
-
-    // Display tooltip to calculate bounding box
     tipBox.classList.remove('hidden');
-    tipBox.style.opacity = '1';
-
     const r = target.getBoundingClientRect();
-    const boxW = tipBox.offsetWidth || 320;
-    const boxH = tipBox.offsetHeight || 120;
+    const boxW = tipBox.offsetWidth || 300;
+    const boxH = tipBox.offsetHeight || 130;
 
     let left = r.left + r.width / 2 - boxW / 2;
     left = Math.max(12, Math.min(window.innerWidth - boxW - 12, left));
@@ -9692,51 +9500,25 @@ function setupSmartTooltips() {
   }
 
   function hideTip() {
-    activeTrigger = null;
-    tipBox.style.opacity = '0';
     tipBox.classList.add('hidden');
   }
 
   document.addEventListener('mouseover', (e) => {
-    const trigger = e.target.closest(SELECTOR);
-    if (trigger) {
-      if (trigger === activeTrigger) return;
-      showTipFor(trigger);
-    }
-  }, true);
-
+    const btn = e.target.closest('.fx-badge');
+    if (btn) showTipFor(btn);
+  });
   document.addEventListener('mouseout', (e) => {
-    const trigger = e.target.closest(SELECTOR);
-    if (trigger) {
-      // If moving to a child of the trigger, do not hide
-      if (e.relatedTarget && trigger.contains(e.relatedTarget)) {
-        return;
-      }
-      hideTip();
-    }
-  }, true);
-
+    const btn = e.target.closest('.fx-badge');
+    if (btn) hideTip();
+  });
   document.addEventListener('focusin', (e) => {
-    const trigger = e.target.closest(SELECTOR);
-    if (trigger) showTipFor(trigger);
+    const btn = e.target.closest('.fx-badge');
+    if (btn) showTipFor(btn);
   });
-
   document.addEventListener('focusout', (e) => {
-    const trigger = e.target.closest(SELECTOR);
-    if (trigger) hideTip();
+    const btn = e.target.closest('.fx-badge');
+    if (btn) hideTip();
   });
-
-  // Tap dismiss on mobile
-  document.addEventListener('pointerdown', (e) => {
-    if (tipBox && !tipBox.contains(e.target) && !e.target.closest(SELECTOR)) {
-      hideTip();
-    }
-  });
-
-  // Hide on scroll of any container to prevent detached floating tooltips
-  window.addEventListener('scroll', () => {
-    if (activeTrigger) hideTip();
-  }, { capture: true, passive: true });
 }
 
 function loadPatient(id) {
