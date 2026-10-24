@@ -3,6 +3,13 @@
 **Submission for the Happiest Health Digital Twin Challenge 2026**  
 *Reimagining and Reforming Healthcare in India Summit 2026, Bengaluru*
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![FastAPI](https://img.shields.io/badge/API-FastAPI%20REST-009688.svg?style=for-the-badge&logo=fastapi)](project_files/service/app.py)
+
+> 🌐 **Live Production Deployment:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)  
+> *Zero-setup, fully responsive clinician cockpit featuring real-time 3D anatomical visualization, 6-hour counterfactual What-If simulator, and 100-patient Indian cohort triage.*
+
 ## 1. Team Details
 
 * **Team Name:** Twin-Pulse
@@ -70,7 +77,7 @@ Standard care in India manages Type 2 Diabetes (T2D), Hypertension (HTN), Dyslip
 |                        3-STAGE PROGNOSTIC ML ENGINE & FASTAPI MICROSERVICE                        |
 |  - Stage 1 Adverse Event Classifier: 2-hr glycemic (>200 mg/dL) / 24-hr crisis (96.74% Recall)    |
 |  - Stage 2 CMBCD 4-Stage Soft-Voting Ensemble: Stage 1 to Stage 4 staging (0.9209 Macro F1)       |
-|  - Stage 3 Safe Clinical Window (RUL) Regressor: Hours to threshold breach (R² = 0.9607, 6.15h)   |
+|  - Stage 3 Safe Clinical Window (Time-to-Threshold / TTT) Regressor: Hours to threshold breach (R² = 0.9607, 6.15h) |
 +-------------------------------------------------+-------------------------------------------------+
                                                   |
                                                   v
@@ -90,9 +97,38 @@ Evaluated on a strict patient-grouped 80/20 holdout split (80 training patients 
 | :--- | :--- | :--- | :--- | :--- |
 | **Stage 1: Adverse Event Classifier** | Imminent 2-hr hyperglycemic spike (>200 mg/dL) or 24-hr hypertensive/cardiac crisis | **96.74% Recall** | **0.9418 F1-Score**, 91.75% Precision, 96.33% Accuracy | **0.035 ms** |
 | **Stage 2: CMBCD 4-Stage Ensemble** | 4-class progression staging (*Stage 1: Stable*, *Stage 2: Drift*, *Stage 3: Overt*, *Stage 4: Critical*) | **0.9209 Macro F1** | **91.33% Accuracy** (S1: 0.937, S2: 0.910, S3: 0.896, S4: 0.941) | **0.042 ms** |
-| **Stage 3: Safe Window (RUL) Regressor** | Continuous forecast of hours remaining (1–168h) before threshold breach | **R² = 0.9607** | **MAE = 6.15 Hours**, RMSE = 7.59 Hours | **0.028 ms** |
+| **Stage 3: Safe Clinical Window (TTT) Regressor** | Continuous forecast of hours remaining (1–168h) before threshold breach | **R² = 0.9607** | **MAE = 6.15 Hours**, RMSE = 7.59 Hours | **0.028 ms** |
 | **2-Hour CGM Horizon Forecaster** | Postprandial glycemic trajectory with 95% confidence cone | **RMSE = 11.2 mg/dL** | 94.10% Sensitivity, 92.60% Specificity | **1.80 ms** |
 
-## 6. License
+## 6. Live Web Deployment & Local Quickstart
+
+### 🌐 Live Production Application
+Access the complete interactive digital twin workstation directly in your web browser:
+* **Live Deployment URL:** [https://twin-pulse-digital-twin-challenge-2-two.vercel.app/](https://twin-pulse-digital-twin-challenge-2-two.vercel.app/)
+* **Hosting:** Deployed on Vercel with automated CI/CD pipeline from `main`.
+* **Zero Cloud Latency:** High-performance client-side biophysical solver (100 Hz RK4 ODE integration, 60 FPS Three.js point-cloud, and real-time counterfactual trajectories).
+
+### 💻 Local Execution
+To run the workstation locally:
+1. **Windows:** Double-click `Launch_Dashboard (windows).bat`.
+2. **macOS / Linux:** Execute `chmod +x Launch_Dashboard\ (macOS).sh && ./Launch_Dashboard\ (macOS).sh`.
+3. **Manual Browser / HTTP Server:**
+   ```bash
+   # Option A: Open directly in your browser
+   open index.html  # macOS
+   start index.html # Windows
+
+   # Option B: Run via local Python HTTP server
+   python -m http.server 8080
+   # Open http://localhost:8080 in your browser
+   ```
+
+### 🔬 Optional Local LLM Studio / Ollama Integration
+To connect your local AI clinical co-pilot:
+* **LM Studio:** Start server on port `http://localhost:1234/v1` (e.g., Llama 3 / Meditron).
+* **Ollama:** Start Ollama on port `http://localhost:11434` (`ollama run llama3`).
+* In the workstation top bar, click the **Settings Wheel** ⚙️ or view the Clinical Advisor panel to toggle Local AI mode. If unavailable, the dashboard automatically falls back to its built-in rule-based CMBCD clinical expert system.
+
+## 7. License
 
 Released under the **MIT Open-Source License**. Copyright (c) 2026 Pratyush Mathur & Aryan Jain (SVKM's NMIMS, Mumbai).
